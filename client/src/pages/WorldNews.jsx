@@ -28,14 +28,22 @@ const WorldNews = () => {
         for (const country of countryCodes) {
           const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
 
-          const response = await fetch(apiUrl);
+          const cachedData = localStorage.getItem(apiUrl);
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+          if (cachedData) {
+            articlesArray.push(...JSON.parse(cachedData).articles);
+          } else {
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            articlesArray.push(...(data.articles || []));
+
+            localStorage.setItem(apiUrl, JSON.stringify(data));
           }
-
-          const data = await response.json();
-          articlesArray.push(...(data.articles || []));
         }
       }
 
