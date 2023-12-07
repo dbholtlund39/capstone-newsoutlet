@@ -1,5 +1,5 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
@@ -7,12 +7,12 @@ import Navbar from "react-bootstrap/Navbar"
 // Navigation component
 const Navigation = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark">
       <Container>
         <Nav className="mr-auto">
-          <Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
             <img alt="" src="logo.jpg" width="100" height="80" />{" "}
-          </Navbar.Brand>
+          </Navbar.Brand >
 
           <Nav.Item className="homeLink">
             <Nav.Link as={NavLink} to="/" exact="true">
