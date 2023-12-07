@@ -42,9 +42,9 @@ const NationalNews = () => {
 
   return (
     <div>
-      <h3>Local News:</h3>
+      <h3>National News:</h3>
       <label>
-        Enter Country Code:{" "}
+        Enter Country Code: ("Example: us"){" "}
         <input
           type="text"
           value={userCountryCode}
