@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import LocalNews from './pages/LocalNews';
 import NationalNews from './pages/NationalNews';
 import WorldNews from './pages/WorldNews';
-import Sports from './pages/Sports';
+import Sports from './pages/SportsNews/Sports';
 import Weather from './pages/Weather';
 import UserProfile from './pages/UserProfile';
 

@@ -1,0 +1,25 @@
+.standings-container {
+    margin: 20px;
+}
+
+.team-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.team-logo {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
