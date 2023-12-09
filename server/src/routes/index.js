@@ -1,21 +1,12 @@
 import { Router } from "express";
 import { healthCheck } from "../controllers/api.controller";
+import userRouter from './user';
+
 
 const router = Router();
 
 router.route("/").get(healthCheck);
 
-router.route("/user-profile").get(
-
-)
-.post(
-
-)
-.put(
-
-)
-.delete(
-
-);
+router.use("/users", userRouter);
 
 export default router;
