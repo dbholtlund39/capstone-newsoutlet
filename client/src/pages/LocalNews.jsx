@@ -9,18 +9,25 @@ const LocalNews = () => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
 
     try {
-      const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
-      const response = await fetch(apiUrl);
+      const storedData = localStorage.getItem(`localNews_${countryCode}`);
+      if (storedData) {
+        setArticles(JSON.parse(storedData));
+        setLoading(false);
+      } else {
+        const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
+        const response = await fetch(apiUrl);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setArticles(data.articles || []);
+
+        localStorage.setItem(`localNews_${countryCode}`, JSON.stringify(data.articles));
       }
-
-      const data = await response.json();
-      setArticles(data.articles || []);
     } catch (error) {
       console.error("Error fetching local news:", error);
-    } finally {
       setLoading(false);
     }
   };

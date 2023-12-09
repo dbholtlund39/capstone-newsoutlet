@@ -26,16 +26,24 @@ const WorldNews = () => {
         const countryCodes = regions[region];
 
         for (const country of countryCodes) {
-          const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
+          const storedData = localStorage.getItem(`worldNews_${country}`);
+          if (storedData) {
+            const cachedArticles = JSON.parse(storedData);
+            articlesArray.push(...cachedArticles);
+          } else {
+            const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
 
-          const response = await fetch(apiUrl);
+            const response = await fetch(apiUrl);
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            articlesArray.push(...(data.articles || []));
+
+            localStorage.setItem(`worldNews_${country}`, JSON.stringify(data.articles));
           }
-
-          const data = await response.json();
-          articlesArray.push(...(data.articles || []));
         }
       }
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const NationalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userCountryCode, setUserCountryCode] = useState(""); 
+  const [userCountryCode, setUserCountryCode] = useState("");
 
   const fetchArticles = async (countryCode) => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
@@ -13,16 +13,25 @@ const NationalNews = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(apiUrl);
+      const storedData = localStorage.getItem(`nationalNews_${countryCode}`);
+      if (storedData) {
+        setArticles(JSON.parse(storedData));
+        setLoading(false);
+      } else {
+        const response = await fetch(apiUrl);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setArticles(data.articles || []);
+
+        localStorage.setItem(`nationalNews_${countryCode}`, JSON.stringify(data.articles));
       }
-
-      const data = await response.json();
-      setArticles(data.articles || []);
     } catch (error) {
       console.error("Error fetching articles:", error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
