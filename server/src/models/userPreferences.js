@@ -25,3 +25,7 @@ const preferencesSchema = new Schema(
     }
   }
 )
+
+const Preferences = model("Preferences", preferencesSchema);
+
+export default Preferences;
