@@ -26,21 +26,33 @@ const userSchema = new Schema (
       // I want to find a way to set the requirement for upper case, lower case, number, and special character in here. I might have to look back
       // at a previous assignment to remember how it's done
     },
-    location: {
-      required: true,
-      country: {
-        type: String,
+    preferences: [
+      {
+        countryCode: {
+          type: String,
+          // I am going to default to us as anyone looking at this will most likely be in the us.
+          default: 'US',
+          minLength: 2,
+          maxLength: 2,
+          require: true,
+        }
       },
-      state_Territory: {
-        type: String,
-        // I have it set as state and teritory for the hypothetical non US user.
+      {
+        team: {
+          type: String,
+          sport: {
+            type: String,
+          },
+          require: false,
+        }
       },
-      city: {
-        type: String,
-        required: false,
-        // I think for the users who don't want too much of their data given could stop at state level.
+      {
+        interest: {
+          type: String,
+          require: false,
+        }
       }
-    }
+    ],
   }
 );
 
