@@ -51,8 +51,8 @@ const NationalNews = () => {
 
   return (
     <div>
-      <h3>National News:</h3>
-      <label>
+      <h4 className= "pageTitle">National News</h4>
+      <label className= "inputLabel">
         Enter Country Code: ("Example: us"){" "}
         <input
           type="text"
@@ -63,16 +63,16 @@ const NationalNews = () => {
       <button onClick={handleFetchNews}>Fetch News</button>
 
       {loading ? (
-        <p>Loading articles...</p>
+        <p className="loading">Loading articles...</p>
       ) : (
         <ul>
           {articles.map((article) => (
-            <li key={article.title}>
+            <li className= "itemCard" key={article.title}>
               <h4>{article.title}</h4>
-              <p>{article.description}</p>
-              <p>Author: {article.author}</p>
-              <p>Published at: {article.publishedAt}</p>
-              <p>
+              <p className= "description">{article.description}</p>
+              <p className= "author">Author: {article.author}</p>
+              <p className="published">Published at: {article.publishedAt}</p>
+              <p className="source">
                 Source: {article.source.name}
               </p>
             </li>

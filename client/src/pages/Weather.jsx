@@ -6,7 +6,7 @@ import React from 'react';
 const Weather = () => {
     return (
         <div>
-          <h3>Weather content here...</h3>
+          <h4 className= "pageTitle">Weather</h4>
           {/* Add weather content here */}
         </div>
       );

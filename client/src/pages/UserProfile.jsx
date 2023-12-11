@@ -3,7 +3,7 @@ import React from "react"
 const UserProfile = () => {
     return (
         <div>
-          <h3>User profile content here...</h3>
+          <h4 className= "pageTitle">User Profile </h4>
           {/* Add user profile content here */}
         </div>
       );

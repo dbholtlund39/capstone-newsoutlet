@@ -38,19 +38,19 @@ const LocalNews = () => {
 
   return (
     <div>
-      <h3>Local News:</h3>
+      <h4 className= "pageTitle">Local News</h4>
 
       {loading ? (
-        <p>Loading articles...</p>
+        <p className= "loading">Loading articles...</p>
       ) : (
         <ul>
           {articles.map((article, index) => (
-            <li key={index}>
+            <li className= "itemCard" key={index}>
               <h4>{article.title}</h4>
-              <p>{article.description}</p>
-              <p>Author: {article.author}</p>
-              <p>Published at: {article.publishedAt}</p>
-              <p>Source: {article.source.name}</p>
+              <p className= "article">{article.description}</p>
+              <p className="author">Author: {article.author}</p>
+              <p className="published">Published at: {article.publishedAt}</p>
+              <p className="source"> Source: {article.source.name}</p>
             </li>
           ))}
         </ul>
