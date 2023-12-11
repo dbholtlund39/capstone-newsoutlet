@@ -8,6 +8,12 @@ const userSchema = new Schema (
       required: true,
       min: 5,
     },
+    email: {
+      type: String,
+      reuired: true,
+      set: toLower,
+      pattern: "[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]",
+    },
     name: {
       firstName: {
         type: String,
