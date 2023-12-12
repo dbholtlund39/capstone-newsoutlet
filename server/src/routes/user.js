@@ -1,8 +1,5 @@
 import express from 'express';
-import bcrypt from "bcryptjs";
 import { User } from '../models/user';
-import { userAuth } from '../middleware/userAuth';
-
 
 const router = express.Router();
 
@@ -34,12 +31,11 @@ router
 
     res.json(user.toJSON());
   })
-  .post(async(req, res) => {
-
-  })
   .put(async(req, res) => {
-
+    
   })
   .delete(async(req, res) => {
-
+    
   })
+
+  module.exports = router; 
