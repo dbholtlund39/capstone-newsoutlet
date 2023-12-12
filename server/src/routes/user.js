@@ -32,10 +32,17 @@ router
     res.json(user.toJSON());
   })
   .put(async(req, res) => {
-    
+    const { username, email, name, password, location, team, interest } = req.body;
   })
   .delete(async(req, res) => {
-    
+    const { username } = req.body;
+    const deleteUser = await User.findOneAndDelete(username);
+
+    if(!deleteUser){
+      return res.sendStatus(404);
+    }
+
+    res.json(deleteUser);
   })
 
   module.exports = router; 
