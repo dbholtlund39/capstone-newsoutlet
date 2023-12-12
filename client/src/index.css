@@ -1,7 +1,13 @@
+body {
+  margin: 0px;
+  padding-top: 120px;
+  }
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #e4e5f7;
 }
+
 
 a {
   font-weight: 700;
@@ -10,6 +16,11 @@ a {
 }
 a:hover {
   color: #535bf2;
+}
+
+a:active,
+a:focus {
+  color: gold; 
 }
 
 .mr-auto {
@@ -21,6 +32,14 @@ a:hover {
   padding-top: 20px;
   padding-bottom: 20px;
   flex-wrap: wrap;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%; /* Ensure the navbar spans the entire width */
+  z-index: 1000; /* Set a high z-index to ensure it appears above other content */
+  /* Add any other styling you need for the navbar */
 }
 
 .userProfileLink {
@@ -80,4 +99,58 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+h2 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+h3 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+h4 {
+  font-size: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.inputLabel {
+  padding-left: 40px;
+ padding-right: 10px;
+}
+
+.loading {
+  padding-left: 40px;
+}
+
+.description{
+  font-size: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.published{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.source{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.author{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.itemCard {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  list-style: none;
+}
+
+.pageTitle {
+  font-size: 20px;
+  text-align: center;
 }
