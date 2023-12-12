@@ -49,6 +49,9 @@ const NationalNews = () => {
     }
   };
 
+  const filteredArticles = articles.filter(article => article.title !== "[Removed]");
+
+
   return (
     <div>
       <h4 className= "pageTitle">National News</h4>
@@ -66,7 +69,7 @@ const NationalNews = () => {
         <p className="loading">Loading articles...</p>
       ) : (
         <ul>
-          {articles.map((article) => (
+          {filteredArticles.map((article) => (
             <li className= "itemCard" key={article.title}>
               <h4>{article.title}</h4>
               <p className= "description">{article.description}</p>

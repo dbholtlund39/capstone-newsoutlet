@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const LocalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userCountryCode = "ca";
+  const userCountryCode = "us";
 
   const fetchLocalNews = async (countryCode) => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
@@ -36,6 +36,9 @@ const LocalNews = () => {
     fetchLocalNews(userCountryCode);
   }, [userCountryCode]);
 
+  const filteredArticles = articles.filter(article => article.title !== "[Removed]");
+
+
   return (
     <div>
       <h4 className= "pageTitle">Local News</h4>
@@ -44,7 +47,7 @@ const LocalNews = () => {
         <p className= "loading">Loading articles...</p>
       ) : (
         <ul>
-          {articles.map((article, index) => (
+          {filteredArticles.map((article, index) => (
             <li className= "itemCard" key={index}>
               <h4>{article.title}</h4>
               <p className= "article">{article.description}</p>
