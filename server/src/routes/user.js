@@ -31,8 +31,18 @@ router
 
     res.json(user.toJSON());
   })
-  .put(async(req, res) => {
-    const { username, email, name, password, location, team, interest } = req.body;
+  .patch(async(req, res) => {
+    const { username } = req.params;
+    const changes = req.body;
+    
+    let user = User.findOne({username});
+
+    if(user){
+      Object.assign(user, changes);
+      res.status(200).json(user);
+    } else {
+      res.status(404)
+    }
   })
   .delete(async(req, res) => {
     const { username } = req.body;
