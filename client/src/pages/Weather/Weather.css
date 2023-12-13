@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+/* .weather-container{
+    width: 100%;
+    max-width: 500px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    text-align: center;
+    margin: 100px auto 0;
+    border-radius: 25px;
+    padding: 40px 35px;
+    color: #fff;
+}
+
+.search-icon{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+/* h1 {
+  color: #fff;
+}
+h2 {
+  color: #fff;
+}
+p {
+  color: #fff;
+  font-weight: bold;
+} */
+
+.weather-container {
+  width: 90%;
+  max-width: 470px;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  text-align: center;
+  margin: 100px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  color: #fff;
+}
+
+/* .weather-container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, );
+} */
+
+/* .weather-container:before{
+    content: "";
+    background: url("../../components/images/background.png") no-repeat center center/cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: -1;
+} */
+
+/* .weather-container .search {
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+} */
+body{
+    background-color: #42403e;
+}
+
+.search input {
+  border: 0;
+  outline: 0;
+  color: #555;
+  background: #ebfffc;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 20px;
+  border-radius: 20px;
+  height: 60px;
+  padding: 10px 25px;
+}
+
+.search button {
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.search button img {
+  width: 16px;
+}
+.temp p{
+    margin-top:-10px;
+    font-size: 45px;
+    font-weight: 400;
+} 
+
+.city-details{
+    display: flex;
+   align-items: center;
+   justify-content: space-between; 
+   padding: 0 20px;
+   margin-top:50px ;
+}
+
+.col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.humidity, .wind {
+    /* font-size: 30px; */
+    margin-top: -6px;
+}

@@ -5,8 +5,13 @@ import Home from './pages/Home';
 import LocalNews from './pages/LocalNews';
 import NationalNews from './pages/NationalNews';
 import WorldNews from './pages/WorldNews';
+<<<<<<< Updated upstream
 import Sports from './pages/SportsNews/Sports';
 import Weather from './pages/Weather';
+=======
+import Sports from './pages/Sports';
+import Weather from './pages/Weather/Weather';
+>>>>>>> Stashed changes
 import UserProfile from './pages/UserProfile';
 
 const App = () => {
