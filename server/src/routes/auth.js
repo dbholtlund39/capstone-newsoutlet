@@ -1,4 +1,4 @@
-import express from express;
+import express from "express";
 import bcrypt from "bcryptjs";
 import { User } from "../models/user";
 import { DB_URL } from "../config/db.config";
