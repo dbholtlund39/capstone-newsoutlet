@@ -10,8 +10,8 @@ const userSchema = new Schema (
     },
     email: {
       type: String,
-      reuired: true,
-      set: toLower,
+      required: true,
+      lowercase: true,
       pattern: "[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]",
     },
     name: {

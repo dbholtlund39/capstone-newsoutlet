@@ -59,6 +59,9 @@ const WorldNews = () => {
     fetchArticles();
   }, []);
 
+  const filteredArticles = articles.filter(article => article.title !== "[Removed]");
+
+
   return (
     <div>
       <h4 className= "pageTitle">World News</h4>
@@ -67,7 +70,7 @@ const WorldNews = () => {
         <p>Loading articles...</p>
       ) : (
         <ul>
-          {articles.map((article, index) => (
+          {filteredArticles.map((article, index) => (
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
               <p className="description">{article.description}</p>
