@@ -6,7 +6,7 @@ const NationalNews = () => {
   const [userCountryCode, setUserCountryCode] = useState("");
 
   const fetchArticles = async (countryCode) => {
-    const apiKey = import.meta.env.NEWS_API_KEY;
+    const apiKey = "8cc2063285f3470b96ff200384478e9b";
 
     const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
 

@@ -5,7 +5,7 @@ const WorldNews = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchArticles = async () => {
-    const apiKey = import.meta.env.NEWS_API_KEY;
+    const apiKey = "8cc2063285f3470b96ff200384478e9b";
     const regions = {
       Africa: ["za", "ng", "ke"],
       Americas: ["us", "ca", "br", "mx"],

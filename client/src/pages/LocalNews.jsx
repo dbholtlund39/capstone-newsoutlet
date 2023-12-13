@@ -6,7 +6,7 @@ const LocalNews = () => {
   const userCountryCode = "us";
 
   const fetchLocalNews = async (countryCode) => {
-    const apiKey = import.meta.env.NEWS_API_KEY;
+    const apiKey = "8cc2063285f3470b96ff200384478e9b";
 
     try {
       const storedData = localStorage.getItem(`localNews_${countryCode}`);
