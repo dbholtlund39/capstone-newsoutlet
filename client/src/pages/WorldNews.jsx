@@ -63,8 +63,8 @@ const WorldNews = () => {
 
 
   return (
-    <div>
-      <h4 className= "pageTitle">World News</h4>
+    <div className= "newsFeed">
+      <h4 className= "pageTitle"></h4>
 
       {loading ? (
         <p>Loading articles...</p>

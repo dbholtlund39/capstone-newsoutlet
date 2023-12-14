@@ -53,8 +53,8 @@ const NationalNews = () => {
 
 
   return (
-    <div>
-      <h4 className= "pageTitle">National News</h4>
+    <div className="newsFeed">
+      <h4 className= "pageTitle"></h4>
       <label className= "inputLabel">
         Enter Country Code: ("Example: us"){" "}
         <input

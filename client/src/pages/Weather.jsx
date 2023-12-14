@@ -5,7 +5,7 @@ import React from 'react';
 
 const Weather = () => {
     return (
-        <div>
+        <div >
           <h4 className= "pageTitle">Weather</h4>
           {/* Add weather content here */}
         </div>

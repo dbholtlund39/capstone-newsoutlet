@@ -5,9 +5,11 @@ import RandomQuote from './RandomQuote';
 const Home = () => {
 
   return (
-    <div>
+    <div className= "newsFeed">
       <h4 className= "pageTitle">Welcome to the Home Page</h4>
+      <div className= "randomQuote">
       <RandomQuote />
+      </div>
       <LocalNews />
     </div>
   );

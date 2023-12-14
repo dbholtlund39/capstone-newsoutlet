@@ -40,8 +40,8 @@ const LocalNews = () => {
 
 
   return (
-    <div>
-      <h4 className= "pageTitle">Local News</h4>
+    <div className="newsFeed">
+      <h4 className= "pageTitle"></h4>
 
       {loading ? (
         <p className= "loading">Loading articles...</p>

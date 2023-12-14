@@ -23,6 +23,11 @@ a:focus {
   color: gold; 
 }
 
+.randomQuote {
+  text-align: center;
+ padding: 5px;
+}
+
 .mr-auto {
   font-size: 14px;
   display: flex;
@@ -121,7 +126,11 @@ h1 {
   line-height: 1.1;
 }
 
-
+.newsFeed{
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px;
+}
 
 button:hover {
   border-color: #646cff;
@@ -155,18 +164,22 @@ h4 {
 
 .description{
   font-size: 15px;
+  padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
 }
 .published{
+  font-size: 12px;
   padding-left: 40px;
   padding-right: 40px;
 }
 .source{
+  font-size: 12px;
   padding-left: 40px;
   padding-right: 40px;
 }
 .author{
+  font-size: 12px;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -187,5 +200,7 @@ h4 {
 
 .pageTitle {
   font-size: 20px;
+  padding: 5px;
   text-align: center;
+
 }
