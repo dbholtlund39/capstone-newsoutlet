@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import NflCard from "./NflCard.jsx";
-import NbaCard from "./NbaCard";
+import LatestSportsNews from "./LatestSportsNews";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -63,10 +63,10 @@ class Sports extends Component {
         <div style={sliderStyle}>
           <Slider ref={(slider) => (this.slider = slider)} {...settings}>
             <div style={cardStyle}>
-              <NflCard />
+              <LatestSportsNews />
             </div>
             <div style={cardStyle}>
-              <NbaCard />
+              <NflCard />
             </div>
             {/* Add more sports components as needed */}
           </Slider>
