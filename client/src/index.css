@@ -79,6 +79,14 @@ a:focus {
 
  .teamList {
   text-align: center;
+  padding: 5px;
+ }
+
+ .editButton {
+  font-size: 15px;
+  width: 100px;
+  padding: 2px;
+  margin: 5px;
  }
 
  .userProfileLink a{
@@ -130,6 +138,14 @@ h1 {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
+}
+
+.usernameP {
+padding: 5px;
+}
+
+.locationP {
+padding: 5px;
 }
 
 button:hover {

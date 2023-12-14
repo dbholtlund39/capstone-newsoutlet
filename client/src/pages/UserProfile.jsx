@@ -40,7 +40,7 @@ const UserProfile = () => {
 
   return (
     <div className="profileMainDiv">
-      <h3 className= "pageTitle">User Profile</h3>
+      <h3 className= "pageTitle">{initialUserData.username}'s Profile</h3>
       {editing ? (
         <div className="userProfileDisplay">
           <p>
@@ -147,10 +147,10 @@ const UserProfile = () => {
         </div>
       ) : (
         <div className="userProfileDisplay">
-          <p>
+          <p className= "usernameP"> 
           <strong>Username:</strong> {initialUserData.username}
           </p>
-          <p>
+          <p className= "locationP">
             <strong>Location:</strong> {userData.location.city}, {userData.location.state}, {userData.location.country}
           </p>
           <p className= "teamList">
@@ -162,7 +162,7 @@ const UserProfile = () => {
     </span>
   ))}
           </p>
-          <button onClick={handleEdit}>Edit</button>
+          <button className= "editButton" onClick={handleEdit}>Edit</button>
         </div>
       )}
     </div>
