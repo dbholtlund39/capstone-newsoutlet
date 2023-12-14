@@ -27,7 +27,10 @@ const NationalNews = () => {
         const data = await response.json();
         setArticles(data.articles || []);
 
-        localStorage.setItem(`nationalNews_${countryCode}`, JSON.stringify(data.articles));
+        localStorage.setItem(
+          `nationalNews_${countryCode}`,
+          JSON.stringify(data.articles)
+        );
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
@@ -49,13 +52,14 @@ const NationalNews = () => {
     }
   };
 
-  const filteredArticles = articles.filter(article => article.title !== "[Removed]");
-
+  const filteredArticles = articles.filter(
+    (article) => article.title !== "[Removed]"
+  );
 
   return (
     <div className="newsFeed">
-      <h4 className= "pageTitle"></h4>
-      <label className= "inputLabel">
+      <h4 className="pageTitle"></h4>
+      <label className="inputLabel">
         Enter Country Code: ("Example: us"){" "}
         <input
           type="text"
@@ -69,15 +73,27 @@ const NationalNews = () => {
         <p className="loading">Loading articles...</p>
       ) : (
         <ul>
-          {filteredArticles.map((article) => (
-            <li className= "itemCard" key={article.title}>
+          {filteredArticles.map((article, index) => (
+            <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
-              <p className= "description">{article.description}</p>
-              <p className= "author">Author: {article.author}</p>
+              {article.urlToImage && (
+                <img src={article.urlToImage} alt="Article" />
+              )}
+              <p className="article">{article.description}</p>
+              <p className="author">Author: {article.author}</p>
               <p className="published">Published at: {article.publishedAt}</p>
-              <p className="source">
-                Source: {article.source.name}
-              </p>
+              <p className="source">Source: {article.source.name}</p>
+              {article.url && (
+                <p className="article-link">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read More
+                  </a>
+                </p>
+              )}
             </li>
           ))}
         </ul>
