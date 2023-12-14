@@ -15,4 +15,4 @@ Currently, two official plugins are available:
 12/10 Assigned user profile management to Dylan to start on the user model and connections with the backend. Reviewed Mireille's weather page and current errors related to pulling and pushing to the hub. 
 12/11 Brainstormed what we want to show on the home page. Instead of overloading the page with updates from each category, we decided to pull in local news, weather, and sports updates based on the user profile location and favorite sports teams. 
 12/12 Discovered that we will need a user log in component in order to store the user preferences. Dylan is working on that within his user preferences task. 
-12/13 Helped Merielle get weather page changes pushed and changed access on MongoDB to allow for successful connection.
+12/13 Helped Mereille get weather page changes pushed and changed access on MongoDB to allow for successful connection.
