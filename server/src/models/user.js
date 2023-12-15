@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-const{ Schema, model } = mongoose;
+const { Schema, model } = mongoose;
 
-const userSchema = new Schema (
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -12,7 +12,7 @@ const userSchema = new Schema (
       type: String,
       required: true,
       lowercase: true,
-      pattern: "[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]",
+      match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Invalid email format"],
     },
     name: {
       firstName: {
@@ -28,19 +28,16 @@ const userSchema = new Schema (
       type: String,
       required: true,
       minLength: 8,
-      max: 20,
-      // I want to find a way to set the requirement for upper case, lower case, number, and special character in here. I might have to look back
-      // at a previous assignment to remember how it's done
+      maxLength: 20,
     },
     preferences: [
       {
         countryCode: {
           type: String,
-          // I am going to default to us as anyone looking at this will most likely be in the us.
           default: 'US',
           minLength: 2,
           maxLength: 2,
-          require: true,
+          required: true,
         }
       },
       {
@@ -49,13 +46,13 @@ const userSchema = new Schema (
           sport: {
             type: String,
           },
-          require: false,
+          required: false,
         }
       },
       {
         interest: {
           type: String,
-          require: false,
+          required: false,
         }
       }
     ],
