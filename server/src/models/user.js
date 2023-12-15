@@ -28,34 +28,35 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minLength: 8,
-      maxLength: 20,
     },
-    preferences: [
-      {
-        countryCode: {
-          type: String,
-          default: 'US',
-          minLength: 2,
-          maxLength: 2,
-          required: true,
-        }
-      },
-      {
-        team: {
-          type: String,
-          sport: {
+    preferences: {
+      type: [
+        {
+          countryCode: {
             type: String,
+            default: 'US',
+            minLength: 2,
+            maxLength: 2,
+            required: true,
           },
-          required: false,
-        }
-      },
-      {
-        interest: {
-          type: String,
-          required: false,
-        }
-      }
-    ],
+        },
+        {
+          team: {
+            type: String,
+            sport: {
+              type: String,
+            },
+            required: false,
+          },
+        },
+        {
+          interest: {
+            type: String,
+            required: false,
+          },
+        },
+      ],
+    },
   }
 );
 

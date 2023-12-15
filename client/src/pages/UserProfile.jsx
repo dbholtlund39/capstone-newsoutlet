@@ -1,168 +1,282 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
 const UserProfile = () => {
   const initialUserData = {
-    username: 'username',
-    location: {
-      city: 'city',
-      state: "state",
-      country: 'country',
-    },
-    favoriteTeams: [], 
+    username: "",
+    favoriteTeams: [],
   };
 
+  const [signedIn, setSignedIn] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
-  const [editing, setEditing] = useState(false); 
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [editing, setEditing] = useState(false);
+  const [signUpMode, setSignUpMode] = useState(false);
+
+  const nflTeams = [
+    "Arizona Cardinals",
+    "Atlanta Falcons",
+    "Baltimore Ravens",
+    "Buffalo Bills",
+    "Carolina Panthers",
+    "Chicago Bears",
+    "Cincinnati Bengals",
+    "Cleveland Browns",
+    "Dallas Cowboys",
+    "Denver Broncos",
+    "Detroit Lions",
+    "Green Bay Packers",
+    "Houston Texans",
+    "Indianapolis Colts",
+    "Jacksonville Jaguars",
+    "Kansas City Chiefs",
+    "Las Vegas Raiders",
+    "Los Angeles Chargers",
+    "Los Angeles Rams",
+    "Miami Dolphins",
+    "Minnesota Vikings",
+    "New England Patriots",
+    "New Orleans Saints",
+    "New York Giants",
+    "New York Jets",
+    "Philadelphia Eagles",
+    "Pittsburgh Steelers",
+    "San Francisco 49ers",
+    "Seattle Seahawks",
+    "Tampa Bay Buccaneers",
+    "Tennessee Titans",
+    "Washington Commanders"
+  ];
+
+  useEffect(() => {
+    const storedUserData = sessionStorage.getItem("userData");
+    if (storedUserData) {
+      setSignedIn(true);
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
 
   const handleEdit = () => {
     setEditing(true);
   };
 
   const handleSave = () => {
-     setEditing(false);
+    setEditing(false);
+    sessionStorage.setItem("userData", JSON.stringify(userData));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({
-      ...userData,
+    setUserData((prevUserData) => ({
+      ...prevUserData,
       [name]: value,
-    });
+    }));
   };
 
   const handleTeamsChange = (e) => {
-    const selectedTeams = Array.from(e.target.selectedOptions, (option) => option.value);
-    setUserData({
-      ...userData,
+    const selectedTeams = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+    setUserData((prevUserData) => ({
+      ...prevUserData,
       favoriteTeams: selectedTeams,
+    }));
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+
+      if (response.status === 200) {
+        setSignedIn(true);
+
+        const userResponse = await fetch(
+          `http://localhost:3001/api/${formData.username}`
+        );
+        if (userResponse.status === 200) {
+          const user = await userResponse.json();
+          setUserData(user);
+        }
+      } else {
+        console.error("Sign In failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Sign In failed:", error.message);
+    }
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+          name: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+          },
+          email: formData.email,
+        }),
+      });
+
+      if (response.status === 201) {
+        await handleSignIn();
+      } else {
+        const errorData = await response.json();
+        console.error("Sign Up failed:", errorData.error);
+      }
+    } catch (error) {
+      console.error("Sign Up failed:", error.message);
+    }
+  };
+
+  const handleSignOut = () => {
+    setSignedIn(false);
+    setUserData(initialUserData);
+    setFormData({
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+    sessionStorage.removeItem("userData");
   };
 
   return (
     <div className="profileMainDiv">
-      <h3 className= "pageTitle">{initialUserData.username}'s Profile</h3>
-      {editing ? (
-        <div className="userProfileDisplay">
-          <p>
-          <strong>Username:</strong> {initialUserData.username}
-        </p>
-          <label>
-            City
-            <br></br>
-            <input
-              type="text"
-              name="city"
-              value={userData.location.city}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  location: {
-                    ...userData.location,
-                    city: e.target.value,
-                  },
-                })
-              }
-            />
-          </label>
-          <label>
-            State
-            <br></br> 
-            <input
-              type="text"
-              name="state"
-              value={userData.location.state}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  location: {
-                    ...userData.location,
-                    state: e.target.value,
-                  },
-                })
-              }
-            />
-          </label>
-          <label>
-            Country
-            <br></br>
-            <input
-              type="text"
-              name="country"
-              value={userData.location.country}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  location: {
-                    ...userData.location,
-                    country: e.target.value,
-                  },
-                })
-              }
-            />
-          </label>
-          <label>
-            Favorite Teams
-            <br></br>
-            <select
-              multiple
-              name="favoriteTeams"
-              value={userData.favoriteTeams}
-              onChange={handleTeamsChange}
-            >
-              <option value="Carolina Panthers">Carolina Panthers</option>
-              <option value="Arizona Cardinals">Arizona Cardinals</option>
-              <option value="New England Patriots">New England Patriots</option>
-              <option value="Washington Commanders">Washington Commanders</option>
-              <option value="Chigago Bears">Chicago Bears</option>
-              <option value="Las Vegas Raiders">Las Vegas Raiders</option>
-              <option value="Los Angeles Chargeres">Los Angeles Chargers</option>
-              <option value="New York Giants">New York Giants</option>
-              <option value="New York Jets">New York Jets</option>
-              <option value="Tennessee Titans">Tennessee Titans</option>
-              <option value="Atlanta Falcons">Atlanta Falcons</option>
-              <option value="Green Bay Packers">Green Bay Packers</option>
-              <option value="Los Angeles Rams">Los Angeles Rams</option>
-              <option value="New Orleans Saints">New Orleans Saints</option>
-              <option value="Seattle Seahawks">Seattle Seahawks</option>
-              <option value="Tampa Bay Buccaneers">Tampa Bay Buccaneers</option>
-              <option value="Buffalo Bills">Buffalo Bills</option>
-              <option value="Cincinnati Bengals">Cincinnati Bengals</option>
-              <option value="Denver Broncos">Denver Broncos</option>
-              <option value="Houston Texans">Houston Texans</option>
-              <option value="Indianapolis Colts">Indianapolis Colts</option>
-              <option value="Minnesota Vikings">Minnesota Vikings</option>
-              <option value="Pittsburgh Steelers">Pittsburgh Steelers</option>
-              <option value="Cleveland Browns">Cleveland Browns</option>
-              <option value="Jacksonville Jaguars">Jacksonville Jaguars</option>
-              <option value="Kansas City Chiefs">Kansas City Cheifs</option>
-              <option value="Detroit Lions">Detroit Lions</option>
-              <option value="Miami Dolphins">Miami Dolphins</option>
-              <option value="Baltimore Ravens">Baltimore Ravens</option>
-              <option value="Dallas Cowboys">Dallas Cowboys</option>
-              <option value="Philadelphia Eagles">Philadelphia Eagles</option>
-              <option value="San Francisco 49ers">San Francisco 49ers</option>
-            </select>
-          </label>
-          <button onClick={handleSave}>Save</button>
-        </div>
+      {signedIn ? (
+        <>
+          <h3 className="pageTitle">{userData.username}'s Profile</h3>
+          {editing ? (
+            <div className="userProfileDisplay">
+              <p>
+                <strong>Username:</strong> {userData.username}
+              </p>
+              <label>
+                Favorite Teams
+                <br />
+                <select
+                  multiple
+                  name="favoriteTeams"
+                  value={userData.favoriteTeams}
+                  onChange={handleTeamsChange}
+                >
+                  {nflTeams.map((team) => (
+                    <option key={team} value={team}>
+                      {team}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button onClick={handleSave}>Save</button>
+            </div>
+          ) : (
+            <div className="userProfileDisplay">
+              <p className="usernameP">
+                <strong>Username:</strong> {userData.username}
+              </p>
+              <p className="teamList">
+                <strong>Favorite Teams:</strong>{" "}
+                {userData.favoriteTeams &&
+                  userData.favoriteTeams.map((team, index) => (
+                    <span key={team}>
+                      {team}
+                      {index !== userData.favoriteTeams.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+              </p>
+              <button className="editButton" onClick={handleEdit}>
+                Edit
+              </button>
+            </div>
+          )}
+          <button className="signOutButton" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </>
       ) : (
-        <div className="userProfileDisplay">
-          <p className= "usernameP"> 
-          <strong>Username:</strong> {initialUserData.username}
+        <div className="pageTitle">
+          <h3>{signUpMode ? "Sign Up" : "Sign In"}</h3>
+          {signUpMode && <p>Min password length of 8</p>}{" "}
+          <label>
+            Username:
+            <input type="text" name="username" onChange={handleFormChange} />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              name="password"
+              onChange={handleFormChange}
+            />
+          </label>
+          {signUpMode && (
+            <>
+              <label>
+                Confirm Password:
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Email:
+                <input type="email" name="email" onChange={handleFormChange} />
+              </label>
+              <label>
+                First Name:
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Last Name:
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={handleFormChange}
+                />
+              </label>
+            </>
+          )}
+          <button onClick={signUpMode ? handleSignUp : handleSignIn}>
+            {signUpMode ? "Sign Up" : "Sign In"}
+          </button>
+          <p>
+            {signUpMode
+              ? "Already have an account?"
+              : "Don't have an account? Sign up now!"}
+            <button onClick={() => setSignUpMode(!signUpMode)}>
+              {signUpMode ? "Sign In" : "Sign Up"}
+            </button>
           </p>
-          <p className= "locationP">
-            <strong>Location:</strong> {userData.location.city}, {userData.location.state}, {userData.location.country}
-          </p>
-          <p className= "teamList">
-          <strong>Favorite Teams:</strong>{' '}
-  {userData.favoriteTeams.map((team, index) => (
-    <span key={team}>
-      {team}
-      {index !== userData.favoriteTeams.length - 1 ? ', ' : ''}
-    </span>
-  ))}
-          </p>
-          <button className= "editButton" onClick={handleEdit}>Edit</button>
         </div>
       )}
     </div>
