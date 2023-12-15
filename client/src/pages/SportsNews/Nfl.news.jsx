@@ -30,7 +30,7 @@ const FootballArticles = () => {
 
     return (
         <div>
-            <h2>Football Articles</h2>
+            <h2>Latest Nfl News</h2>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message}</p>}
             {articles.length > 0 && (

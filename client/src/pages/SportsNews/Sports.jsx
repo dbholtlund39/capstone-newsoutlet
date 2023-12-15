@@ -20,11 +20,11 @@ class Sports extends Component {
     };
 
     const sliderStyle = {
-      margin: "20px",
-      padding: "10px",
-      border: "1px solid #ddd",
-      borderRadius: "8px",
-      position: "relative",
+      margin: "20px", // Add margin
+      padding: "10px", // Add padding
+      border: "1px solid #ddd", // Add border
+      borderRadius: "8px", // Add border radius
+      position: "relative", // Make the position relative
     };
 
     const arrowContainerStyle = {
@@ -37,7 +37,7 @@ class Sports extends Component {
 
     const cardStyle = {
       textAlign: "center",
-      backgroundColor: "#f9f9f9"
+      backgroundColor: "#f9f9f9",
       padding: "20px",
       borderRadius: "8px",
     };
