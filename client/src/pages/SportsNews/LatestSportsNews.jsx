@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import parse from 'html-react-parser'; // Import the html-react-parser library
+import './Sport.css'
 
 const LatestSportsNews = () => {
-    const [latestNews, setLatestNews] = useState('');
+    const [latestNews, setLatestNews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Define the function inside the effect to fetch the news
+
         const fetchSportsNews = async () => {
             try {
-                // Assuming your API_URL is the base URL for your API
+
                 const response = await axios.get('http://localhost:3001/api/sportsNews');
-                setLatestNews(response.data); // Update state with the latest news data
-                setIsLoading(false); // Set loading to false after the data is received
+                setLatestNews(response.data);
+                setIsLoading(false);
             } catch (error) {
                 setError(error);
                 setIsLoading(false);
@@ -28,10 +28,36 @@ const LatestSportsNews = () => {
     if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <div className="news-container">
+        <div className="newsFeed">
             <h2>Latest Sports News</h2>
-            {/* Parse and render the HTML content */}
-            <div className="news-content">{parse(latestNews)}</div>
+            <div className="news-content">
+                <div className="large-article">
+                    {/* Render the first (larger) article here */}
+                </div>
+                <div className="scrollable-container">
+                    <div className="scrollable-content">
+                        {latestNews.map((article, index) => (
+                            <div
+                                key={index}
+                                className="article small-article"
+                            >
+                                <h3>{article.title}</h3>
+                                {article.imageUrl && (
+                                    <img
+                                        src={article.imageUrl}
+                                        alt={`Image for ${article.title}`}
+                                        className="article-image"
+                                    />
+                                )}
+                                <p>{article.summary}</p>
+                                <a href={article.link} target="_blank" rel="noopener noreferrer">
+                                    Read More
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

@@ -30,3 +30,37 @@
     border: 1px solid #ddd;
     border-radius: 8px;
 }
+
+
+
+
+
+/* Styles for individual articles */
+.article {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+}
+
+/* Style adjustments for the first (larger) article */
+.large-article {
+    flex-basis: 100%;
+    /* Take full width for the first article */
+}
+
+/* Style adjustments for the rest (smaller) articles */
+.small-article {
+    flex-basis: calc(50% - 20px);
+    /* Take half width minus spacing for the rest */
+}
+
+.scrollable-container {
+    max-height: 400px;
+    /* Set a maximum height for the container */
+    overflow-y: auto;
+    /* Enable vertical scrolling when content exceeds the container height */
+    padding-right: 10px;
+    /* Add padding for the scrollbar to avoid content cutoff */
+    /* You can customize the styles further as needed */
+}

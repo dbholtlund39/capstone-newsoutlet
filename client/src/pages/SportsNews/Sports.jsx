@@ -5,6 +5,9 @@ import NflCard from "./NflCard.jsx";
 import LatestSportsNews from "./LatestSportsNews";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import FootballArticles from "./Nfl.news.jsx";
+
+import MlbNews from "./Mlb.jsx";
 
 class Sports extends Component {
   render() {
@@ -17,11 +20,11 @@ class Sports extends Component {
     };
 
     const sliderStyle = {
-      margin: "20px", // Add margin
-      padding: "10px", // Add padding
-      border: "1px solid #ddd", // Add border
-      borderRadius: "8px", // Add border radius
-      position: "relative", // Make the position relative
+      margin: "20px",
+      padding: "10px",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      position: "relative",
     };
 
     const arrowContainerStyle = {
@@ -33,14 +36,14 @@ class Sports extends Component {
     };
 
     const cardStyle = {
-      textAlign: "center", // Center text
-      backgroundColor: "#f9f9f9", // Set background color
-      padding: "20px", // Add padding
-      borderRadius: "8px", // Add border radius
+      textAlign: "center",
+      backgroundColor: "#f9f9f9"
+      padding: "20px",
+      borderRadius: "8px",
     };
 
     const arrowStyle = {
-      fontSize: "32px", // Increase font size for bigger arrows
+      fontSize: "32px",
       cursor: "pointer",
     };
 
@@ -67,6 +70,12 @@ class Sports extends Component {
             </div>
             <div style={cardStyle}>
               <NflCard />
+            </div>
+            <div style={cardStyle}>
+              <FootballArticles />
+            </div>
+            <div style={cardStyle}>
+              <MlbNews />
             </div>
             {/* Add more sports components as needed */}
           </Slider>

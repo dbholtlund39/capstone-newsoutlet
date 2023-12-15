@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { DB_URL } from "./config/db.config";
 import { API_URL, PORT } from "./config/app.config";
-import userRouter from "./routes/user";
+import router from "./routes";
 
 mongoose
   .connect(DB_URL)
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(API_URL, userRouter);
+app.use(API_URL, router);
 
 app.listen(PORT, () =>
   console.log(`[Server] Listening for requests at http://localhost:${PORT}`)

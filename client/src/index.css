@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   padding-top: 120px;
-  }
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,18 +14,19 @@ a {
   color: #e3e3f0;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 a:active,
 a:focus {
-  color: gold; 
+  color: gold;
 }
 
 .randomQuote {
   text-align: center;
- padding: 5px;
+  padding: 5px;
 }
 
 .mr-auto {
@@ -42,24 +43,26 @@ a:focus {
 .navbar {
   position: fixed;
   top: 0;
-  width: 100%; 
-  z-index: 1000; 
- }
+  width: 100%;
+  z-index: 1000;
+}
 
 .userProfileLink {
   width: 100px;
   text-align: center;
   padding-top: 30px;
- }
+}
+
 .profileMainDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
- .userProfileDisplay{
+
+.userProfileDisplay {
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -69,10 +72,10 @@ a:focus {
   list-style: none;
   width: 500px;
   height: auto;
-  
- }
 
- .image {
+}
+
+.image {
 
   max-width: 500px;
   max-height: 500px;
@@ -80,40 +83,41 @@ a:focus {
   padding-left: 40px;
   padding-right: 40px;
 
- }
+}
 
- .imageDiv {
- 
+.imageDiv {
+
   background-color: gray;
 
- }
+}
 
- .readMore {
+.readMore {
   padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
   color: blue;
- }
- label {
+}
+
+label {
   text-align: center;
   padding: 5px;
- }
+}
 
- .teamList {
+.teamList {
   text-align: center;
   padding: 5px;
- }
+}
 
- .editButton {
+.editButton {
   font-size: 15px;
   width: 100px;
   padding: 2px;
   margin: 5px;
- }
+}
 
- .userProfileLink a{
- color: #9df1ff;
- }
+.userProfileLink a {
+  color: #9df1ff;
+}
 
 .homeLink {
   width: 100px;
@@ -156,7 +160,7 @@ h1 {
   line-height: 1.1;
 }
 
-.newsFeed{
+.newsFeed {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
@@ -164,28 +168,32 @@ h1 {
 }
 
 .usernameP {
-padding: 5px;
+  padding: 5px;
 }
 
 .locationP {
-padding: 5px;
+  padding: 5px;
 }
 
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
 h2 {
   padding-left: 40px;
   padding-right: 40px;
 }
+
 h3 {
   padding-left: 40px;
   padding-right: 40px;
 }
+
 h4 {
   font-size: 20px;
   padding-left: 40px;
@@ -194,30 +202,33 @@ h4 {
 
 .inputLabel {
   padding-left: 40px;
- padding-right: 10px;
+  padding-right: 10px;
 }
 
 .loading {
   padding-left: 40px;
 }
 
-.description{
+.description {
   font-size: 15px;
   padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
 }
-.published{
+
+.published {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
 }
-.source{
+
+.source {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
 }
-.author{
+
+.author {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
@@ -246,4 +257,16 @@ h4 {
   padding: 5px;
   text-align: center;
 
+}
+
+.large-article {
+
+  width: auto;
+  height: auto;
+}
+
+.small-article {
+
+  width: 50%;
+  height: 50%;
 }
