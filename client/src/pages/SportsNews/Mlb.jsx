@@ -12,8 +12,8 @@ const MlbNews = () => {
                 const response = await axios.get('http://localhost:3001/api/sportsNews/baseball');
                 setArticles(response.data);
                 setLoading(false);
-            } catch (error) {
-                setError(error);
+            } catch (err) {
+                setError(err);
                 setLoading(false);
             }
         };
@@ -27,25 +27,22 @@ const MlbNews = () => {
     return (
         <div>
             <h2>Latest Major League Baseball News</h2>
-            <div className="articles">
-                {articles.map((article, index) => (
-                    <div key={index} className="article">
-                        <h3>{article.title}</h3>
-                        {article.imageUrl && (
-                            <img
-                                src={article.imageUrl}
-                                alt={`Image for ${article.title}`}
-                                className="article-image"
-                            />
-                        )}
-                        <p>{article.description}</p>
-                        <a href={article.link} target="_blank" rel="noopener noreferrer">
-                            Read More
-                        </a>
-                    </div>
-                ))}
-
-            </div>
+            {articles.length > 0 ? (
+                <ul>
+                    {articles.map((article, index) => (
+                        <li key={index}>
+                            <h3>{article.title}</h3>
+                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} />}
+                            <p>{article.description}</p>
+                            <a href={article.link} target="_blank" rel="noopener noreferrer">
+                                Read More
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No articles found.</p>
+            )}
         </div>
     );
 };

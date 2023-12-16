@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { DB_URL } from "./config/db.config";
 import { API_URL, PORT } from "./config/app.config";
 import router from "./routes";
+import userRouter from "./routes/user";
 
 mongoose
   .connect(DB_URL)
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(API_URL, router);
-
+app.use(API_URL, userRouter);
 app.listen(PORT, () =>
   console.log(`[Server] Listening for requests at http://localhost:${PORT}`)
 );

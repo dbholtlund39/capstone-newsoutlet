@@ -47,9 +47,7 @@ const NflCard = () => {
               ? lossesElement.textContent.trim()
               : "";
             const imgUrl = imgElement ? imgElement.src : "";
-            console.log("Team:", teamName);
-            console.log("Wins:", wins);
-            console.log("Losses:", losses);
+
 
             teamsData.push({ teamName, wins, losses, imgUrl });
           });
@@ -68,12 +66,18 @@ const NflCard = () => {
     fetchData();
   }, []);
 
+  const scrollableStyle = {
+    maxHeight: '400px',
+    overflowY: 'auto',
+
+  };
+
   return (
     <div className="standings-container">
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data.length > 0 && (
-        <div>
+        <div style={scrollableStyle}>
           <h4 className="pageTitle">NFL Standings</h4>
           {data.map((team, index) => (
             <div key={index} className="team-card">

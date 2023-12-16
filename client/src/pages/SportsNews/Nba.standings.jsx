@@ -54,7 +54,11 @@ const NbaStandings = () => {
         fetchData();
     }, []);
 
+    const scrollableStyle = {
+        maxHeight: '400px',
+        overflowY: 'auto',
 
+    };
 
     return (
         <div className="standings-container">
@@ -70,7 +74,7 @@ const NbaStandings = () => {
                                 alt={`${team.teamName} Logo`}
                                 className="team-logo"
                             />
-                            <div className="team-info">
+                            <div style={scrollableStyle}>
                                 <h3>{team.teamName}</h3>
                                 <p>Wins: {team.wins}</p>
                                 <p>Losses: {team.losses}</p>

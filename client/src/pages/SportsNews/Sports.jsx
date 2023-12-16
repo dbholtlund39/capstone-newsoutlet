@@ -1,95 +1,109 @@
-// Sports.jsx
 import React, { Component } from "react";
-import Slider from "react-slick";
-import NflCard from "./NflCard.jsx";
 import LatestSportsNews from "./LatestSportsNews";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Basketball from "./Nba.jsx";
 import FootballArticles from "./Nfl.news.jsx";
-
 import MlbNews from "./Mlb.jsx";
-
+import OtherSports from "./OtherSports.jsx";
 class Sports extends Component {
   render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    };
-
-    const sliderStyle = {
-      margin: "20px", // Add margin
-      padding: "10px", // Add padding
-      border: "1px solid #ddd", // Add border
-      borderRadius: "8px", // Add border radius
-      position: "relative", // Make the position relative
-    };
-
-    const arrowContainerStyle = {
-      position: "fixed", // Fixed position
-      top: "20px", // Adjust top position
-      left: "50%", // Center horizontally
-      transform: "translateX(-50%)", // Center horizontally
-      zIndex: 1, // Ensure it's above the slider
-    };
-
-    const cardStyle = {
-      textAlign: "center",
-      backgroundColor: "#f9f9f9",
-      padding: "20px",
+    const contentStyle = {
+      margin: "20px",
+      padding: "10px",
+      border: "1px solid #ddd",
       borderRadius: "8px",
+      textAlign: "center",
+
     };
 
-    const arrowStyle = {
-      fontSize: "32px",
+    const navLinkStyle = {
+      textDecoration: "none",
+      color: "glow",
       cursor: "pointer",
+      padding: "5px",
+      display: "block",
     };
 
     return (
-      <div>
-        <div style={arrowContainerStyle}>
-          <div
-            style={{ ...arrowStyle, marginRight: "20px" }}
-            onClick={() => this.slider.slickPrev()}
-          >
-            &#10094; {/* Left arrow */}
-          </div>
-          <div
-            style={{ ...arrowStyle }}
-            onClick={() => this.slider.slickNext()}
-          >
-            &#10095; {/* Right arrow */}
+      <div style={{ margin: "20px" }}>
+        <div style={contentStyle}>
+          <nav>
+            <a style={navLinkStyle} href="#basketball">
+              Basketball
+            </a>
+            <a style={navLinkStyle} href="#footballArticles">
+              Football
+            </a>
+            <a style={navLinkStyle} href="#mlbNews">
+              Baseball
+            </a>
+            <a style={navLinkStyle} href="#other">
+              Other Sports
+            </a>
+
+          </nav>
+          <div id="home">
+            <LatestSportsNews />
           </div>
         </div>
-        <div style={sliderStyle}>
-          <Slider ref={(slider) => (this.slider = slider)} {...settings}>
-            <div style={cardStyle}>
-              <LatestSportsNews />
-            </div>
-            <div style={cardStyle}>
-              <NflCard />
-            </div>
-            <div style={cardStyle}>
-              <FootballArticles />
-            </div>
-            <div style={cardStyle}>
-              <MlbNews />
-            </div>
-            {/* Add more sports components as needed */}
-          </Slider>
+        <nav>
+
+          <a style={navLinkStyle} href="#home">
+            Home
+          </a>
+
+          <a style={navLinkStyle} href="#basketball">
+            Basketball
+          </a>
+          <a style={navLinkStyle} href="#footballArticles">
+            Football
+          </a>
+          <a style={navLinkStyle} href="#mlbNews">
+            Baseball
+          </a>
+          <a style={navLinkStyle} href="#other">
+            Other Sports
+          </a>
+
+        </nav>
+
+        <div id="basketball" style={contentStyle}>
+          <Basketball />
         </div>
-      </div>
+        <div id="footballArticles" style={contentStyle}>
+          <FootballArticles />
+        </div>
+        <div id="mlbNews" style={contentStyle}>
+          <MlbNews />
+        </div>
+        <div id="other" style={contentStyle}>
+          <OtherSports />
+        </div>
+        <nav>
+
+          <a style={navLinkStyle} href="#home">
+            Home
+          </a>
+
+          <a style={navLinkStyle} href="#basketball">
+            Basketball
+          </a>
+          <a style={navLinkStyle} href="#footballArticles">
+            Football
+          </a>
+          <a style={navLinkStyle} href="#mlbNews">
+            Baseball
+          </a>
+          <a style={navLinkStyle} href="#other">
+            Other Sports
+          </a>
+
+        </nav>
+
+        <div></div>
+      </div >
+
     );
   }
 }
 
 export default Sports;
-
-
-// As a sports enthusiast, I want to access a comprehensive sports news section, covering various sports disciplines and ongoing tournaments.
-// As a user, I want to access upcoming games and scores for my favorite teams.
-// Acceptance criteria:
-// The app should provide a separate segment for sports news encompassing a broad range of sports categories.
-// Users should have the ability to browse news articles related to their preferred sports or leagues.

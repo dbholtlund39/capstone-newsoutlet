@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Sport.css'
+
 
 const LatestSportsNews = () => {
     const [latestNews, setLatestNews] = useState([]);
@@ -8,10 +8,8 @@ const LatestSportsNews = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-
         const fetchSportsNews = async () => {
             try {
-
                 const response = await axios.get('http://localhost:3001/api/sportsNews');
                 setLatestNews(response.data);
                 setIsLoading(false);
@@ -30,34 +28,22 @@ const LatestSportsNews = () => {
     return (
         <div className="newsFeed">
             <h2>Latest Sports News</h2>
-            <div className="news-content">
-                <div className="large-article">
-                    {/* Render the first (larger) article here */}
-                </div>
-                <div className="scrollable-container">
-                    <div className="scrollable-content">
-                        {latestNews.map((article, index) => (
-                            <div
-                                key={index}
-                                className="article small-article"
-                            >
-                                <h3>{article.title}</h3>
-                                {article.imageUrl && (
-                                    <img
-                                        src={article.imageUrl}
-                                        alt={`Image for ${article.title}`}
-                                        className="article-image"
-                                    />
-                                )}
-                                <p>{article.summary}</p>
-                                <a href={article.link} target="_blank" rel="noopener noreferrer">
-                                    Read More
-                                </a>
+            <ul className="news-content">
+                {latestNews.map((article, index) => (
+                    <li className="itemCard" key={index}>
+                        <h4>{article.title}</h4>
+                        {article.imageUrl && (
+                            <div className="imageDiv">
+                                <img className="image" src={article.imageUrl} alt={article.title} />
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+                        )}
+                        <p className="article">{article.description}</p>
+                        <a className="readMore" href={article.link} target="_blank" rel="noopener noreferrer">
+                            Read More
+                        </a>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };

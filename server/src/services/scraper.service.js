@@ -1,39 +1,30 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-const scrapeContent = async (url) => {
+const scrapeContent = async (url, selectors) => {
     try {
-        console.log(`Scraping content from: ${url}`); // Log the URL being scraped
-
+        console.log(`Scraping content from: ${url}`);
         const { data } = await axios.get(url);
         console.log(`Data fetched from ${url}`);
         const $ = cheerio.load(data);
 
-
         const articles = [];
 
-
-        const articleSelector = '.js_post_item';
-
-
-        $(articleSelector).each((index, element) => {
-            // Parse the data for each article
+        $(selectors.articleSelector).each((index, element) => {
             const article = {
-                title: $(element).find('h4').text(),
-                description: $(element).find('.sc-1d3a351-0').text(),
-                link: $(element).find('.js_link').attr('href'),
-                imageUrl: $(element).find('img').attr('src'),
+                title: $(element).find(selectors.titleSelector).text(),
+                description: $(element).find(selectors.descriptionSelector).text(),
+                link: $(element).find(selectors.linkSelector).attr('href'),
+                imageUrl: $(element).find(selectors.imageSelector).attr('src'),
             };
 
-            // Add the parsed article data to the array
             articles.push(article);
         });
 
-        console.log(`Scraped ${articles.length} articles from ${url}`); // Log successful scraping
-
+        console.log(`Scraped ${articles.length} articles from ${url}`);
         return articles;
     } catch (error) {
-        console.error(`Error scraping content from ${url}: ${error.message}`); // Log errors
+        console.error(`Error scraping content from ${url}: ${error.message}`);
         throw new Error(`Error scraping content: ${error.message}`);
     }
 };
