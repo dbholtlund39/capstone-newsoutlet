@@ -16,3 +16,11 @@
 - 12/12 Discovered that we will need a user log in component in order to store the user preferences. Dylan is working on that within his user preferences task. 
 
 - 12/13 Helped Mereille get weather page changes pushed and changed access on MongoDB to allow for successful connection.
+
+- 12/14 Spoke about clickup and open tasks. Brandon will have changes pushed by Saturday. Dylan and Timothy are also working on back end tune ups.
+
+- 12/15 Working on sign up and sign in auths. Added a few more pages and fixed sports break // todolist = add nav bar/links for better navigation  inside sports section ,embed more content, add youtube sport updates maybe ,implement profile settings ,combine nflcard with nfl.news, css for styling, pics too big. Discussed using router for sign up.
+
+- 12/16 Fixing kinks and adding more content for sports section and making sure all api resources and filtering articles to get best results, all fetching routes are in place and sorting through the $query selectors to get the relevant data 
+
+- 12/17 Dylan to link the sign up, user profile page to the rest of the pages & setting up auth
