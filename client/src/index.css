@@ -54,10 +54,12 @@ a:focus {
 }
 
 .profileMainDiv {
+  width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #e4e5f7;
+  padding-right: 70px;
 }
 
 .userProfileDisplay {
@@ -93,10 +95,7 @@ a:focus {
   color: blue;
 }
 
-label {
-  text-align: center;
-  padding: 5px;
-}
+
 
 .teamList {
   text-align: center;
@@ -159,7 +158,8 @@ h1 {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
-  padding-bottom: 20px;
+  
+  padding-top: 30px;
 }
 
 .usernameP {
@@ -172,16 +172,22 @@ h1 {
 .signupFlex {
   display: flex;
   flex-direction: column;
+ align-items: flex-end;
+ 
+  width: 375px;
+  padding-right: 20px;
 }
 
 .signUpButton {
   width: 100px;
   align-self: center;
   margin: 15px;
+  margin-left: 50px;
 }
 
 .signUpFont {
   font-size: 15px;
+  padding-right: 23px;
 }
 
 .registrationFont {
@@ -191,7 +197,9 @@ h1 {
 
 label {
   padding: 10px;
-  font-size: 18px;
+  font-size: 17px;
+  text-align: center;
+ 
 }
 
 .signInButton {
@@ -299,7 +307,9 @@ h4 {
 .pageTitle {
   font-size: 20px;
   padding: 5px;
+  margin-top: 30px;
   text-align: center;
+  align-content: center;
 }
 
 .large-article {

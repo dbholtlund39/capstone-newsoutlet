@@ -232,7 +232,7 @@ const UserProfile = () => {
               name="password"
               onChange={handleFormChange}
             />
-            <p className= "passwordFont">Min password length of 8</p>
+            <p className= "passwordFont">Min. password length 8 characters</p>
           </label>
           {signUpMode && (
             <>

@@ -27,7 +27,7 @@ const LatestSportsNews = () => {
 
     return (
         <div className="newsFeed">
-            <h2>Latest Sports News</h2>
+            <h2 className= "latestSportsHeader">Latest Sports News</h2>
             <ul className="news-content">
                 {latestNews.map((article, index) => (
                     <li className="itemCard" key={index}>

@@ -24,9 +24,11 @@ class Sports extends Component {
     };
 
     return (
+      
       <div style={{ margin: "20px" }}>
+        
         <div style={contentStyle}>
-          <nav>
+          <nav className= "sportsNav">
             <a style={navLinkStyle} href="#basketball">
               Basketball
             </a>
@@ -45,7 +47,9 @@ class Sports extends Component {
             <LatestSportsNews />
           </div>
         </div>
+        
         <nav >
+        
 
           <a style={navLinkStyle} href="#home">
             Home
@@ -65,6 +69,7 @@ class Sports extends Component {
           </a>
 
         </nav>
+        
 
         <div id="basketball" style={contentStyle}>
           <Basketball />
@@ -78,7 +83,7 @@ class Sports extends Component {
         <div id="other" style={contentStyle}>
           <OtherSports />
         </div>
-        <nav>
+        <nav className= "sportsNav">
 
           <a style={navLinkStyle} href="#home">
             Home
