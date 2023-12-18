@@ -7,9 +7,9 @@ import OtherSports from "./OtherSports.jsx";
 class Sports extends Component {
   render() {
     const contentStyle = {
-      margin: "20px",
-      padding: "10px",
-      border: "1px solid #ddd",
+      marginTop: "20px",
+      padding: "6px",
+    
       borderRadius: "8px",
       textAlign: "center",
 
@@ -19,13 +19,14 @@ class Sports extends Component {
       textDecoration: "none",
       color: "blue",
       cursor: "pointer",
-      padding: "5px",
+      padding: "9px",
+      paddingBottom: "4px",
       display: "block",
     };
 
     return (
       
-      <div style={{ margin: "20px" }}>
+      <div >
         
         <div style={contentStyle}>
           <nav className= "sportsNav">

@@ -25,7 +25,7 @@
 }
 .sportsNav {
     display: flex;
-    width: 93%;
+    width: 100%;
     justify-content: space-around;
     position: fixed;
     font-size: 14px;
@@ -36,11 +36,10 @@
 
 
 
-.latestSportsHeader {
-    margin-top: 40px;
-    margin-bottom: 15px;
-   
+.latestSportsHeader {    
+    margin-bottom: 15px;   
 }
+
 .news-container {
     margin: 20px;
     padding: 20px;
@@ -50,6 +49,8 @@
 
 .sportsNavLinks {
     color: blue;
+    padding-top: 2px;
+    
 }
 
 
