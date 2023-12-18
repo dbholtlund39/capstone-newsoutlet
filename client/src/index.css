@@ -36,7 +36,6 @@ a:focus {
   background-color: rgb(59, 56, 56);
   align-items: center;
 
-  
   flex-wrap: wrap;
 }
 
@@ -50,7 +49,6 @@ a:focus {
 .userProfileLink {
   width: 100px;
   text-align: center;
-
 }
 
 .profileMainDiv {
@@ -95,8 +93,6 @@ a:focus {
   color: blue;
 }
 
-
-
 .teamList {
   text-align: center;
   padding: 5px;
@@ -116,37 +112,31 @@ a:focus {
 .homeLink {
   width: 100px;
   text-align: center;
-
 }
 
 .localLink {
   width: 100px;
   text-align: center;
- 
 }
 
 .natLink {
   width: 100px;
   text-align: center;
- 
 }
 
 .worldLink {
   width: 100px;
   text-align: center;
-
 }
 
 .sportsLink {
   width: 100px;
   text-align: center;
-
 }
 
 .weatherLink {
   width: 100px;
   text-align: center;
- 
 }
 
 h1 {
@@ -158,7 +148,7 @@ h1 {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
-  
+
   padding-top: 30px;
 }
 
@@ -172,8 +162,8 @@ h1 {
 .signupFlex {
   display: flex;
   flex-direction: column;
- align-items: flex-end;
- 
+  align-items: flex-end;
+
   width: 375px;
   padding-right: 20px;
 }
@@ -186,13 +176,12 @@ h1 {
 }
 
 .signUpFont {
-  
   font-size: 15px;
 }
 
 .registrationFont {
   padding-top: 30px;
- 
+
   padding-bottom: 5px;
 }
 
@@ -200,7 +189,6 @@ label {
   padding: 10px;
   font-size: 17px;
   text-align: center;
- 
 }
 
 .signInButton {
@@ -252,14 +240,12 @@ h4 {
 .inputLabel {
   padding-left: 40px;
   padding-right: 10px;
-  }
+}
 
- .countryCode {
+.countryCode {
   padding-bottom: 20px;
   text-align: center;
-
- 
- }
+}
 
 .loading {
   padding-left: 40px;
