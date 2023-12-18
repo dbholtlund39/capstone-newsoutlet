@@ -272,7 +272,7 @@ const UserProfile = () => {
           <p className= "signUpFont">
             {signUpMode
               ? "Already have an account?"
-              : "Don't have an account? Sign up now!"}
+              : "Not registered? Sign up now!"}
             <button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>
               {signUpMode ? "Sign In" : "Sign Up"}
             </button>

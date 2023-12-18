@@ -186,12 +186,13 @@ h1 {
 }
 
 .signUpFont {
+  
   font-size: 15px;
-  padding-right: 23px;
 }
 
 .registrationFont {
   padding-top: 30px;
+ 
   padding-bottom: 5px;
 }
 
