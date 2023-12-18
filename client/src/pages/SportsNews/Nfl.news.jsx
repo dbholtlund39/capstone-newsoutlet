@@ -28,7 +28,7 @@ const FootballArticles = () => {
 
     return (
         <div>
-            <h2>Latest Nfl News</h2>
+            <h2>Latest NFL News</h2>
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error.message || 'An error occurred'}</p>}
             {articles.length > 0 && (

@@ -34,8 +34,9 @@ a:focus {
   flex-direction: row;
   justify-content: space-evenly;
   background-color: rgb(59, 56, 56);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  align-items: center;
+
+  
   flex-wrap: wrap;
 }
 
@@ -49,7 +50,7 @@ a:focus {
 .userProfileLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+
 }
 
 .profileMainDiv {
@@ -62,7 +63,6 @@ a:focus {
 .userProfileDisplay {
   display: flex;
   flex-direction: column;
-
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -117,37 +117,37 @@ label {
 .homeLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+
 }
 
 .localLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+ 
 }
 
 .natLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+ 
 }
 
 .worldLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+
 }
 
 .sportsLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+
 }
 
 .weatherLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
+ 
 }
 
 h1 {
@@ -185,7 +185,7 @@ h1 {
 }
 
 .registrationFont {
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 5px;
 }
 

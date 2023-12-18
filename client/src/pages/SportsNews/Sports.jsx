@@ -17,7 +17,7 @@ class Sports extends Component {
 
     const navLinkStyle = {
       textDecoration: "none",
-      color: "glow",
+      color: "blue",
       cursor: "pointer",
       padding: "5px",
       display: "block",
@@ -45,7 +45,7 @@ class Sports extends Component {
             <LatestSportsNews />
           </div>
         </div>
-        <nav>
+        <nav >
 
           <a style={navLinkStyle} href="#home">
             Home
