@@ -59,6 +59,7 @@ const NationalNews = () => {
   return (
     <div className="newsFeed">
       <h4 className="pageTitle"></h4>
+      <div className= "countryCode">
       <label className="inputLabel">
         Enter Country Code: ("Example: us"){" "}
         <input
@@ -68,7 +69,7 @@ const NationalNews = () => {
         />
       </label>
       <button onClick={handleFetchNews}>Fetch News</button>
-
+</div>
       {loading ? (
         <p className="loading">Loading articles...</p>
       ) : (
