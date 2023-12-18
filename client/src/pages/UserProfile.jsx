@@ -197,7 +197,7 @@ const UserProfile = () => {
           ) : (
             <div className="userProfileDisplay">
               <p className="usernameP">
-                <strong>Username:</strong> {userData.username}
+                <strong>Username: </strong> {userData.username}
               </p>
               <p className="teamList">
                 <strong>Favorite Teams:</strong>{" "}
@@ -220,63 +220,64 @@ const UserProfile = () => {
         </>
       ) : (
         <div className="pageTitle">
-          <h3>{signUpMode ? "Sign Up" : "Sign In"}</h3>
-          {signUpMode && <p>Min password length of 8</p>}{" "}
+          <h3 className= "registrationFont">{signUpMode ? "Register" : "Sign In"}</h3>
+          {signUpMode }{" "}
+          <div className= "signupFlex">
           <label>
-            Username:
-            <input type="text" name="username" onChange={handleFormChange} />
+            Username: <input type="text" name="username" onChange={handleFormChange} />
           </label>
           <label>
-            Password:
-            <input
+            Password: <input
               type="password"
               name="password"
               onChange={handleFormChange}
             />
+            <p className= "passwordFont">Min password length of 8</p>
           </label>
           {signUpMode && (
             <>
               <label>
-                Confirm Password:
-                <input
+                Confirm Password: <input
                   type="password"
                   name="confirmPassword"
                   onChange={handleFormChange}
                 />
+                
               </label>
               <label>
-                Email:
-                <input type="email" name="email" onChange={handleFormChange} />
+                Email: <input type="email" name="email" onChange={handleFormChange} />
               </label>
               <label>
-                First Name:
-                <input
+                First Name: <input
                   type="text"
                   name="firstName"
                   onChange={handleFormChange}
                 />
               </label>
               <label>
-                Last Name:
-                <input
+                Last Name: <input
                   type="text"
                   name="lastName"
                   onChange={handleFormChange}
                 />
               </label>
+              
             </>
+            
           )}
-          <button onClick={signUpMode ? handleSignUp : handleSignIn}>
+          
+          <button className= "signUpButton" onClick={signUpMode ? handleSignUp : handleSignIn}>
             {signUpMode ? "Sign Up" : "Sign In"}
           </button>
-          <p>
+          <p className= "signUpFont">
             {signUpMode
               ? "Already have an account?"
               : "Don't have an account? Sign up now!"}
-            <button onClick={() => setSignUpMode(!signUpMode)}>
+            <button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>
               {signUpMode ? "Sign In" : "Sign Up"}
             </button>
           </p>
+          </div>
         </div>
       )}
     </div>

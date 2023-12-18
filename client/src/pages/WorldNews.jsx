@@ -78,7 +78,9 @@ const WorldNews = () => {
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
               {article.urlToImage && (
-                <img src={article.urlToImage} alt="Article" />
+                <div className= "imageDiv">
+                <img className= "image" src={article.urlToImage} alt="Article" />
+                </div>
               )}
               <p className="article">{article.description}</p>
               <p className="author">Author: {article.author}</p>
@@ -86,7 +88,7 @@ const WorldNews = () => {
               <p className="source">Source: {article.source.name}</p>
               {article.url && (
                 <p className="article-link">
-                  <a
+                  <a className= "articleLink"
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
