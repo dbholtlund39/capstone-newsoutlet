@@ -62,6 +62,8 @@ const WorldNews = () => {
     fetchArticles();
   }, []);
 
+  const defaultImageUrl = "src/components/images/defaultNewsImage.jpg";
+
   const filteredArticles = articles.filter(
     (article) => article.title !== "[Removed]"
   );
@@ -78,8 +80,17 @@ const WorldNews = () => {
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
               {article.urlToImage && (
-                <div className= "imageDiv">
-                <img className= "image" src={article.urlToImage} alt="Article" />
+                <div className="imageDiv">
+                  <img
+                    className="image"
+                    src={article.urlToImage}
+                    alt="Article"
+                  />
+                </div>
+              )}
+              {!article.urlToImage && (
+                <div className="imageDiv">
+                  <img className="image" src={defaultImageUrl} alt="Default" />
                 </div>
               )}
               <p className="article">{article.description}</p>
@@ -88,7 +99,8 @@ const WorldNews = () => {
               <p className="source">Source: {article.source.name}</p>
               {article.url && (
                 <p className="article-link">
-                  <a className= "articleLink"
+                  <a
+                    className="articleLink"
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
