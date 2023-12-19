@@ -23,6 +23,22 @@
     display: flex;
     flex-direction: column;
 }
+.sportsNav {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    position: fixed;
+    font-size: 14px;
+    background-color: rgb(165, 162, 162);
+    border: 2px solid black;
+    margin: -7px;    
+}
+
+
+
+.latestSportsHeader {    
+    margin-bottom: 15px;   
+}
 
 .news-container {
     margin: 20px;
@@ -31,7 +47,11 @@
     border-radius: 8px;
 }
 
-
+.sportsNavLinks {
+    color: blue;
+    padding-top: 2px;
+    
+}
 
 
 

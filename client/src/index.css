@@ -8,7 +8,6 @@ body {
   background-color: #e4e5f7;
 }
 
-
 a {
   font-weight: 700;
   color: #e3e3f0;
@@ -35,8 +34,8 @@ a:focus {
   flex-direction: row;
   justify-content: space-evenly;
   background-color: rgb(59, 56, 56);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  align-items: center;
+
   flex-wrap: wrap;
 }
 
@@ -50,19 +49,20 @@ a:focus {
 .userProfileLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .profileMainDiv {
+  width: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #e4e5f7;
+  padding-right: 70px;
 }
 
 .userProfileDisplay {
   display: flex;
   flex-direction: column;
-
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -72,23 +72,18 @@ a:focus {
   list-style: none;
   width: 500px;
   height: auto;
-
 }
 
 .image {
-
   max-width: 500px;
   max-height: 500px;
   padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
-
 }
 
 .imageDiv {
-
   background-color: gray;
-
 }
 
 .readMore {
@@ -96,11 +91,6 @@ a:focus {
   padding-left: 40px;
   padding-right: 40px;
   color: blue;
-}
-
-label {
-  text-align: center;
-  padding: 5px;
 }
 
 .teamList {
@@ -122,37 +112,31 @@ label {
 .homeLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .localLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .natLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .worldLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .sportsLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 .weatherLink {
   width: 100px;
   text-align: center;
-  padding-top: 30px;
 }
 
 h1 {
@@ -164,7 +148,8 @@ h1 {
   padding-left: 15px;
   padding-right: 15px;
   margin: 10px;
-  padding-bottom: 20px;
+
+  padding-top: 30px;
 }
 
 .usernameP {
@@ -174,7 +159,57 @@ h1 {
 .locationP {
   padding: 5px;
 }
+.signupFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 
+  width: 375px;
+  padding-right: 20px;
+}
+
+.signUpButton {
+  width: 100px;
+  align-self: center;
+  margin: 15px;
+  margin-left: 50px;
+}
+
+.signUpFont {
+  font-size: 15px;
+}
+
+.registrationFont {
+  padding-top: 30px;
+
+  padding-bottom: 5px;
+}
+
+label {
+  padding: 10px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.signInButton {
+  margin: 5px;
+  width: 60px;
+}
+
+.articleLink {
+  color: blue;
+}
+
+.worldNewsPic {
+  max-width: 500px;
+  max-height: 500px;
+  align-self: center;
+}
+
+.passwordFont {
+  font-size: 15px;
+  padding-top: 10px;
+}
 button:hover {
   border-color: #646cff;
 }
@@ -196,6 +231,8 @@ h3 {
 
 h4 {
   font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -205,6 +242,11 @@ h4 {
   padding-right: 10px;
 }
 
+.countryCode {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 .loading {
   padding-left: 40px;
 }
@@ -212,6 +254,7 @@ h4 {
 .description {
   font-size: 15px;
   padding-top: 5px;
+
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -235,6 +278,8 @@ h4 {
 }
 
 .article {
+  padding-top: 20px;
+  padding-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -247,26 +292,26 @@ h4 {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   padding: 10px;
   list-style: none;
+  border-style: inset;
 }
 
 .pageTitle {
   font-size: 20px;
   padding: 5px;
+  margin-top: 30px;
   text-align: center;
-
+  align-content: center;
 }
 
 .large-article {
-
   width: auto;
   height: auto;
 }
 
 .small-article {
-
   width: 50%;
   height: 50%;
 }

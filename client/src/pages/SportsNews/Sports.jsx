@@ -7,9 +7,9 @@ import OtherSports from "./OtherSports.jsx";
 class Sports extends Component {
   render() {
     const contentStyle = {
-      margin: "20px",
-      padding: "10px",
-      border: "1px solid #ddd",
+      marginTop: "20px",
+      padding: "6px",
+    
       borderRadius: "8px",
       textAlign: "center",
 
@@ -17,16 +17,19 @@ class Sports extends Component {
 
     const navLinkStyle = {
       textDecoration: "none",
-      color: "glow",
+      color: "blue",
       cursor: "pointer",
-      padding: "5px",
+      padding: "9px",
+      paddingBottom: "4px",
       display: "block",
     };
 
     return (
-      <div style={{ margin: "20px" }}>
+      
+      <div >
+        
         <div style={contentStyle}>
-          <nav>
+          <nav className= "sportsNav">
             <a style={navLinkStyle} href="#basketball">
               Basketball
             </a>
@@ -45,7 +48,9 @@ class Sports extends Component {
             <LatestSportsNews />
           </div>
         </div>
-        <nav>
+        
+        <nav >
+        
 
           <a style={navLinkStyle} href="#home">
             Home
@@ -65,6 +70,7 @@ class Sports extends Component {
           </a>
 
         </nav>
+        
 
         <div id="basketball" style={contentStyle}>
           <Basketball />
@@ -78,7 +84,7 @@ class Sports extends Component {
         <div id="other" style={contentStyle}>
           <OtherSports />
         </div>
-        <nav>
+        <nav className= "sportsNav">
 
           <a style={navLinkStyle} href="#home">
             Home
