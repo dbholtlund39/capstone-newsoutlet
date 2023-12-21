@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
+import { useQuery } from 'react-query';
+
+
+const fetchNbaArticles = async () => {
+    const { data } = await axios.get("http://localhost:3001/api/sportsNews/basketball");
+    return data;
+};
 
 const Basketball = () => {
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchNbaArticles = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/api/sportsNews/basketball");
-                setArticles(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const { data: articles, isLoading, error } = useQuery('nbaArticles', fetchNbaArticles);
 
-        fetchNbaArticles();
-    }, []);
-
-    if (loading) {
+    if (isLoading) {
         return <p>Loading...</p>;
     }
 
@@ -32,7 +23,7 @@ const Basketball = () => {
     return (
         <div>
             <h2>Basketball News</h2>
-            {articles.length > 0 ? (
+            {articles && articles.length > 0 ? (
                 <ul>
                     {articles.map((article, index) => (
                         <li className="itemCard" key={index}>

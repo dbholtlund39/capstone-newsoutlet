@@ -9,13 +9,13 @@ const commonElements = {
     imageSelector: 'img',
 };
 
-const nbaElements = {
+const mlbElements = {
 
-    articleSelector: 'header.sc-1iva63p-0.bzGqrE.sc-1yaaa1s-2.guyGSe + .articles-container .article, .article',
-    titleSelector: 'h2',
+    articleSelector: '.sc-cw4lnv-0.ksZQxB, .js_post_item',
+    titleSelector: 'h2, h4',
     descriptionSelector: 'p',
-    linkSelector: 'a',
-    imageSelector: 'img',
+    linkSelector: 'a, .js_link',
+    imageSelector: 'img, img[data-src]',
 };
 
 
@@ -52,7 +52,7 @@ const nflArticles = async (req, res) => {
 const mlbArticles = async (req, res) => {
     try {
 
-        const baseballArticles = await scraperService.scrapeContent('https://deadspin.com/baseball/mlb', commonElements);
+        const baseballArticles = await scraperService.scrapeContent('https://deadspin.com/baseball/mlb', mlbElements);
 
         res.json(baseballArticles);
     } catch (error) {

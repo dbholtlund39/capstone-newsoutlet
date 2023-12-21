@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+
+const fetchMlbArticles = async () => {
+    const response = await axios.get('http://localhost:3001/api/sportsNews/baseball');
+    return response.data; // This will be the 'data' from useQuery
+};
 
 const MlbNews = () => {
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchArticles = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/api/sportsNews/baseball');
-                setArticles(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError(err);
-                setLoading(false);
-            }
-        };
+    const { data: articles, isLoading, error } = useQuery('mlbNews', fetchMlbArticles);
 
-        fetchArticles();
-    }, []);
-
-    if (loading) return <div>Loading...</div>;
+    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div>
             <h2>Latest Major League Baseball News</h2>
-            {articles.length > 0 ? (
+            {articles && articles.length > 0 ? (
                 <ul>
                     {articles.map((article, index) => (
-                        <li key={index}>
-                            <h3>{article.title}</h3>
-                            {article.imageUrl && <img src={article.imageUrl} alt={article.title} />}
-                            <p>{article.description}</p>
-                            <a href={article.link} target="_blank" rel="noopener noreferrer">
+                        <li className="itemCard" key={index}>
+                            <h4>{article.title}</h4>
+                            {article.imageUrl && (
+                                <div className="imageDiv">
+                                    <img className="image" src={article.imageUrl} alt={article.title} />
+                                </div>
+                            )}
+                            <p className="article">{article.description}</p>
+                            <a className="readMore" href={article.link} target="_blank" rel="noopener noreferrer">
                                 Read More
                             </a>
                         </li>

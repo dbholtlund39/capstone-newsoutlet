@@ -1,35 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
+const fetchSportsNews = async () => {
+    const response = await axios.get('http://localhost:3001/api/sportsNews');
+    return response.data;
+};
 
 const LatestSportsNews = () => {
-    const [latestNews, setLatestNews] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchSportsNews = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/api/sportsNews');
-                setLatestNews(response.data);
-                setIsLoading(false);
-            } catch (error) {
-                setError(error);
-                setIsLoading(false);
-            }
-        };
-
-        fetchSportsNews();
-    }, []);
+    const { data: latestNews, isLoading, error } = useQuery('sportsNews', fetchSportsNews);
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (
         <div className="newsFeed">
-            <h2 className= "latestSportsHeader">Latest Sports News</h2>
+            <h2 className="latestSportsHeader">Latest Sports News</h2>
             <ul className="news-content">
-                {latestNews.map((article, index) => (
+                {latestNews && latestNews.map((article, index) => (
                     <li className="itemCard" key={index}>
                         <h4>{article.title}</h4>
                         {article.imageUrl && (

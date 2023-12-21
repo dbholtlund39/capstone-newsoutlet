@@ -1,23 +1,30 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-
+import { URL } from 'url';
 const scrapeContent = async (url, selectors) => {
     try {
         console.log(`Scraping content from: ${url}`);
         const { data } = await axios.get(url);
         console.log(`Data fetched from ${url}`);
         const $ = cheerio.load(data);
-
         const articles = [];
+        const baseUrl = new URL(url).origin; // Dynamically get the base URL
 
         $(selectors.articleSelector).each((index, element) => {
-            const article = {
-                title: $(element).find(selectors.titleSelector).text(),
-                description: $(element).find(selectors.descriptionSelector).text(),
-                link: $(element).find(selectors.linkSelector).attr('href'),
-                imageUrl: $(element).find(selectors.imageSelector).attr('src'),
-            };
+            let title = $(element).find(selectors.titleSelector).text();
+            let description = $(element).find(selectors.descriptionSelector).text();
+            let link = $(element).find(selectors.linkSelector).attr('href');
+            // Get the image URL from the src attribute or fallback to a data attribute
+            let imageUrl = $(element).find(selectors.imageSelector).attr('src');
+            if (imageUrl === "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" || !imageUrl) {
+                // If it's the placeholder or null, look for the actual image URL in data attributes
+                imageUrl = $(element).find(selectors.imageSelector).attr('data-src') || $(element).find(selectors.imageSelector).attr('data-lazy-src');
+            }
 
+            // Convert relative links to absolute
+            imageUrl = imageUrl && !imageUrl.startsWith('http') ? new URL(imageUrl, baseUrl).href : imageUrl;
+
+            const article = { title, description, link, imageUrl };
             articles.push(article);
         });
 

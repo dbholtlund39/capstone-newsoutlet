@@ -1,55 +1,52 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import NflCard from "./NflCard.jsx";
+import React from 'react';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+// import NflCard from './NflCard.jsx'; // Commented out temporary
+
+const fetchFootballArticles = async () => {
+    const { data } = await axios.get("http://localhost:3001/api/sportsNews/football");
+    return data;
+};
 
 const FootballArticles = () => {
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { data: articles, isLoading, error } = useQuery('footballArticles', fetchFootballArticles);
 
-    useEffect(() => {
-        const fetchFootballArticles = async () => {
-            try {
-                const response = await axios.get("http://localhost:3001/api/sportsNews/football");
-                setArticles(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError(err);
-                setLoading(false);
-            }
-        };
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
-        fetchFootballArticles();
-    }, []);
-
-    const contentStyle = {
-        // styles here
-    };
+    if (error) {
+        return <p>Error: {error.message || 'An error occurred'}</p>;
+    }
 
     return (
         <div>
             <h2>Latest NFL News</h2>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error.message || 'An error occurred'}</p>}
-            {articles.length > 0 && (
-                <div>
-                    {articles.map((article) => (
-                        <div key={article.id}>
-                            <h3>{article.title}</h3>
+            {articles && articles.length > 0 ? (
+                <ul>
+                    {articles.map((article, index) => (
+                        <li className="itemCard" key={index}>
+                            <h4>{article.title}</h4>
                             {article.imageUrl && (
-                                <img src={article.imageUrl} alt={`Image for ${article.title}`} />
+                                <div className="imageDiv">
+                                    <img className="image" src={article.imageUrl} alt={article.title} />
+                                </div>
                             )}
-                            <p>{article.description}</p>
-                            <a href={article.link} target="_blank" rel="noopener noreferrer">
+                            <p className="article">{article.description}</p>
+                            <a className="readMore" href={article.link} target="_blank" rel="noopener noreferrer">
                                 Read More
                             </a>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
+            ) : (
+                <p>No articles found.</p>
             )}
-            <div id="nflCard" style={contentStyle}>
+            {/* Commented out for now
+            <div id="nflCard">
                 <NflCard />
             </div>
+            */}
         </div>
     );
 };
