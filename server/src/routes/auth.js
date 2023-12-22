@@ -7,6 +7,7 @@ const router = express.Router();
   
 // This will be to sign up a new user
 router.post('/signup', async(req, res) => {
+  // This takes up way to much. The userData=req.body is great.
   const { username, email, name, password, location, team, interest } = req.body;
     
   if(!username || !email || !password || !name || !location){
@@ -59,6 +60,7 @@ router.post('/signup', async(req, res) => {
     // this catch should be if there is an issue in the process of the user.findone. With testing I hope to see it work that way.
     console.log(err)
   });
+  // I had missed a vital part of saving the user. I missed await User.create. Though I have something similar, it wasn't right.
 });
 
 router.post('/signin', async (req, res) => {

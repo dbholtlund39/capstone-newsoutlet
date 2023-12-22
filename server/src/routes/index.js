@@ -13,7 +13,8 @@ router.route("/").get((req, res) => {
 
 
 router.use("/users", userRouter);
-router.use("/auth", authRouter);
+// This is not needed anymore. Better code has been added to userRouter
+// router.use("/auth", authRouter);
 
 
 router.use("/sportsNews", scraperRouter, (req, res, next) => {
