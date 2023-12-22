@@ -12,6 +12,13 @@ const UserProfile = () => {
     username: "",
     password: "",
     confirmPassword: "",
+    email: "",
+    name: {
+      firstName: "",
+      lastName: "",
+    },
+    location: "",
+    favoriteTeam: [],
   });
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
@@ -63,9 +70,23 @@ const UserProfile = () => {
     setEditing(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setEditing(false);
-    sessionStorage.setItem("userData", JSON.stringify(userData));
+    // sessionStorage.setItem("userData", JSON.stringify(userData));
+    try {
+      const response = await fetch(`http://localhost:3001/api/${formData.username}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          // I need to set this up to only take in the changes and not all the data again
+          ...userData
+        })
+      })
+    } catch (error) {
+      console.error("Edits failed to save", error.message)
+    }
   };
 
   const handleChange = (e) => {
@@ -81,8 +102,8 @@ const UserProfile = () => {
       e.target.selectedOptions,
       (option) => option.value
     );
-    setUserData((prevUserData) => ({
-      ...prevUserData,
+    setUserData((userData) => ({
+      ...userData,
       favoriteTeams: selectedTeams,
     }));
   };
@@ -136,11 +157,13 @@ const UserProfile = () => {
           username: formData.username,
           password: formData.password,
           confirmPassword: formData.confirmPassword,
+          email: formData.email,
           name: {
             firstName: formData.firstName,
             lastName: formData.lastName,
           },
-          email: formData.email,
+          location: formData.location,
+          favoriteTeam: []
         }),
       });
 
