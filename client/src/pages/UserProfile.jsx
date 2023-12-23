@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Select from "react-select";
 
 const UserProfile = () => {
   const initialUserData = {
@@ -18,44 +19,44 @@ const UserProfile = () => {
       lastName: "",
     },
     location: "",
-    favoriteTeam: [],
+    favoriteTeams: [],
   });
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
 
   const nflTeams = [
-    "Arizona Cardinals",
-    "Atlanta Falcons",
-    "Baltimore Ravens",
-    "Buffalo Bills",
-    "Carolina Panthers",
-    "Chicago Bears",
-    "Cincinnati Bengals",
-    "Cleveland Browns",
-    "Dallas Cowboys",
-    "Denver Broncos",
-    "Detroit Lions",
-    "Green Bay Packers",
-    "Houston Texans",
-    "Indianapolis Colts",
-    "Jacksonville Jaguars",
-    "Kansas City Chiefs",
-    "Las Vegas Raiders",
-    "Los Angeles Chargers",
-    "Los Angeles Rams",
-    "Miami Dolphins",
-    "Minnesota Vikings",
-    "New England Patriots",
-    "New Orleans Saints",
-    "New York Giants",
-    "New York Jets",
-    "Philadelphia Eagles",
-    "Pittsburgh Steelers",
-    "San Francisco 49ers",
-    "Seattle Seahawks",
-    "Tampa Bay Buccaneers",
-    "Tennessee Titans",
-    "Washington Commanders"
+    { label: "Arizona Cardinals", value: "Arizona Cardinals" },
+    { label: "Atlanta Falcons", value: "Atlanta Falcons" },
+    { label: "Baltimore Ravens", value: "Baltimore Ravens" },
+    { label: "Buffalo Bills", value: "Buffalo Bills" },
+    { label: "Carolina Panthers", value: "Carolina Panthers" },
+    { label: "Chicago Bears", value: "Chicago Bears" },
+    { label: "Cincinnati Bengals", value: "Cincinnati Bengals" },
+    { label: "Cleveland Browns", value: "Cleveland Browns" },
+    { label: "Dallas Cowboys", value: "Dallas Cowboys" },
+    { label: "Denver Broncos", value: "Denver Broncos" },
+    { label: "Detroit Lions", value: "Detroit Lions" },
+    { label: "Green Bay Packers", value: "Green Bay Packers" },
+    { label: "Houston Texans", value: "Houston Texans" },
+    { label: "Indianapolis Colts", value: "Indianapolis Colts" },
+    { label: "Jacksonville Jaguars", value: "Jacksonville Jaguars" },
+    { label: "Kansas City Chiefs", value: "Kansas City Chiefs" },
+    { label: "Las Vegas Raiders", value: "Las Vegas Raiders" },
+    { label: "Los Angeles Chargers", value: "Los Angeles Chargers" },
+    { label: "Los Angeles Rams", value: "Los Angeles Rams" },
+    { label: "Miami Dolphins", value: "Miami Dolphins" },
+    { label: "Minnesota Vikings", value: "Minnesota Vikings" },
+    { label: "New England Patriots", value: "New England Patriots" },
+    { label: "New Orleans Saints", value: "New Orleans Saints" },
+    { label: "New York Giants", value: "New York Giants" },
+    { label: "New York Jets", value: "New York Jets" },
+    { label: "Philadelphia Eagles", value: "Philadelphia Eagles" },
+    { label: "Pittsburgh Steelers", value: "Pittsburgh Steelers" },
+    { label: "San Francisco 49ers", value: "San Francisco 49ers"},
+    { label: "Seattle Seahawks", value: "Seattle Seahawks" },
+    { label: "Tampa Bay Buccaneers", value: "Tampa Bay Buccaneers" },
+    { label: "Tennessee Titans", value: "Tennessee Titans" },
+    { label: "Washington Commanders", value: "Washington Commanders" }
   ];
 
   useEffect(() => {
@@ -89,20 +90,20 @@ const UserProfile = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevUserData) => ({
+  //     ...prevUserData,
+  //     [name]: [...value],
+  //   }));
+  // };
 
   const handleTeamsChange = (e) => {
     const selectedTeams = Array.from(
       e.target.selectedOptions,
       (option) => option.value
     );
-    setUserData((userData) => ({
+    setFormData((userData) => ({
       ...userData,
       favoriteTeams: selectedTeams,
     }));
@@ -284,7 +285,32 @@ const UserProfile = () => {
                   onChange={handleFormChange}
                 />
               </label>
-              
+              <label>
+                Location: <input 
+                  type="text"
+                  name="location"
+                  onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                Favorite Teams:
+                <Select
+                defaultValue={""}
+                name="teams"
+                isMulti
+                options={nflTeams}
+                onChange={(
+                  (selected) => {
+                    console.log(selected)
+                    setFormData({
+                    ...formData,
+                    favoriteTeams: [...formData.favoriteTeams, selected]
+                  })
+                  }
+                )}
+                className="basic-multi-select"
+                />
+              </label>
             </>
             
           )}
