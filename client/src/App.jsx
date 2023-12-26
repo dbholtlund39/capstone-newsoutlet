@@ -9,6 +9,7 @@ import WorldNews from './pages/WorldNews';
 import Sports from './pages/SportsNews/Sports';
 import Weather from './pages/Weather/Weather';
 import UserProfile from './pages/UserProfile';
+import Stocks from './pages/Stocks';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/local-news" element={<LocalNews />} />
             <Route path="/national-news" element={<NationalNews />} />
             <Route path="/world-news" element={<WorldNews />} />
+            <Route path="/stocks" element={<Stocks />} />
             <Route path="/sports" element={<Sports />} />
             <Route path="/weather" element={<Weather />} />
             <Route path="/user-profile" element={<UserProfile />} />

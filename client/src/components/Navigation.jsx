@@ -34,6 +34,11 @@ const Navigation = () => {
               World News
             </Nav.Link>
           </Nav.Item>
+          <Nav.Item className="stocksLink">
+            <Nav.Link as={NavLink} to="/stocks">
+              Stocks
+            </Nav.Link>
+          </Nav.Item>
           <Nav.Item className="sportsLink">
             <Nav.Link as={NavLink} to="/sports">
               Sports
