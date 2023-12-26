@@ -47,42 +47,18 @@ const Stocks = () => {
       "INTC",
       "JNJ",
       "GS",
-      "CVX",
+      "NVDA",
       "JPM",
       "KO",
       "PEP",
       "DIS",
-      "MCD",
-      "V",
-      "WMT",
-      "PG",
-      "CAT",
-      "ADBE",
-      "NVDA",
-      "PYPL",
-      "HD",
-      "ORCL",
-      "ABBV",
-      "CMCSA",
-      "TMO",
-      "UNH",
-      "VZ",
-      "WFC",
-      "TMUS",
-      "BAC",
-      "XOM",
-      "COST",
-      "MRK",
-      "C",
-      "PFE",
-      "CVS",
-      "ABT",
     ];
+
     const cachedStocks = {};
 
     try {
       symbols.forEach((symbol) => {
-        const cachedData = sessionStorage.getItem(symbol);
+        const cachedData = localStorage.getItem(symbol);
         if (cachedData) {
           cachedStocks[symbol] = JSON.parse(cachedData);
         }
@@ -92,7 +68,7 @@ const Stocks = () => {
         .filter((symbol) => !cachedStocks[symbol])
         .map(async (symbol) => {
           const data = await fetchStockData(symbol);
-          sessionStorage.setItem(symbol, JSON.stringify(data));
+          localStorage.setItem(symbol, JSON.stringify(data));
           return data;
         });
 
