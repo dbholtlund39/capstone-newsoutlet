@@ -4,7 +4,7 @@ const NationalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userCountryCode, setUserCountryCode] = useState("");
-  const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async (countryCode) => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
@@ -53,12 +53,18 @@ const NationalNews = () => {
     }
   };
 
-  const handleCopyToClipboard = (url) => {
+  const handleCopyToClipboard = (url, index) => {
     navigator.clipboard.writeText(url).then(() => {
-      setIsLinkCopied(true);
+      setLinkCopiedState({
+        ...linkCopiedState,
+        [index]: true,
+      });
 
       setTimeout(() => {
-        setIsLinkCopied(false);
+        setLinkCopiedState({
+          ...linkCopiedState,
+          [index]: false,
+        });
       }, 3000);
     });
   };
@@ -122,10 +128,10 @@ const NationalNews = () => {
                   </p>
                   <button
                     className="copyLinkButton"
-                    onClick={() => handleCopyToClipboard(article.url)}
-                    disabled={isLinkCopied}
+                    onClick={() => handleCopyToClipboard(article.url, index)}
+                    disabled={linkCopiedState[index]}
                   >
-                    {isLinkCopied ? "Link Copied!" : "Copy Link"}
+                    {linkCopiedState[index] ? "Link Copied!" : "Copy Link"}
                   </button>
                 </div>
               )}
