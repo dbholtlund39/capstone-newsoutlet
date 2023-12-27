@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 const WorldNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   const fetchArticles = async () => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
@@ -68,6 +69,16 @@ const WorldNews = () => {
     (article) => article.title !== "[Removed]"
   );
 
+  const handleCopyToClipboard = (url) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setIsLinkCopied(true);
+
+      setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 3000);
+    });
+  };
+
   return (
     <div className="newsFeed">
       <h4 className="pageTitle"></h4>
@@ -98,16 +109,25 @@ const WorldNews = () => {
               <p className="published">Published at: {article.publishedAt}</p>
               <p className="source">Source: {article.source.name}</p>
               {article.url && (
-                <p className="article-link">
-                  <a
-                    className="articleLink"
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div>
+                  <p className="article-link">
+                    <a
+                      className="articleLink"
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read More
+                    </a>
+                  </p>
+                  <button
+                    className="copyLinkButton"
+                    onClick={() => handleCopyToClipboard(article.url)}
+                    disabled={isLinkCopied}
                   >
-                    Read More
-                  </a>
-                </p>
+                    {isLinkCopied ? "Link Copied!" : "Copy Link"}
+                  </button>
+                </div>
               )}
             </li>
           ))}

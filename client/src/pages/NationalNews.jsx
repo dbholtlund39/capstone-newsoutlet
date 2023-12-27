@@ -4,6 +4,7 @@ const NationalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userCountryCode, setUserCountryCode] = useState("");
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
 
   const fetchArticles = async (countryCode) => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
@@ -52,6 +53,16 @@ const NationalNews = () => {
     }
   };
 
+  const handleCopyToClipboard = (url) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setIsLinkCopied(true);
+
+      setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 3000);
+    });
+  };
+
   const defaultImageUrl = "src/components/images/defaultNewsImage.jpg";
 
   const filteredArticles = articles.filter(
@@ -98,16 +109,25 @@ const NationalNews = () => {
               <p className="published">Published at: {article.publishedAt}</p>
               <p className="source">Source: {article.source.name}</p>
               {article.url && (
-                <p className="article-link">
-                  <a
-                    className="readMore"
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div>
+                  <p className="article-link">
+                    <a
+                      className="readMore"
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Read More
+                    </a>
+                  </p>
+                  <button
+                    className="copyLinkButton"
+                    onClick={() => handleCopyToClipboard(article.url)}
+                    disabled={isLinkCopied}
                   >
-                    Read More
-                  </a>
-                </p>
+                    {isLinkCopied ? "Link Copied!" : "Copy Link"}
+                  </button>
+                </div>
               )}
             </li>
           ))}
