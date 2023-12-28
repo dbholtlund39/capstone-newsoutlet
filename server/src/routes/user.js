@@ -49,10 +49,8 @@ router
     try {
       const user = await User.findOne({ username })
         .populate("name", "firstName lastName")
-        .populate({
-          path: "preferences",
-          select: "countryCode team interest",
-        });
+        .populate("location")
+        .populate("favoriteTeams");
 
       if (!user) {
         return res.sendStatus(404);
