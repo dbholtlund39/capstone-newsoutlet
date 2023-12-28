@@ -15,7 +15,7 @@
 
 - 12/12 Discovered that we will need a user log in component in order to store the user preferences. Dylan is working on that within his user preferences task. 
 
-- 12/13 Helped Mereille get weather page changes pushed and changed access on MongoDB to allow for successful connection.
+- 12/13 Helped Mireille get weather page changes pushed and changed access on MongoDB to allow for successful connection.
 
 - 12/14 Spoke about clickup and open tasks. Brandon will have changes pushed by Saturday. Dylan and Timothy are also working on back end tune ups.
 
@@ -24,3 +24,18 @@
 - 12/16 Fixing kinks and adding more content for sports section and making sure all api resources and filtering articles to get best results, all fetching routes are in place and sorting through the $query selectors to get the relevant data 
 
 - 12/17 Dylan to link the sign up, user profile page to the rest of the pages & setting up auth
+
+- 12/18 Spoke about what we are working on. Mireille is looking into options for forecast and city, state search in Weather. Brandon is still working on the sports page. 
+
+- 12/19 Mireille says it looks like she will need a different API to implement a 5-day forecast but is not working on trying to specify a state in the search. 
+
+- 12/20 Amy still working on CSS of changes made. Dylan's bug notes "I reverted the changes I made at the sign up as it wasn't working. I am trying it again and I am getting a 404. I looked on the backend and I see there is an extra set of sign up and sign in post requests."
+
+- 12/21 Brandon added caching to sports section. Presentation notes from Cody- everything looks good so far. When asked if there are any 'extra touches' features he would like to see on a site like this he suggested a bookmark option for each article and a share button. Dylan's bug 10:56PM update: "I'm taking a look at the database and we have over 2,000 documents just in users alone. I think when I had tested a while ago, it must've sent in the sign up request quite a bit as most of them are for a single attempt I did. I am wondering if something is going on on my computer, maybe why I am still getting 404." 11:16PM update: "I found an issue. I had a couple 'desktops' going on my computer and I had the terminal up and going on the other one. I am good and clear at the moment. There is still the matter of the 2k users to deal with. I think it would be wise to wipe them all and build fresh data again."
+
+- 12/23 Dylan's bug update: "I was able to delete only the duplicates. We are now sitting at 7 users. Y'all should be able to sign in as normal."
+
+- 12/26 Tim added a stocks page with limited API queries per day. 
+
+- 12/28 Spoke about what we are currently working on. Dylan is working on his user profile and preferences task and should have it completed by 12/29. Brandon is working on possibly implementing videos on  his page. Amy making CSS updates as progress is made but waiting on sports page to be finalized before adding any more CSS that might get overridden with the changes. Mireille still working on weather page. Meeting scheduled for 12/29 to discuss Dylan's progress and other changes made. 
+
