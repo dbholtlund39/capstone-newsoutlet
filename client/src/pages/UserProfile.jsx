@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const initialUserData = {
@@ -19,10 +20,16 @@ const UserProfile = () => {
       lastName: "",
     },
     location: "",
-    favoriteTeams: [],
   });
+  const [favoriteTeams, setFavoriteTeams] = useState([])
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
+
+  useEffect(() => {
+    console.log(favoriteTeams);
+
+  }, [favoriteTeams.length]
+  )
 
   const nflTeams = [
     { label: "Arizona Cardinals", value: "Arizona Cardinals" },
@@ -98,16 +105,12 @@ const UserProfile = () => {
   //   }));
   // };
 
-  const handleTeamsChange = (e) => {
-    const selectedTeams = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setFormData((userData) => ({
-      ...userData,
-      favoriteTeams: selectedTeams,
-    }));
-  };
+  const handleTeamsChange = (teams) => {
+    setFavoriteTeams(teams.map(team => ({
+      id: uuidv4(), 
+      ...team
+    }))
+  )}
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -164,7 +167,7 @@ const UserProfile = () => {
             lastName: formData.lastName,
           },
           location: formData.location,
-          favoriteTeam: []
+          favoriteTeams
         }),
       });
 
@@ -178,6 +181,23 @@ const UserProfile = () => {
       console.error("Sign Up failed:", error.message);
     }
   };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/${formData.username}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          body: JSON.stringify({
+            location: formData.location,
+            favoriteTeams
+          })
+        }
+      })
+    } catch (error) {
+      console.error("Update Failed:", error.message, error.status);
+    }
+  }
 
   const handleSignOut = () => {
     setSignedIn(false);
@@ -201,7 +221,7 @@ const UserProfile = () => {
                 <strong>Username:</strong> {userData.username}
               </p>
               <label>
-                Favorite Teams
+                Favorite Teams:
                 <br />
                 <select
                   multiple
@@ -210,8 +230,8 @@ const UserProfile = () => {
                   onChange={handleTeamsChange}
                 >
                   {nflTeams.map((team) => (
-                    <option key={team} value={team}>
-                      {team}
+                    <option key={team.id} value={team}>
+                      {team.label}
                     </option>
                   ))}
                 </select>
@@ -227,8 +247,8 @@ const UserProfile = () => {
                 <strong>Favorite Teams:</strong>{" "}
                 {userData.favoriteTeams &&
                   userData.favoriteTeams.map((team, index) => (
-                    <span key={team}>
-                      {team}
+                    <span key={team.id}>
+                      {team.label}
                       {index !== userData.favoriteTeams.length - 1 ? ", " : ""}
                     </span>
                   ))}
@@ -274,6 +294,7 @@ const UserProfile = () => {
               <label>
                 First Name: <input
                   type="text"
+                  placeholder="First Name"
                   name="firstName"
                   onChange={handleFormChange}
                 />
@@ -281,6 +302,7 @@ const UserProfile = () => {
               <label>
                 Last Name: <input
                   type="text"
+                  placeholder="Last Name"
                   name="lastName"
                   onChange={handleFormChange}
                 />
@@ -288,6 +310,7 @@ const UserProfile = () => {
               <label>
                 Location: <input 
                   type="text"
+                  placeholder="Country Code"
                   name="location"
                   onChange={handleFormChange}
                 />
@@ -295,19 +318,20 @@ const UserProfile = () => {
               <label>
                 Favorite Teams:
                 <Select
-                defaultValue={""}
-                name="teams"
+                defaultValue={[""]}
+                placeholder="Favorite Teams"
+                name="favoriteTeams"
                 isMulti
                 options={nflTeams}
-                onChange={(
-                  (selected) => {
-                    console.log(selected)
-                    setFormData({
-                    ...formData,
-                    favoriteTeams: [...formData.favoriteTeams, selected]
-                  })
-                  }
-                )}
+                onChange= {handleTeamsChange}
+                // {(
+                //   (selected) => {
+                //     console.log(selected)
+                //     setFormData({
+                //     favoriteTeams: [...favoriteTeams, selected]
+                //   })
+                //   }
+                // )}
                 className="basic-multi-select"
                 />
               </label>
