@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { healthCheck } from "../controllers/api.controller";
 import userRouter from './user';
-import authRouter from './auth';
 import scraperRouter from './scraper.routes';
 
 const router = Router();
@@ -13,8 +12,6 @@ router.route("/").get((req, res) => {
 
 
 router.use("/users", userRouter);
-// This is not needed anymore. Better code has been added to userRouter
-// router.use("/auth", authRouter);
 
 
 router.use("/sportsNews", scraperRouter, (req, res, next) => {
