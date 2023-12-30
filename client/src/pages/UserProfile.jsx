@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
-  const initialUserData = {
+  const initialUserData = {                 
     username: "",
+    location: "",
     favoriteTeams: [],
   };
 
@@ -24,12 +27,15 @@ const UserProfile = () => {
   const [favoriteTeams, setFavoriteTeams] = useState([])
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(favoriteTeams);
 
   }, [favoriteTeams.length]
   )
+
+  const urlBase = "http://localhost:3001/api";
 
   const nflTeams = [
     { label: "Arizona Cardinals", value: "Arizona Cardinals" },
@@ -65,7 +71,7 @@ const UserProfile = () => {
     { label: "Tennessee Titans", value: "Tennessee Titans" },
     { label: "Washington Commanders", value: "Washington Commanders" }
   ];
-
+  
   useEffect(() => {
     const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
@@ -73,44 +79,10 @@ const UserProfile = () => {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
-
+  
   const handleEdit = () => {
     setEditing(true);
   };
-
-  const handleSave = async () => {
-    setEditing(false);
-    // sessionStorage.setItem("userData", JSON.stringify(userData));
-    try {
-      const response = await fetch(`http://localhost:3001/api/${formData.username}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify({
-          // I need to set this up to only take in the changes and not all the data again
-          ...userData
-        })
-      })
-    } catch (error) {
-      console.error("Edits failed to save", error.message)
-    }
-  };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevUserData) => ({
-  //     ...prevUserData,
-  //     [name]: [...value],
-  //   }));
-  // };
-
-  const handleTeamsChange = (teams) => {
-    setFavoriteTeams(teams.map(team => ({
-      id: uuidv4(), 
-      ...team
-    }))
-  )}
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -119,9 +91,22 @@ const UserProfile = () => {
       [name]: value,
     });
   };
+
+  const handleTeamsChange = (teams) => {
+    setFavoriteTeams(teams.map(team => ({
+      id: uuidv4(), 
+      ...team
+    }))
+  )}
+
+  const handleBackButton = () => {
+    setEditing(false);
+  }
+
+
   const handleSignIn = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/signin", {
+      const response = await fetch(`${urlBase}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,23 +121,37 @@ const UserProfile = () => {
         setSignedIn(true);
 
         const userResponse = await fetch(
-          `http://localhost:3001/api/${formData.username}`
+          `${urlBase}/${formData.username}`
         );
         if (userResponse.status === 200) {
           const user = await userResponse.json();
           setUserData(user);
+          setEditing(false);
         }
       } else {
         console.error("Sign In failed:", response.statusText);
       }
     } catch (error) {
-      console.error("Sign In failed:", error.message);
+      console.error("Sign In failed:", error.message, error.status);
     }
   };
+  
+
+  const handleSignOut = () => {
+    setSignedIn(false);
+    setUserData(initialUserData);
+    setFormData({
+      username: "",
+      password: "",
+      confirmPassword: "",
+    });
+    sessionStorage.removeItem("userData");
+  };
+
 
   const handleSignUp = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/signup", {
+      const response = await fetch(`${urlBase}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -178,37 +177,49 @@ const UserProfile = () => {
         console.error("Sign Up failed:", errorData.error);
       }
     } catch (error) {
-      console.error("Sign Up failed:", error.message);
+      console.error("Sign Up failed:", error.message, error.status);
     }
   };
 
+
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/${formData.username}`, {
+      const res = await fetch(`${urlBase}/${formData.username}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          body: JSON.stringify({
-            location: formData.location,
-            favoriteTeams
-          })
-        }
+        },
+        body: JSON.stringify({
+          location: formData.location,
+          favoriteTeams
+        })
       })
+
+      if(res.status === 200) {
+        const updatedUser = await res.json()
+        setUserData(updatedUser)
+        setEditing(false);
+      }
     } catch (error) {
       console.error("Update Failed:", error.message, error.status);
     }
   }
 
-  const handleSignOut = () => {
-    setSignedIn(false);
-    setUserData(initialUserData);
-    setFormData({
-      username: "",
-      password: "",
-      confirmPassword: "",
-    });
-    sessionStorage.removeItem("userData");
-  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`http://localhost:3001/api/${formData.username}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+
+      // Set user data to initial, Sign out, and send success message.
+    } catch (error) {
+     console.error("Delete Failed:", error.message, error.status)
+    }
+  }
 
   return (
     <div className="profileMainDiv">
@@ -221,27 +232,35 @@ const UserProfile = () => {
                 <strong>Username:</strong> {userData.username}
               </p>
               <label>
-                Favorite Teams:
-                <br />
-                <select
-                  multiple
-                  name="favoriteTeams"
-                  value={userData.favoriteTeams}
-                  onChange={handleTeamsChange}
-                >
-                  {nflTeams.map((team) => (
-                    <option key={team.id} value={team}>
-                      {team.label}
-                    </option>
-                  ))}
-                </select>
+                Location: <input 
+                  type="text"
+                  placeholder="Country Code"
+                  name="location"
+                  onChange={handleFormChange}
+                />
               </label>
-              <button onClick={handleSave}>Save</button>
+              <label>
+                Favorite Teams:
+                <Select
+                defaultValue={[""]}
+                placeholder="Favorite Teams"
+                name="favoriteTeams"
+                isMulti
+                options={nflTeams}
+                onChange= {handleTeamsChange}
+                className="basic-multi-select"
+                />
+              </label>
+              <Button onClick={handleUpdate}>Save</Button>
+              <Button onClick={handleBackButton}>Back</Button>
             </div>
           ) : (
             <div className="userProfileDisplay">
               <p className="usernameP">
                 <strong>Username: </strong> {userData.username}
+              </p>
+              <p className="locationP">
+                <strong>Location: </strong> {userData.location}
               </p>
               <p className="teamList">
                 <strong>Favorite Teams:</strong>{" "}
@@ -253,14 +272,19 @@ const UserProfile = () => {
                     </span>
                   ))}
               </p>
-              <button className="editButton" onClick={handleEdit}>
-                Edit
-              </button>
-            </div>
+              {/* <div className="buttonFlex"> */}
+                <Button className="editButton" onClick={handleEdit}>
+                  Edit
+                </Button>
+                {/* <Button className="deleteButton" onClick={handleDelete}>
+                  Delete
+                </Button> */}
+              // </div>
+            // </div>
           )}
-          <button className="signOutButton" onClick={handleSignOut}>
+          <Button className="signOutButton" onClick={handleSignOut}>
             Sign Out
-          </button>
+          </Button>
         </>
       ) : (
         <div className="pageTitle">
@@ -286,7 +310,6 @@ const UserProfile = () => {
                   name="confirmPassword"
                   onChange={handleFormChange}
                 />
-                
               </label>
               <label>
                 Email: <input type="email" name="email" onChange={handleFormChange} />
@@ -324,31 +347,22 @@ const UserProfile = () => {
                 isMulti
                 options={nflTeams}
                 onChange= {handleTeamsChange}
-                // {(
-                //   (selected) => {
-                //     console.log(selected)
-                //     setFormData({
-                //     favoriteTeams: [...favoriteTeams, selected]
-                //   })
-                //   }
-                // )}
                 className="basic-multi-select"
                 />
               </label>
             </>
-            
           )}
           
-          <button className= "signUpButton" onClick={signUpMode ? handleSignUp : handleSignIn}>
+          <Button className= "signUpButton" onClick={signUpMode ? handleSignUp : handleSignIn}>
             {signUpMode ? "Sign Up" : "Sign In"}
-          </button>
+          </Button>
           <p className= "signUpFont">
             {signUpMode
               ? "Already have an account?"
               : "Not registered? Sign up now!"}
-            <button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>
+            <Button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>
               {signUpMode ? "Sign In" : "Sign Up"}
-            </button>
+            </Button>
           </p>
           </div>
         </div>
