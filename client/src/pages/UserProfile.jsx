@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { v4 as uuidv4 } from "uuid";
 
+
 const UserProfile = () => {
   const initialUserData = {                 
     username: "",
@@ -11,9 +12,7 @@ const UserProfile = () => {
     favoriteTeams: [],
   };
 
-  const [signedIn, setSignedIn] = useState(false);
-  const [userData, setUserData] = useState(initialUserData);
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     username: "",
     password: "",
     confirmPassword: "",
@@ -23,17 +22,15 @@ const UserProfile = () => {
       lastName: "",
     },
     location: "",
-  });
+  };
+
+  const [signedIn, setSignedIn] = useState(false);
+  const [userData, setUserData] = useState(initialUserData);
+  const [formData, setFormData] = useState(initialFormData);
   const [favoriteTeams, setFavoriteTeams] = useState([])
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(favoriteTeams);
-
-  }, [favoriteTeams.length]
-  )
 
   const urlBase = "http://localhost:3001/api";
 
@@ -208,14 +205,14 @@ const UserProfile = () => {
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/${formData.username}`, {
+      const res = await fetch(`${urlBase}/${formData.username}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
         }
       })
 
-      // Set user data to initial, Sign out, and send success message.
+      window.location.reload(false);
     } catch (error) {
      console.error("Delete Failed:", error.message, error.status)
     }
@@ -272,15 +269,13 @@ const UserProfile = () => {
                     </span>
                   ))}
               </p>
-              {/* <div className="buttonFlex"> */}
                 <Button className="editButton" onClick={handleEdit}>
                   Edit
                 </Button>
-                {/* <Button className="deleteButton" onClick={handleDelete}>
+                <Button className="deleteButton" onClick={handleDelete}>
                   Delete
-                </Button> */}
-              // </div>
-            // </div>
+                </Button>
+            </div>
           )}
           <Button className="signOutButton" onClick={handleSignOut}>
             Sign Out
