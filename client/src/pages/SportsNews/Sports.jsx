@@ -4,74 +4,50 @@ import Basketball from "./Nba.jsx";
 import FootballArticles from "./Nfl.news.jsx";
 import MlbNews from "./Mlb.jsx";
 import OtherSports from "./OtherSports.jsx";
+
 class Sports extends Component {
   render() {
     const contentStyle = {
       marginTop: "20px",
       padding: "6px",
-    
       borderRadius: "8px",
       textAlign: "center",
+    };
 
+    const navStyle = {
+      position: 'sticky',
+      top: '0',
+      backgroundColor: '#FFF',
+      zIndex: '1000',
+      padding: '10px 0',
+      borderBottom: '1px solid #ddd',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     };
 
     const navLinkStyle = {
       textDecoration: "none",
       color: "blue",
       cursor: "pointer",
-      padding: "9px",
-      paddingBottom: "4px",
-      display: "block",
+      padding: "9px 15px",
+      margin: "0 5px",
     };
 
+
     return (
-      
-      <div >
-        
-        <div style={contentStyle}>
-          <nav className= "sportsNav">
-            <a style={navLinkStyle} href="#basketball">
-              Basketball
-            </a>
-            <a style={navLinkStyle} href="#footballArticles">
-              Football
-            </a>
-            <a style={navLinkStyle} href="#mlbNews">
-              Baseball
-            </a>
-            <a style={navLinkStyle} href="#other">
-              Other Sports
-            </a>
-
-          </nav>
-          <div id="home">
-            <LatestSportsNews />
-          </div>
-        </div>
-        
-        <nav >
-        
-
-          <a style={navLinkStyle} href="#home">
-            Home
-          </a>
-
-          <a style={navLinkStyle} href="#basketball">
-            Basketball
-          </a>
-          <a style={navLinkStyle} href="#footballArticles">
-            Football
-          </a>
-          <a style={navLinkStyle} href="#mlbNews">
-            Baseball
-          </a>
-          <a style={navLinkStyle} href="#other">
-            Other Sports
-          </a>
-
+      <div>
+        <nav style={navStyle}>
+          <a style={navLinkStyle} href="#home">Home</a>
+          <a style={navLinkStyle} href="#basketball">Basketball</a>
+          <a style={navLinkStyle} href="#footballArticles">Football</a>
+          <a style={navLinkStyle} href="#mlbNews">Baseball</a>
+          <a style={navLinkStyle} href="#other">Other Sports</a>
         </nav>
-        
 
+        <div id="home" style={contentStyle}>
+          <LatestSportsNews />
+        </div>
         <div id="basketball" style={contentStyle}>
           <Basketball />
         </div>
@@ -84,30 +60,7 @@ class Sports extends Component {
         <div id="other" style={contentStyle}>
           <OtherSports />
         </div>
-        <nav className= "sportsNav">
-
-          <a style={navLinkStyle} href="#home">
-            Home
-          </a>
-
-          <a style={navLinkStyle} href="#basketball">
-            Basketball
-          </a>
-          <a style={navLinkStyle} href="#footballArticles">
-            Football
-          </a>
-          <a style={navLinkStyle} href="#mlbNews">
-            Baseball
-          </a>
-          <a style={navLinkStyle} href="#other">
-            Other Sports
-          </a>
-
-        </nav>
-
-        <div></div>
-      </div >
-
+      </div>
     );
   }
 }

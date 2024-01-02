@@ -3,9 +3,9 @@ import cheerio from 'cheerio';
 import { URL } from 'url';
 const scrapeContent = async (url, selectors) => {
     try {
-        console.log(`Scraping content from: ${url}`);
+
         const { data } = await axios.get(url);
-        console.log(`Data fetched from ${url}`);
+
         const $ = cheerio.load(data);
         const articles = [];
         const baseUrl = new URL(url).origin; // Dynamically get the base URL
@@ -28,7 +28,7 @@ const scrapeContent = async (url, selectors) => {
             articles.push(article);
         });
 
-        console.log(`Scraped ${articles.length} articles from ${url}`);
+
         return articles;
     } catch (error) {
         console.error(`Error scraping content from ${url}: ${error.message}`);

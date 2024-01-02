@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-
 
 const isSportsRelated = (article) => {
     const sportsKeywords = ['soccer', 'football', 'basketball', 'hockey', 'tennis', 'olympics'];
@@ -10,7 +9,6 @@ const isSportsRelated = (article) => {
     return titleContainsKeyword || descriptionContainsKeyword;
 };
 
-
 const fetchSportsArticles = async ({ queryKey }) => {
     const [_, { category }] = queryKey;
     const response = await axios.get('https://newsapi.org/v2/everything', {
@@ -18,21 +16,37 @@ const fetchSportsArticles = async ({ queryKey }) => {
             q: category,
             from: 'latest',
             sortBy: 'relevance',
-            apiKey: 'a608e02eb33540d092613b8c9a7d3a17'
+            apiKey: 'a608e02eb33540d092613b8c9a7d3a17' // Consider moving this to a secure place
         }
     });
     return response.data.articles.filter(isSportsRelated);
 };
 
 const OtherSports = () => {
-
     const { data: articles, isLoading, error } = useQuery(['sportsNews', { category: 'Sports' }], fetchSportsArticles);
+    const [linkCopiedState, setLinkCopiedState] = useState({});
+
+    const handleCopyToClipboard = (url, index) => {
+        navigator.clipboard.writeText(url).then(() => {
+            setLinkCopiedState({
+                ...linkCopiedState,
+                [index]: true,
+            });
+
+            setTimeout(() => {
+                setLinkCopiedState({
+                    ...linkCopiedState,
+                    [index]: false,
+                });
+            }, 3000);
+        });
+    };
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <div>
+        <div className="newsFeed">
             <h2>Other Sports News</h2>
             <ul>
                 {articles && articles.map((article, index) => (
@@ -44,18 +58,16 @@ const OtherSports = () => {
                             </div>
                         )}
                         <p className="article">{article.description}</p>
-                        <p className="source">Source: {article.source.name}</p>
-                        {article.url && (
-                            <p className="article-link">
-                                <a className="readMore"
-                                    href={article.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Read More
-                                </a>
-                            </p>
-                        )}
+                        <a className="readMore" href={article.link} target="_blank" rel="noopener noreferrer">
+                            Read More
+                        </a>
+                        <button
+                            className="copyLinkButton"
+                            onClick={() => handleCopyToClipboard(article.link, index)}
+                            disabled={linkCopiedState[index]}
+                        >
+                            {linkCopiedState[index] ? "Link Copied!" : "Copy Link"}
+                        </button>
                     </li>
                 ))}
             </ul>

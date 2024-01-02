@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 // import NflCard from './NflCard.jsx'; // Commented out temporary
@@ -10,6 +10,30 @@ const fetchFootballArticles = async () => {
 
 const FootballArticles = () => {
     const { data: articles, isLoading, error } = useQuery('footballArticles', fetchFootballArticles);
+    const [linkCopiedState, setLinkCopiedState] = useState({});
+
+    const handleCopyToClipboard = (url, index) => {
+        navigator.clipboard.writeText(url).then(() => {
+            setLinkCopiedState({
+                ...linkCopiedState,
+                [index]: true,
+            });
+
+            setTimeout(() => {
+                setLinkCopiedState({
+                    ...linkCopiedState,
+                    [index]: false,
+                });
+            }, 3000);
+        });
+    };
+
+    const filteredArticles = articles
+        ? articles
+            .filter(article => article.link && article.link.includes('deadspin.com')) // Filter to include only articles from deadspin.com
+            .filter((article, index, self) =>
+                index === self.findIndex(a => a.title === article.title)) // Filter out duplicates
+        : [];
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -22,9 +46,9 @@ const FootballArticles = () => {
     return (
         <div>
             <h2>Latest NFL News</h2>
-            {articles && articles.length > 0 ? (
+            {filteredArticles.length > 0 ? (
                 <ul>
-                    {articles.map((article, index) => (
+                    {filteredArticles.map((article, index) => (
                         <li className="itemCard" key={index}>
                             <h4>{article.title}</h4>
                             {article.imageUrl && (
@@ -36,6 +60,13 @@ const FootballArticles = () => {
                             <a className="readMore" href={article.link} target="_blank" rel="noopener noreferrer">
                                 Read More
                             </a>
+                            <button
+                                className="copyLinkButton"
+                                onClick={() => handleCopyToClipboard(article.link, index)}
+                                disabled={linkCopiedState[index]}
+                            >
+                                {linkCopiedState[index] ? "Link Copied!" : "Copy Link"}
+                            </button>
                         </li>
                     ))}
                 </ul>
