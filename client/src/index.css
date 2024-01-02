@@ -54,23 +54,23 @@ a:focus {
 .pageTitle {
   font-size: 20px;
   padding: 5px;
-  background-color: #f9f9f9;
   text-align: center;
   align-content: center;
-  border: 1px solid black;
   border-radius: 8px;
+ 
 }
 .profileMainDiv {
   margin: auto;
   margin-top: 50px;
-  padding: 11px;
-  max-width: 400px;
+  background-color: #f9f9f9;
+  max-width: 387px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   align-content: center;
-  background-color: #e4e5f7;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 .userProfileDisplay {
