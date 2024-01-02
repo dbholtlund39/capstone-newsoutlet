@@ -45,7 +45,7 @@ const FootballArticles = () => {
 
     return (
         <div>
-            <h2>Latest NFL News</h2>
+            <h2>Latest Football News</h2>
             {filteredArticles.length > 0 ? (
                 <ul>
                     {filteredArticles.map((article, index) => (

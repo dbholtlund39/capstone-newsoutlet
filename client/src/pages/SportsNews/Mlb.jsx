@@ -40,7 +40,7 @@ const MlbNews = () => {
 
     return (
         <div>
-            <h2>Latest Major League Baseball News</h2>
+            <h2>Latest Baseball News</h2>
             {filteredArticles.length > 0 ? (
                 <ul>
                     {filteredArticles.map((article, index) => (

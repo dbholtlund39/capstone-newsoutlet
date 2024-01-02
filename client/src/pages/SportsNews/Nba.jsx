@@ -44,7 +44,7 @@ const Basketball = () => {
 
     return (
         <div>
-            <h2>Basketball News</h2>
+            <h2>Latest Basketball News</h2>
             {filteredArticles.length > 0 ? (
                 <ul>
                     {filteredArticles.map((article, index) => (
