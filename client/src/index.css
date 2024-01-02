@@ -220,7 +220,13 @@ label {
   font-size: 17px;
   text-align: center;
 }
-
+.copyLinkButton {
+  max-width: 80px;
+  padding: 2px;
+  align-self: center;
+  margin: 5px;
+  margin-bottom: 0px;
+}
 .signInButton {
   margin: 5px;
   width: 60px;
