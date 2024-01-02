@@ -22,6 +22,8 @@ const UserProfile = () => {
       lastName: "",
     },
     location: "",
+    city: "",
+    state: "",
   };
 
   const [signedIn, setSignedIn] = useState(false);
@@ -88,6 +90,23 @@ const UserProfile = () => {
       [name]: value,
     });
   };
+
+  const handleCityChange = (e) => {
+    const city = e.target.value;
+    setFormData({
+      ...formData,
+      city,
+    });
+  };
+  
+  const handleStateChange = (e) => {
+    const state = e.target.value;
+    setFormData({
+      ...formData,
+      state,
+    });
+  };
+  
 
   const handleTeamsChange = (teams) => {
     setFavoriteTeams(teams.map(team => ({
@@ -163,6 +182,8 @@ const UserProfile = () => {
             lastName: formData.lastName,
           },
           location: formData.location,
+          city: formData.city, 
+          state: formData.state,
           favoriteTeams
         }),
       });
@@ -228,15 +249,35 @@ const UserProfile = () => {
               <p>
                 <strong>Username:</strong> {userData.username}
               </p>
-              <label>
-                Location: <input 
+                           {/* <label>
+          City:{" "}
+          <input
+            type="text"
+            placeholder="Enter City"
+            name="city"
+            value={formData.city}
+            onChange={handleCityChange}
+          />
+        </label>
+        <label>
+          State:{" "}
+          <input
+            type="text"
+            placeholder="ex. FL"
+            name="state"
+            value={formData.state}
+            onChange={handleStateChange}
+          />
+        </label> */}
+        <label>
+                Country: <input 
                   type="text"
-                  placeholder="Country Code"
+                  placeholder="ex. US"
                   name="location"
                   onChange={handleFormChange}
                 />
               </label>
-              <label>
+              <label className="faveTeams">
                 Favorite Teams:
                 <Select
                 defaultValue={[""]}
@@ -248,8 +289,8 @@ const UserProfile = () => {
                 className="basic-multi-select"
                 />
               </label>
-              <Button onClick={handleUpdate}>Save</Button>
-              <Button onClick={handleBackButton}>Back</Button>
+              <Button className= "saveButton" onClick={handleUpdate}>Save</Button>
+              <Button className= "backButton" onClick={handleBackButton}>Back</Button>
             </div>
           ) : (
             <div className="userProfileDisplay">
@@ -325,19 +366,39 @@ const UserProfile = () => {
                   onChange={handleFormChange}
                 />
               </label>
+              {/* <label>
+                City:{" "}
+                <input
+                  type="text"
+                  placeholder="Enter City"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleCityChange}
+                />
+              </label>
               <label>
-                Location: <input 
+                State:{" "}
+                <input
+                  type="text"
+                  placeholder="Enter State 2-Digit Code"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleStateChange}
+                />
+              </label> */}
+              <label>
+                Country: <input 
                   type="text"
                   placeholder="Country Code"
                   name="location"
                   onChange={handleFormChange}
                 />
               </label>
-              <label>
+              <label className= "faveTeams">
                 Favorite Teams:
                 <Select
                 defaultValue={[""]}
-                placeholder="Favorite Teams"
+                placeholder="Select Team(s)"
                 name="favoriteTeams"
                 isMulti
                 options={nflTeams}

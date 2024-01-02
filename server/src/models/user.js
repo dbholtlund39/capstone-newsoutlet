@@ -29,6 +29,18 @@ const userSchema = new Schema(
       required: true,
       minLength: 8,
     },
+        // city: {
+    //   type: String,
+    //   minLength: 2, 
+    //   maxLength: 2,
+    //   required: false,
+    // },
+    // state: {
+    //   type: String,
+    //   minLength: 2, 
+    //   maxLength: 2,
+    //   required: false,
+    // },
     location: {
       type: String,
       default: 'US',
@@ -36,7 +48,9 @@ const userSchema = new Schema(
       maxLength: 2,
       required: true,
     },
+
     favoriteTeams: {
+      default: "",
       type: Array,
       required: false
     },

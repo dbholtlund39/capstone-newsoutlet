@@ -56,8 +56,8 @@ a:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   background-color: #e4e5f7;
-  padding-right: 70px;
 }
 
 .userProfileDisplay {
@@ -100,16 +100,44 @@ a:focus {
 }
 
 .editButton {
-  font-size: 15px;
+  font-size: 13px;
   width: 100px;
   padding: 2px;
   margin: 5px;
 }
 
+.deleteButton {
+  font-size: 13px;
+  width: 100px;
+  padding: 2px;
+  margin: 5px;
+}
+
+.saveButton {
+  font-size: 13px;
+  width: 100px;
+  padding: 2px;
+  margin: 5px;
+}
+
+.backButton {
+  font-size: 13px;
+  width: 100px;
+  padding: 2px;
+  margin: 5px;
+}
 .userProfileLink a {
   color: #9df1ff;
 }
+.css-4xgw5l-IndicatorsContainer2 {
+  font-size: 13px;
 
+  align-items: center;
+}
+
+.css-13cymwt-control {
+  font-size: 13px;
+}
 .homeLink {
   width: 100px;
   text-align: center;
@@ -178,6 +206,7 @@ h1 {
 
 .signUpFont {
   font-size: 15px;
+  margin-right: -18px;
 }
 
 .registrationFont {
@@ -195,6 +224,7 @@ label {
 .signInButton {
   margin: 5px;
   width: 60px;
+  margin-right: 22px;
 }
 
 .articleLink {
@@ -315,6 +345,14 @@ h4 {
 .small-article {
   width: 50%;
   height: 50%;
+}
+
+.faveTeams {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  justify-content: space-between;
+  width: 300px;
 }
 
 .stocksFeed {
