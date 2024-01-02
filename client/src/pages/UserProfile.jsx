@@ -273,7 +273,7 @@ const UserProfile = () => {
                   Edit
                 </Button>
                 <Button className="deleteButton" onClick={handleDelete}>
-                  Delete
+                  Delete Account
                 </Button>
             </div>
           )}

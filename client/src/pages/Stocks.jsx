@@ -91,7 +91,7 @@ const Stocks = () => {
         {loading ? (
           <p className="loading">Loading stock data...</p>
         ) : (
-          <div>
+          <div className= "eachStockResult">
             {error && <p className="error">{error}</p>}
             {stockData
               .filter((stock) => Object.keys(stock).length > 0)
