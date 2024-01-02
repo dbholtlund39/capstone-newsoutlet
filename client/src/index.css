@@ -51,18 +51,31 @@ a:focus {
   text-align: center;
 }
 
+.pageTitle {
+  font-size: 20px;
+  padding: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+  align-content: center;
+  border: 1px solid black;
+  border-radius: 8px;
+}
 .profileMainDiv {
-  width: auto;
+  margin: auto;
+  margin-top: 50px;
+  padding: 11px;
+  max-width: 400px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   align-content: center;
   background-color: #e4e5f7;
 }
 
 .userProfileDisplay {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -206,13 +219,6 @@ h1 {
 
 .signUpFont {
   font-size: 15px;
-  margin-right: -18px;
-}
-
-.registrationFont {
-  padding-top: 30px;
-
-  padding-bottom: 5px;
 }
 
 label {
@@ -227,6 +233,7 @@ label {
   margin: 5px;
   margin-bottom: 0px;
 }
+
 .signInButton {
   margin: 5px;
   width: 60px;
@@ -333,14 +340,6 @@ h4 {
   padding: 10px;
   list-style: none;
   border-style: inset;
-}
-
-.pageTitle {
-  font-size: 20px;
-  padding: 5px;
-  margin-top: 30px;
-  text-align: center;
-  align-content: center;
 }
 
 .large-article {

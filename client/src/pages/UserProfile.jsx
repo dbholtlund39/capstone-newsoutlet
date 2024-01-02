@@ -243,6 +243,7 @@ const UserProfile = () => {
     <div className="profileMainDiv">
       {signedIn ? (
         <>
+       
           <h3 className="pageTitle">{userData.username}'s Profile</h3>
           {editing ? (
             <div className="userProfileDisplay">
@@ -292,6 +293,7 @@ const UserProfile = () => {
               <Button className= "saveButton" onClick={handleUpdate}>Save</Button>
               <Button className= "backButton" onClick={handleBackButton}>Back</Button>
             </div>
+            
           ) : (
             <div className="userProfileDisplay">
               <p className="usernameP">
@@ -321,6 +323,7 @@ const UserProfile = () => {
           <Button className="signOutButton" onClick={handleSignOut}>
             Sign Out
           </Button>
+       
         </>
       ) : (
         <div className="pageTitle">
