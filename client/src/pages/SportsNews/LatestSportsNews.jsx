@@ -33,7 +33,7 @@ const LatestSportsNews = () => {
         if (article.imageUrl && article.imageUrl.startsWith('http')) {
             return article.imageUrl;
         }
-        return '/logo.jpg';
+        return '/defaultNewsImage.jpg';
     };
 
 
@@ -58,7 +58,7 @@ const LatestSportsNews = () => {
                         </a>
                         <button
                             className="copyLinkButton"
-                            onClick={() => handleCopyToClipboard(article.url, index)}
+                                                       onClick={() => handleCopyToClipboard(article.url, index)}
                             disabled={linkCopiedState[index]}
                         >
                             {linkCopiedState[index] ? "Link Copied!" : "Copy Link"}
