@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NEWS_API_KEY } from "../configs/constants";
 
 const NationalNews = () => {
   const [articles, setArticles] = useState([]);
@@ -7,7 +8,7 @@ const NationalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async (countryCode) => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
+    const apiKey = NEWS_API_KEY;
 
     const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
 

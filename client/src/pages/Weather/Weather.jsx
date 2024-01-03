@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import "../../pages/Weather/weather.css"
 // import axios from "axios"
 import axios from "axios"
-
+import { WEATHER_API_KEY } from "../../configs/constants"
 import clear from "../../components/images/clear.png"
 import clouds from "../../components/images/clouds.png"
 import drizzle from "../../components/images/drizzle.png"

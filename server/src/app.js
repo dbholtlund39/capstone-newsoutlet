@@ -3,9 +3,10 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { DB_URL } from "./config/db.config";
-import { API_URL, PORT } from "./config/app.config";
+import { API_URL, PORT, NODE_ENV } from "./config/app.config";
 import router from "./routes";
 import userRouter from "./routes/user";
+
 
 mongoose
   .connect(DB_URL)
@@ -20,6 +21,14 @@ app.use(express.json());
 
 app.use(API_URL, router);
 app.use(API_URL, userRouter);
+
+if (NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")))
+  app.all("*", (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, "../client/dist/index.html"))
+  })
+}
+
 app.listen(PORT, () =>
   console.log(`[Server] Listening for requests at http://localhost:${PORT}`)
 );
