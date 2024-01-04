@@ -16,7 +16,7 @@ const LocalNews = () => {
         setArticles(JSON.parse(storedData));
         setLoading(false);
       } else {
-        const apiUrl = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
+        const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
