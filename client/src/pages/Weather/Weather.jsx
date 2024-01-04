@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import "../../pages/Weather/Weather.css"
+import "client/src/pages/Weather/Weather.css"
 // import axios from "axios"
 import axios from "axios"
 import { WEATHER_API_KEY } from "../../configs/constants"
