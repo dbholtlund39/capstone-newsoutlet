@@ -8,22 +8,23 @@ import OtherSports from "./OtherSports.jsx";
 class Sports extends Component {
   render() {
     const contentStyle = {
-      marginTop: "20px",
+      marginTop: "15px",
       padding: "6px",
       borderRadius: "8px",
       textAlign: "center",
     };
 
     const navStyle = {
-      position: 'sticky',
-      top: '0',
-      backgroundColor: '#FFF',
+      position: 'fixed',
+      top: '100px',
+      backgroundColor: 'transparent',
       zIndex: '1000',
       padding: '10px 0',
-      borderBottom: '1px solid #ddd',
+
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      width: '100%',
     };
 
     const navLinkStyle = {
