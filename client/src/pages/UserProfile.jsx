@@ -34,7 +34,9 @@ const UserProfile = () => {
   const [signUpMode, setSignUpMode] = useState(false);
   const navigate = useNavigate();
 
-  const urlBase = "http://localhost:3001/api";
+  const urlBase= import.meta.env.VITE_NODE_ENV === "production" 
+  ? import.meta.env.VITE_API_URL 
+  : "http://localhost:3001/api";
 
   const nflTeams = [
     { label: "Arizona Cardinals", value: "Arizona Cardinals" },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NEWS_API_KEY } from "../configs/constants";
 
 const WorldNews = () => {
   const [articles, setArticles] = useState([]);
@@ -6,7 +7,7 @@ const WorldNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async () => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
+    const apiKey = NEWS_API_KEY;
     const regions = {
       Africa: ["za", "ng", "ke"],
       Americas: ["us", "ca", "br", "mx"],

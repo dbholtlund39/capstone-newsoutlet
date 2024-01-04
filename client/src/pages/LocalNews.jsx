@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NEWS_API_KEY } from "../configs/constants";
 
 const LocalNews = () => {
   const [articles, setArticles] = useState([]);
@@ -7,7 +8,7 @@ const LocalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchLocalNews = async (countryCode) => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
+    const apiKey = NEWS_API_KEY;
 
     try {
       const storedData = localStorage.getItem(`localNews_${countryCode}`);
