@@ -10,6 +10,7 @@ import Sports from './pages/SportsNews/Sports';
 import Weather from './pages/Weather/Weather';
 import UserProfile from './pages/UserProfile';
 import Stocks from './pages/Stocks';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const queryClient = new QueryClient();
 

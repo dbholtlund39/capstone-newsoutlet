@@ -418,7 +418,7 @@ const UserProfile = () => {
             {signUpMode ? "Sign Up" : "Sign In"}
           </Button>
           <p className= "signUpFont">
-            {signUpMode
+            {signUpMode 
               ? "Already have an account?"
               : "Not registered? Sign up now!"}
             <Button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>

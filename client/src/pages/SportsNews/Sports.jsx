@@ -8,10 +8,11 @@ import OtherSports from "./OtherSports.jsx";
 class Sports extends Component {
   render() {
     const contentStyle = {
-      marginTop: "15px",
+      marginTop: "50px",
+      marginBottom: "0px",
       padding: "6px",
       borderRadius: "8px",
-      textAlign: "center",
+      
     };
 
     const navStyle = {
@@ -19,7 +20,7 @@ class Sports extends Component {
       top: '100px',
       backgroundColor: 'transparent',
       zIndex: '1000',
-      padding: '10px 0',
+      padding: '50px 0',
 
       display: 'flex',
       justifyContent: 'center',
