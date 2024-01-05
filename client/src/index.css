@@ -114,9 +114,12 @@ a:focus {
   padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
-  color: blue;
+   color: blue;
 }
 
+.article-link{
+  margin: 1px;
+}
 .teamList {
   text-align: center;
   padding: 5px;
@@ -198,13 +201,14 @@ h1 {
 
 .newsFeed {
   padding-left: 5px;
-  padding-right: 5px;
+  
   margin: 10px;
   padding-top: 30px;
 }
 
 .newsFeed1 {
   padding-top: 50px;
+  padding-right: 30px;
 }
 
 .usernameP {
@@ -287,7 +291,8 @@ h3 {
 
 h4 {
   font-size: 20px;
-  padding-top: 10px;
+  font-weight: bold;
+
 }
 
 .inputLabel {
@@ -316,29 +321,35 @@ h4 {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 1px;
 }
 
 .source {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 1px;
 }
 
 .author {
   font-size: 14px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 1px;
 }
 
 .article {
+  font-size: 16px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 1px;
 }
 
 .itemCard {
   display: flex;
+  flex-wrap: wrap;
   text-align: center;
   flex-direction: column;
   justify-content: space-between;
