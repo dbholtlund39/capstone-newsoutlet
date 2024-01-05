@@ -328,7 +328,7 @@ const UserProfile = () => {
        
         </>
       ) : (
-        <div className="pageTitle">
+        <div className="pageTitleUser">
           <h3 className= "registrationFont">{signUpMode ? "Register" : "Sign In"}</h3>
           {signUpMode }{" "}
           <div className= "signupFlex">
