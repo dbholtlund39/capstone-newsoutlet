@@ -16,24 +16,25 @@ class Sports extends Component {
     };
 
     const navStyle = {
-      position: 'fixed',
+      position: 'sticky',
       top: '100px',
       backgroundColor: 'transparent',
       zIndex: '1000',
       padding: '50px 0',
-
+marginBottom: "-160px",
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-    };
+        };
 
     const navLinkStyle = {
       textDecoration: "none",
       color: "blue",
       cursor: "pointer",
-      padding: "9px 15px",
+      padding: "20px 15px",
       margin: "0 5px",
+    
     };
 
 

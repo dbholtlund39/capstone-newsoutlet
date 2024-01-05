@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
     <div className= "newsFeed">
-      <h4 className= "pageTitle">Welcome to the Home Page</h4>
+      <h4 className= "pageTitleHome">Welcome to the Home Page</h4>
       <div className= "randomQuote">
       <RandomQuote />
       </div>
