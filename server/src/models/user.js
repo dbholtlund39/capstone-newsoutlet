@@ -29,24 +29,24 @@ const userSchema = new Schema(
       required: true,
       minLength: 8,
     },
-        // city: {
-    //   type: String,
-    //   minLength: 2, 
-    //   maxLength: 2,
-    //   required: false,
-    // },
-    // state: {
-    //   type: String,
-    //   minLength: 2, 
-    //   maxLength: 2,
-    //   required: false,
-    // },
     location: {
-      type: String,
-      default: 'US',
-      minLength: 2,
-      maxLength: 2,
-      required: true,
+      Country: {
+        type: String,
+        default: 'US',
+        minLength: 2,
+        maxLength: 2,
+        required: true,
+      },
+      City: {
+        type: String,
+        required: true,
+      },
+      State: {
+        type: String,
+        minLength: 2,
+        maxLength: 2,
+        required: true,
+      }
     },
 
     favoriteTeams: {
