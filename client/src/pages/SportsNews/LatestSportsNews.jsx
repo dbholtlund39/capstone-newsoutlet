@@ -4,17 +4,15 @@ import { useQuery } from 'react-query';
 
 const fetchSportsNews = async () => {
     const response = await axios.get('http://localhost:3001/api/sportsNews');
-
     return response.data;
-
 };
 
 const LatestSportsNews = () => {
     const { data: latestNews, isLoading, error } = useQuery('sportsNews', fetchSportsNews);
     const [linkCopiedState, setLinkCopiedState] = useState({});
 
-    const handleCopyToClipboard = (url, index) => {
-        navigator.clipboard.writeText(url).then(() => {
+    const handleCopyToClipboard = (link, index) => {
+        navigator.clipboard.writeText(link).then(() => {
             setLinkCopiedState({
                 ...linkCopiedState,
                 [index]: true,
@@ -33,9 +31,8 @@ const LatestSportsNews = () => {
         if (article.imageUrl && article.imageUrl.startsWith('http')) {
             return article.imageUrl;
         }
-        return '/defaultNewsImage.jpg';
+        return '/defaultNewsImage.jpg'; // Path to a default image
     };
-
 
     const displayedArticles = latestNews ? latestNews.slice(0, 5) : [];
 
@@ -58,7 +55,7 @@ const LatestSportsNews = () => {
                         </a>
                         <button
                             className="copyLinkButton"
-                                                       onClick={() => handleCopyToClipboard(article.url, index)}
+                            onClick={() => handleCopyToClipboard(article.link, index)} // Changed article.url to article.link
                             disabled={linkCopiedState[index]}
                         >
                             {linkCopiedState[index] ? "Link Copied!" : "Copy Link"}

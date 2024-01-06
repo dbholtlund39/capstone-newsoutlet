@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import "../../pages/Weather/weather.css"
+import "./Weather.css"
 // import axios from "axios"
 import axios from "axios"
 import { WEATHER_API_KEY } from "../../configs/constants"
@@ -22,6 +22,7 @@ const Weather = () => {
   const [location, setLocation] = useState("")
 
   // const api_key = "ad60d9877bba5e3a05f21f39c17485e3"
+  // const api_url = `https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}`
   const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ad60d9877bba5e3a05f21f39c17485e3`
 
   const handleSearchInput = (event) => {

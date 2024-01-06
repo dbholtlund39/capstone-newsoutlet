@@ -18,6 +18,60 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+@media screen and (max-width: 768px) {
+  /* Modify the layout for smaller screens */
+
+  .pageTitle {
+    font-size: 18px;
+  }
+
+  .itemCard {
+    margin-bottom: 20px;
+    padding: 8px;
+  }
+
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .imageDiv {
+    padding: 8px;
+  }
+
+  .article,
+  .published,
+  .source,
+  .author,
+  .description,
+  .copyLinkButton {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .pageTitle {
+    font-size: 16px;
+  }
+
+  .itemCard {
+    margin-bottom: 15px;
+    padding: 6px;
+  }
+
+  .article,
+  .published,
+  .source,
+  .author,
+  .description,
+  .copyLinkButton {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

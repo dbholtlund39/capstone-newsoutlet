@@ -384,7 +384,7 @@ const UserProfile = () => {
        
         </>
       ) : (
-        <div className="pageTitle">
+        <div className="pageTitleUser">
           <h3 className= "registrationFont">{signUpMode ? "Register" : "Sign In"}</h3>
           {signUpMode }{" "}
           <div className= "signupFlex">
@@ -479,7 +479,7 @@ const UserProfile = () => {
             {signUpMode ? "Sign Up" : "Sign In"}
           </Button>
           <p className= "signUpFont">
-            {signUpMode
+            {signUpMode 
               ? "Already have an account?"
               : "Not registered? Sign up now!"}
             <Button className="signInButton" onClick={() => setSignUpMode(!signUpMode)}>
