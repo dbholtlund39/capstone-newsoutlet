@@ -8,7 +8,11 @@ import { v4 as uuidv4 } from "uuid";
 const UserProfile = () => {
   const initialUserData = {                 
     username: "",
-    location: "",
+    location: {
+      country: "",
+      city: "",
+      state: "",
+    },
     favoriteTeams: [],
   };
 
@@ -21,18 +25,19 @@ const UserProfile = () => {
       firstName: "",
       lastName: "",
     },
-    location: "",
-    city: "",
-    state: "",
+    location: {
+      country: "",
+      city: "",
+    }
   };
 
   const [signedIn, setSignedIn] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
   const [formData, setFormData] = useState(initialFormData);
-  const [favoriteTeams, setFavoriteTeams] = useState([])
+  const [favoriteTeams, setFavoriteTeams] = useState([]);
+  const [stateLocation, setStateLocation] = useState();
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
-  const navigate = useNavigate();
 
   const urlBase= import.meta.env.VITE_NODE_ENV === "production" 
   ? import.meta.env.VITE_API_URL 
@@ -72,6 +77,59 @@ const UserProfile = () => {
     { label: "Tennessee Titans", value: "Tennessee Titans" },
     { label: "Washington Commanders", value: "Washington Commanders" }
   ];
+
+  const states = [
+    {label: "AL", value: "AL"},
+    {label: "AK", value: "AK"},
+    {label: "AZ", value: "AZ"},
+    {label: "AR", value: "AR"},
+    {label: "CA", value: "CA"},
+    {label: "CO", value: "CO"},
+    {label: "CT", value: "CT"},
+    {label: "DE", value: "DE"},
+    {label: "FL", value: "FL"},
+    {label: "GA", value: "GA"},
+    {label: "HI", value: "HI"},
+    {label: "ID", value: "ID"},
+    {label: "IL", value: "IL"},
+    {label: "IN", value: "IN"},
+    {label: "IA", value: "IA"},
+    {label: "KS", value: "KS"},
+    {label: "KY", value: "KY"},
+    {label: "LA", value: "LA"},
+    {label: "ME", value: "ME"},
+    {label: "MD", value: "MD"},
+    {label: "MA", value: "MA"},
+    {label: "MI", value: "MI"},
+    {label: "MN", value: "MN"},
+    {label: "MS", value: "MS"},
+    {label: "MO", value: "MO"},
+    {label: "MT", value: "MT"},
+    {label: "NE", value: "NE"},
+    {label: "NV", value: "NV"},
+    {label: "NH", value: "NH"},
+    {label: "NJ", value: "NJ"},
+    {label: "NM", value: "NM"},
+    {label: "NY", value: "NY"},
+    {label: "ND", value: "ND"},
+    {label: "NC", value: "NC"},
+    {label: "OH", value: "OH"},
+    {label: "OK", value: "OK"},
+    {label: "OR", value: "OR"},
+    {label: "PA", value: "PA"},
+    {label: "RI", value: "RI"},
+    {label: "SC", value: "SC"},
+    {label: "SD", value: "SD"},
+    {label: "TN", value: "TN"},
+    {label: "TX", value: "TX"},
+    {label: "UT", value: "UT"},
+    {label: "VT", value: "VT"},
+    {label: "VA", value: "VA"},
+    {label: "WA", value: "WA"},
+    {label: "WV", value: "WV"},
+    {label: "WI", value: "WI"},
+    {label: "WY", value: "WY"},
+  ];
   
   useEffect(() => {
     const storedUserData = sessionStorage.getItem("userData");
@@ -92,22 +150,19 @@ const UserProfile = () => {
       [name]: value,
     });
   };
-
-  const handleCityChange = (e) => {
-    const city = e.target.value;
-    setFormData({
-      ...formData,
-      city,
-    });
-  };
   
   const handleStateChange = (e) => {
     const state = e.target.value;
-    setFormData({
-      ...formData,
-      state,
-    });
+    setStateLocation(state)
   };
+
+  // if the handleStateChange don't work, I'll use this
+  // const handleStateChange = (states) => {
+  //    setStateLocation(states.map(state => ({
+  //     id: uuidv4(), 
+  //     ...state
+  //   }))
+  // )};
   
 
   const handleTeamsChange = (teams) => {
@@ -252,28 +307,29 @@ const UserProfile = () => {
               <p>
                 <strong>Username:</strong> {userData.username}
               </p>
-                           {/* <label>
-          City:{" "}
-          <input
-            type="text"
-            placeholder="Enter City"
-            name="city"
-            value={formData.city}
-            onChange={handleCityChange}
-          />
-        </label>
-        <label>
-          State:{" "}
-          <input
-            type="text"
-            placeholder="ex. FL"
-            name="state"
-            value={formData.state}
-            onChange={handleStateChange}
-          />
-        </label> */}
-        <label>
-                Country: <input 
+              <label>
+                City:
+                <input
+                type="text"
+                placeholder="Enter City"
+                name="city"
+                value={formData.city}
+                onChange={handleFormChange}
+                />
+              </label>
+              <label>
+                State: 
+                <input
+                type="text"
+                placeholder="ex. FL"
+                name="state"
+                value={formData.state}
+                onChange={handleStateChange}
+                />
+              </label>
+              <label>
+                Country: 
+                <input 
                   type="text"
                   placeholder="ex. US"
                   name="location"
@@ -336,7 +392,8 @@ const UserProfile = () => {
             Username: <input type="text" name="username" onChange={handleFormChange} />
           </label>
           <label>
-            Password: <input
+            Password: 
+            <input
               type="password"
               name="password"
               onChange={handleFormChange}
@@ -346,7 +403,8 @@ const UserProfile = () => {
           {signUpMode && (
             <>
               <label>
-                Confirm Password: <input
+                Confirm Password: 
+                <input
                   type="password"
                   name="confirmPassword"
                   onChange={handleFormChange}
@@ -356,7 +414,8 @@ const UserProfile = () => {
                 Email: <input type="email" name="email" onChange={handleFormChange} />
               </label>
               <label>
-                First Name: <input
+                First Name: 
+                <input
                   type="text"
                   placeholder="First Name"
                   name="firstName"
@@ -364,15 +423,16 @@ const UserProfile = () => {
                 />
               </label>
               <label>
-                Last Name: <input
+                Last Name: 
+                <input
                   type="text"
                   placeholder="Last Name"
                   name="lastName"
                   onChange={handleFormChange}
                 />
               </label>
-              {/* <label>
-                City:{" "}
+              <label>
+                City:
                 <input
                   type="text"
                   placeholder="Enter City"
@@ -382,7 +442,7 @@ const UserProfile = () => {
                 />
               </label>
               <label>
-                State:{" "}
+                State:
                 <input
                   type="text"
                   placeholder="Enter State 2-Digit Code"
@@ -390,9 +450,10 @@ const UserProfile = () => {
                   value={formData.state}
                   onChange={handleStateChange}
                 />
-              </label> */}
+              </label>
               <label>
-                Country: <input 
+                Country: 
+                <input 
                   type="text"
                   placeholder="Country Code"
                   name="location"
