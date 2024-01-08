@@ -131,13 +131,20 @@ const UserProfile = () => {
     { label: "WY", value: "WY" },
   ];
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedUserData = sessionStorage.getItem("userData");
-    if (storedUserData) {
-      setSignedIn(true);
+    const isSignedIn = storedUserData !== null;
+  
+    setSignedIn(isSignedIn);
+  
+    if (isSignedIn) {
       setUserData(JSON.parse(storedUserData));
+    } else {
+      navigate("/user-profile");
     }
-  }, []);
+  }, [navigate]);
 
   const handleEdit = () => {
     setEditing(true);
@@ -188,6 +195,7 @@ const UserProfile = () => {
         if (userResponse.status === 200) {
           const user = await userResponse.json();
           setUserData(user);
+          sessionStorage.setItem("userData", JSON.stringify(user));
           setEditing(false);
         }
       } else {
