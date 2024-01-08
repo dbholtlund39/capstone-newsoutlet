@@ -388,7 +388,7 @@ h4 {
   height: 50%;
 }
 
-.faveTeams {
+.faveTeams, .stateSelection {
   display: flex;
   align-items: center;
   font-size: 16px;
