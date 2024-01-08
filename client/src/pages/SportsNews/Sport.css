@@ -25,13 +25,14 @@
 }
 .sportsNav {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
-  position: fixed;
-  font-size: 14px;
+
+  position: relative;
+  font-size: 12px;
   background-color: rgb(165, 162, 162);
   border: 2px solid black;
-  margin: -7px;
+ 
 }
 
 .latestSportsHeader {
