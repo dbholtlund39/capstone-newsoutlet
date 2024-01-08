@@ -16,6 +16,7 @@ class Sports extends Component {
 
     const navStyle = {
       position: "static",
+      fontSize: "80%",
       top: "100px",
       backgroundColor: "transparent",
       zIndex: "1000",
