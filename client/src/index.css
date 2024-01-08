@@ -30,6 +30,7 @@ a:focus {
 
 .randomQuote {
   text-align: center;
+  font-style: italic;
   padding-top: 5px;
   
 }
@@ -268,9 +269,7 @@ label {
   text-align: center;
 }
 
-.quoteFont {
-  font-style: italic;
-}
+
 .copyLinkButton {
   border-style: ridge;
   font-size: 10px;
