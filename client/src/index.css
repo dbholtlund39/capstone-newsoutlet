@@ -1,10 +1,13 @@
 body {
   margin: 0px;
-  padding-top: 120px;
+
   background-color: #e4e5f7;
 }
 
 :root {
+  display: flex;
+  flex-direction: column;
+ 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #e4e5f7;
 }
@@ -29,29 +32,33 @@ a:focus {
   text-align: center;
   padding: 5px;
 }
-
 .container {
   display: flex;
   flex-direction: row;
-
+  
 }
-
 .mr-auto {
   font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+align-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
-  height: auto;
+  height: 20%;
   z-index: 1000;
+}
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .mr-auto.navbar-nav {
@@ -59,22 +66,21 @@ a:focus {
   justify-content: space-evenly;
   width: 100%;
 }
-
 .userProfileLink {
   width: 100px;
   text-align: center;
 }
 
 .pageTitleHome {
-  padding-top: 10px;
-  font-size: 25px;
+ 
+  font-size: 25px; 
   text-align: center;
   align-content: center;
 }
 
 .pageTitle {
-  padding-top: 10px;
-  font-size: 25px;
+
+  font-size: 25px; 
   text-align: center;
   align-content: center;
 }
@@ -88,14 +94,13 @@ a:focus {
   align-content: center;
   background-color: #f9f9f9;
 }
-
 .profileMainDiv {
   margin: auto;
-  padding-top: 50px;
+  padding-top: 30px;
   margin-bottom: 50px;
-  background-color: #e4e5f7;
+ background-color: #e4e5f7;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -103,7 +108,8 @@ a:focus {
 
 .userProfileDisplay {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -111,35 +117,33 @@ a:focus {
   margin-bottom: 10px;
   padding: 10px;
   list-style: none;
-  width: 90%;
+  width: 50%;
   height: auto;
 }
 
 .image {
-  max-width: 500px;
-  max-height: 500px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 40px;
-  padding-right: 40px;
+  max-width: 50%;
+  max-height: 40%;
+  padding: 1%;
 }
 
 .imageDiv {
   background-color: gray;
   background-image: url("imageDivBackground.jpg");
+ width: 100%;
+
 }
 
 .readMore {
   padding-top: 5px;
   padding-left: 40px;
   padding-right: 40px;
-  color: blue;
+   color: blue;
 }
 
-.article-link {
+.article-link{
   margin: 1px;
 }
-
 .teamList {
   text-align: center;
   padding: 5px;
@@ -147,7 +151,7 @@ a:focus {
 
 .editButton {
   font-size: 13px;
-  width: 100px;
+  width: 20%;
   padding: 2px;
   margin: 5px;
 }
@@ -172,11 +176,9 @@ a:focus {
   padding: 2px;
   margin: 5px;
 }
-
 .userProfileLink a {
   color: #9df1ff;
 }
-
 .css-4xgw5l-IndicatorsContainer2 {
   font-size: 13px;
 
@@ -186,7 +188,6 @@ a:focus {
 .css-13cymwt-control {
   font-size: 13px;
 }
-
 .homeLink {
   width: 100px;
   text-align: center;
@@ -224,13 +225,13 @@ h1 {
 
 .newsFeed {
   padding-left: 5px;
-
+  
   margin: 10px;
   padding-top: 30px;
 }
 
 .newsFeed1 {
-  padding-top: 50px;
+
   padding-right: 30px;
 }
 
@@ -241,7 +242,6 @@ h1 {
 .locationP {
   padding: 5px;
 }
-
 .signupFlex {
   display: flex;
   flex-direction: column;
@@ -266,7 +266,6 @@ label {
   font-size: 17px;
   text-align: center;
 }
-
 .copyLinkButton {
   max-width: 80px;
   padding: 2px;
@@ -295,7 +294,6 @@ label {
   font-size: 15px;
   padding-top: 10px;
 }
-
 button:hover {
   border-color: #646cff;
 }
@@ -418,7 +416,8 @@ h4 {
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
-  margin: 20px;
+  margin-left: 20px; 
+  margin-right: 20px; 
   background-color: #e4e5f7;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -435,6 +434,6 @@ h4 {
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  padding-top: -10px;
+ 
   background-color: #f9f9f9;
 }

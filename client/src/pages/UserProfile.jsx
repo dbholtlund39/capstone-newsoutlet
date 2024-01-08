@@ -392,8 +392,7 @@ const UserProfile = () => {
             Username: <input type="text" name="username" onChange={handleFormChange} />
           </label>
           <label>
-            Password: 
-            <input
+            Password: <input
               type="password"
               name="password"
               onChange={handleFormChange}

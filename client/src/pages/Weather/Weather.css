@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'poppins', sans-serif;
+
 }
 
 /* .weather-container{
@@ -34,8 +35,12 @@ p {
 } */
 
 .weather-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   width: 90%;
-  max-width: 550px;
+  max-width: 65%;
+  min-width: 30%;
   background: linear-gradient(135deg, #00feba, #5b548a);
   text-align: center;
   margin: 100px auto 0;
