@@ -35,7 +35,7 @@ const UserProfile = () => {
   const [userData, setUserData] = useState(initialUserData);
   const [formData, setFormData] = useState(initialFormData);
   const [favoriteTeams, setFavoriteTeams] = useState([]);
-  const [stateLocation, setStateLocation] = useState();
+  const [stateLocation, setStateLocation] = useState('');
   const [editing, setEditing] = useState(false);
   const [signUpMode, setSignUpMode] = useState(false);
 
@@ -152,13 +152,12 @@ const UserProfile = () => {
   };
   
   const handleStateChange = (e) => {
-    const state = e.target.value;
-    setStateLocation(state)
+    return setStateLocation(e.target.value)
   };
 
   // if the handleStateChange don't work, I'll use this
-  // const handleStateChange = (states) => {
-  //    setStateLocation(states.map(state => ({
+  // const handleStateChange = (stateOptions) => {
+  //    setStateLocation(stateOptions.map(state => ({
   //     id: uuidv4(), 
   //     ...state
   //   }))
@@ -238,9 +237,11 @@ const UserProfile = () => {
             firstName: formData.firstName,
             lastName: formData.lastName,
           },
-          location: formData.location,
-          city: formData.city, 
-          state: formData.state,
+          location: {
+            country: formData.country,
+            city: formData.city, 
+            state: stateLocation,
+          },
           favoriteTeams
         }),
       });
@@ -265,7 +266,11 @@ const UserProfile = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          location: formData.location,
+          location: {
+            country: formData.country,
+            city: formData.city,
+            state: stateLocation,
+          },
           favoriteTeams
         })
       })
@@ -300,13 +305,31 @@ const UserProfile = () => {
     <div className="profileMainDiv">
       {signedIn ? (
         <>
-       
           <h3 className="pageTitle">{userData.username}'s Profile</h3>
           {editing ? (
             <div className="userProfileDisplay">
               <p>
                 <strong>Username:</strong> {userData.username}
               </p>
+              <label>
+                Password: 
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password: Min 8 characters"
+                  onChange={handleFormChange}
+                />
+                <p className= "passwordFont">Min. password length 8 characters</p>
+              </label>
+              <label>
+                Confirm Password: 
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  onChange={handleFormChange}
+                />
+              </label>
               <label>
                 City:
                 <input
@@ -319,11 +342,11 @@ const UserProfile = () => {
               </label>
               <label>
                 State: 
-                <input
-                type="text"
-                placeholder="ex. FL"
+                <Select
+                // type="text"
+                placeholder="Select State"
                 name="state"
-                value={formData.state}
+                options={states}
                 onChange={handleStateChange}
                 />
               </label>
@@ -332,7 +355,7 @@ const UserProfile = () => {
                 <input 
                   type="text"
                   placeholder="ex. US"
-                  name="location"
+                  name="country"
                   onChange={handleFormChange}
                 />
               </label>
@@ -389,13 +412,14 @@ const UserProfile = () => {
           {signUpMode }{" "}
           <div className= "signupFlex">
           <label>
-            Username: <input type="text" name="username" onChange={handleFormChange} />
+            Username: <input type="text" name="username" placeholder="Username" onChange={handleFormChange} />
           </label>
           <label>
             Password: 
             <input
               type="password"
               name="password"
+              placeholder="Password: Min 8 characters"
               onChange={handleFormChange}
             />
             <p className= "passwordFont">Min. password length 8 characters</p>
@@ -407,11 +431,12 @@ const UserProfile = () => {
                 <input
                   type="password"
                   name="confirmPassword"
+                  placeholder="Confirm Password"
                   onChange={handleFormChange}
                 />
               </label>
               <label>
-                Email: <input type="email" name="email" onChange={handleFormChange} />
+                Email: <input type="email" name="email" placeholder="Email" onChange={handleFormChange} />
               </label>
               <label>
                 First Name: 
@@ -438,17 +463,18 @@ const UserProfile = () => {
                   placeholder="Enter City"
                   name="city"
                   value={formData.city}
-                  onChange={handleCityChange}
+                  onChange={handleFormChange}
                 />
               </label>
-              <label>
+              <label className="stateSelection">
                 State:
-                <input
-                  type="text"
-                  placeholder="Enter State 2-Digit Code"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleStateChange}
+                <Select
+                placeholder="Select State"
+                name="state"
+                options={states}
+                value={stateLocation}
+                onChange={handleStateChange}
+                // className="basic-select"
                 />
               </label>
               <label>
@@ -460,7 +486,7 @@ const UserProfile = () => {
                   onChange={handleFormChange}
                 />
               </label>
-              <label className= "faveTeams">
+              <label className="faveTeams">
                 Favorite Teams:
                 <Select
                 defaultValue={[""]}
