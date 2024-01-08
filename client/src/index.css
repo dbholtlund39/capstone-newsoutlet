@@ -267,7 +267,10 @@ label {
   text-align: center;
 }
 .copyLinkButton {
-  max-width: 80px;
+  border-style: ridge;
+  font-size: 10px;
+  text-align: center;
+  width: auto;
   padding: 2px;
   align-self: center;
   margin: 5px;
