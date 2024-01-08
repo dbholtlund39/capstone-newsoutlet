@@ -1,10 +1,13 @@
 body {
   margin: 0px;
-  padding-top: 120px;
+
   background-color: #e4e5f7;
 }
 
 :root {
+  display: flex;
+  flex-direction: column;
+ 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #e4e5f7;
 }
@@ -45,11 +48,17 @@ align-content: center;
 }
 
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
-  height: auto;
+  height: 20%;
   z-index: 1000;
+}
+.navbar-nav {
+  display: flex;
+ 
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .mr-auto.navbar-nav {
@@ -63,14 +72,14 @@ align-content: center;
 }
 
 .pageTitleHome {
-  padding-top: 10px;
+ 
   font-size: 25px; 
   text-align: center;
   align-content: center;
 }
 
 .pageTitle {
-  padding-top: 10px;
+
   font-size: 25px; 
   text-align: center;
   align-content: center;
@@ -87,10 +96,9 @@ align-content: center;
 }
 .profileMainDiv {
   margin: auto;
-  padding-top: 50px;
+  padding-top: 30px;
   margin-bottom: 50px;
  background-color: #e4e5f7;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -101,6 +109,7 @@ align-content: center;
 .userProfileDisplay {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -108,22 +117,21 @@ align-content: center;
   margin-bottom: 10px;
   padding: 10px;
   list-style: none;
-  width: 500px;
+  width: 50%;
   height: auto;
 }
 
 .image {
-  max-width: 500px;
-  max-height: 500px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 40px;
-  padding-right: 40px;
+  max-width: 50%;
+  max-height: 40%;
+  padding: 1%;
 }
 
 .imageDiv {
   background-color: gray;
   background-image: url("imageDivBackground.jpg");
+ width: 100%;
+
 }
 
 .readMore {
@@ -143,7 +151,7 @@ align-content: center;
 
 .editButton {
   font-size: 13px;
-  width: 100px;
+  width: 20%;
   padding: 2px;
   margin: 5px;
 }
@@ -223,7 +231,7 @@ h1 {
 }
 
 .newsFeed1 {
-  padding-top: 50px;
+  padding-top: 30px;
   padding-right: 30px;
 }
 
@@ -259,7 +267,10 @@ label {
   text-align: center;
 }
 .copyLinkButton {
-  max-width: 80px;
+  border-style: ridge;
+  font-size: 10px;
+  text-align: center;
+  width: auto;
   padding: 2px;
   align-self: center;
   margin: 5px;
@@ -408,7 +419,8 @@ h4 {
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
-  margin: 20px; 
+  margin-left: 20px; 
+  margin-right: 20px; 
   background-color: #e4e5f7;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -425,6 +437,6 @@ h4 {
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
-  padding-top: -10px;
+ 
   background-color: #f9f9f9;
 }

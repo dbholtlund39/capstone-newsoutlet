@@ -415,8 +415,7 @@ const UserProfile = () => {
             Username: <input type="text" name="username" placeholder="Username" onChange={handleFormChange} />
           </label>
           <label>
-            Password: 
-            <input
+            Password: <input
               type="password"
               name="password"
               placeholder="Password: Min 8 characters"
