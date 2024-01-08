@@ -152,7 +152,6 @@ const UserProfile = () => {
   };
   
   const handleStateChange = (value) => {
-    console.log(value);
     return setStateLocation(value);
   };
 
@@ -328,7 +327,6 @@ const UserProfile = () => {
                 type="text"
                 placeholder="Enter City"
                 name="city"
-                value={formData.city}
                 onChange={handleFormChange}
                 />
               </label>
@@ -453,7 +451,6 @@ const UserProfile = () => {
                   type="text"
                   placeholder="Enter City"
                   name="city"
-                  value={formData.city}
                   onChange={handleFormChange}
                 />
               </label>
