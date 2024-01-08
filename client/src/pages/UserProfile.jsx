@@ -151,18 +151,10 @@ const UserProfile = () => {
     });
   };
   
-  const handleStateChange = (e) => {
-    return setStateLocation(e.target.value)
+  const handleStateChange = (value) => {
+    console.log(value);
+    return setStateLocation(value);
   };
-
-  // if the handleStateChange don't work, I'll use this
-  // const handleStateChange = (stateOptions) => {
-  //    setStateLocation(stateOptions.map(state => ({
-  //     id: uuidv4(), 
-  //     ...state
-  //   }))
-  // )};
-  
 
   const handleTeamsChange = (teams) => {
     setFavoriteTeams(teams.map(team => ({
@@ -343,9 +335,9 @@ const UserProfile = () => {
               <label>
                 State: 
                 <Select
-                // type="text"
                 placeholder="Select State"
                 name="state"
+                value={stateLocation}
                 options={states}
                 onChange={handleStateChange}
                 />
@@ -468,12 +460,11 @@ const UserProfile = () => {
               <label className="stateSelection">
                 State:
                 <Select
-                placeholder="Select State"
-                name="state"
-                options={states}
-                value={stateLocation}
-                onChange={handleStateChange}
-                // className="basic-select"
+                  placeholder="Select State"
+                  name="state"
+                  options={states}
+                  value={stateLocation}
+                  onChange={handleStateChange}
                 />
               </label>
               <label>
