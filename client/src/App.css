@@ -6,12 +6,9 @@
 }
 
 @media screen and (max-width: 768px) {
-
   .pageTitle {
     font-size: 18px;
   }
-
-
 
   .image {
     max-width: 100%;
@@ -34,7 +31,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
   .pageTitle {
     font-size: 16px;
   }
@@ -54,5 +50,3 @@
     padding-right: 15px;
   }
 }
-
-
