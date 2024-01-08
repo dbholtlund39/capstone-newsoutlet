@@ -20,7 +20,7 @@ const RandomQuote = () => {
   return (
     <div>
       {quote ? (
-        <div>
+        <div className= "quoteFont">
           <p>{quote.content}</p>
           <p>- {quote.author}</p>
         </div>
