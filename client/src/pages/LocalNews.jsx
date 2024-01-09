@@ -1,43 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { NEWS_API_KEY } from "../configs/constants";
-
 const LocalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const userCountryCode = "us";
-  const [linkCopiedState, setLinkCopiedState] = useState({});
-
   const fetchLocalNews = async (countryCode) => {
-    setLoading(true);
-  
+    const apiKey = "8cc2063285f3470b96ff200384478e9b";
     try {
       const storedData = localStorage.getItem(`localNews_${countryCode}`);
       if (storedData) {
         setArticles(JSON.parse(storedData));
+        setLoading(false);
       } else {
-        const response = await fetch(`http://3.15.225.91:8080/api/${countryCode}`);
-  
+        const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-  
-        const data = await response.json();  
-        const newArticles = data.articles || [];
-  
-        setArticles(newArticles);
-  
+        const data = await response.json();
+        setArticles(data.articles || []);
         localStorage.setItem(
           `localNews_${countryCode}`,
-          JSON.stringify(newArticles)
+          JSON.stringify(data.articles)
         );
       }
     } catch (error) {
       console.error("Error fetching local news:", error);
-    } finally {
       setLoading(false);
     }
   };
-  
   useEffect(() => {
     fetchLocalNews(userCountryCode);
   }, [userCountryCode]);

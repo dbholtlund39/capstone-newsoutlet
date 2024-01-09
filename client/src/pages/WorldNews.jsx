@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NEWS_API_KEY } from "../configs/constants";
-
 const WorldNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [linkCopiedState, setLinkCopiedState] = useState({});
-
   const fetchArticles = async () => {
-    const apiKey = NEWS_API_KEY;
+    const apiKey = "8cc2063285f3470b96ff200384478e9b";
     const regions = {
       Africa: ["za", "ng", "ke"],
       Americas: ["us", "ca", "br", "mx"],
@@ -18,30 +14,24 @@ const WorldNews = () => {
       "Middle East": ["ae", "sa", "eg", "jo"],
       "United Kingdom": ["gb"],
     };
-  
     const articlesArray = [];
-  
     setLoading(true);
-  
     try {
       for (const region in regions) {
         const countryCodes = regions[region];
-  
         for (const country of countryCodes) {
           const storedData = localStorage.getItem(`worldNews_${country}`);
           if (storedData) {
             const cachedArticles = JSON.parse(storedData);
             articlesArray.push(...cachedArticles);
           } else {
-            const response = await fetch(`http://3.15.225.91:8080/api/${country}`);
-  
+            const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
+            const response = await fetch(apiUrl);
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
-  
             const data = await response.json();
             articlesArray.push(...(data.articles || []));
-  
             localStorage.setItem(
               `worldNews_${country}`,
               JSON.stringify(data.articles)
@@ -49,10 +39,9 @@ const WorldNews = () => {
           }
         }
       }
-  
       setArticles(articlesArray);
     } catch (error) {
-      console.error("Error fetching world news:", error);
+      console.error("Error fetching articles:", error);
     } finally {
       setLoading(false);
     }
