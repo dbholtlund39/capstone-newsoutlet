@@ -33,7 +33,7 @@ const WorldNews = () => {
             const cachedArticles = JSON.parse(storedData);
             articlesArray.push(...cachedArticles);
           } else {
-            const response = await fetch(`http://3.15.225.91:8080/api/local-news/${countryCode}`);
+            const response = await fetch(`http://3.15.225.91:8080/api/local-news/${country}`);
   
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
@@ -57,7 +57,7 @@ const WorldNews = () => {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     fetchArticles();
   }, []);

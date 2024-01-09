@@ -22,11 +22,14 @@ const NationalNews = () => {
         }
   
         const data = await response.json();
-        setArticles(data.articles || []);
+  
+        const newArticles = data.articles || [];
+  
+        setArticles(newArticles);
   
         localStorage.setItem(
           `nationalNews_${countryCode}`,
-          JSON.stringify(data.articles)
+          JSON.stringify(newArticles)
         );
       }
     } catch (error) {
@@ -35,7 +38,7 @@ const NationalNews = () => {
       setLoading(false);
     }
   };
-
+  
   const handleCountryCodeChange = (event) => {
     setUserCountryCode(event.target.value);
   };

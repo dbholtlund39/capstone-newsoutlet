@@ -24,11 +24,13 @@ const LocalNews = () => {
         const responseText = await response.text();
   
         const data = JSON.parse(responseText);
-        setArticles(data.articles || []);
+        const newArticles = data.articles || [];
+  
+        setArticles(newArticles);
   
         localStorage.setItem(
           `localNews_${countryCode}`,
-          JSON.stringify(data.articles)
+          JSON.stringify(newArticles)
         );
       }
     } catch (error) {
@@ -37,7 +39,7 @@ const LocalNews = () => {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     fetchLocalNews(userCountryCode);
   }, [userCountryCode]);
