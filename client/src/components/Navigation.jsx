@@ -10,7 +10,7 @@ const Navigation = () => {
       <Container>
         <Nav className="mr-auto">
           <Navbar.Brand as={Link} to="/">
-            <img alt="" src="roundedLogo.png" width="120" height="140" />{" "}
+            <img className= "logo" alt="" src="roundedLogo.png"/>{" "}
           </Navbar.Brand >
 
           <Nav.Item className="homeLink">

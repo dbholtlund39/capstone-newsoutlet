@@ -1,6 +1,6 @@
 import express from 'express';
 import { getContent, nflArticles, mlbArticles, nbaArticles } from '../controllers/scraper.controller.js';
-import axios from 'axios';
+
 
 const scraperRouter = express.Router();
 
