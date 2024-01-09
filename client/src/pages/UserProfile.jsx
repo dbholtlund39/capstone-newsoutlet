@@ -413,7 +413,9 @@ const UserProfile = () => {
           {signUpMode}{" "}
           <div className="signupFlex">
             <label>
-              Username:{" "}
+            <strong>
+              Username: {" "}
+              </strong>
               <input
                 type="text"
                 name="username"
@@ -421,8 +423,9 @@ const UserProfile = () => {
                 onChange={handleFormChange}
               />
             </label>
-            <label>
-              Password:{" "}
+            <label> <strong>
+              Password: {" "}
+              </strong>
               <input
                 type="password"
                 name="password"
@@ -433,8 +436,8 @@ const UserProfile = () => {
             </label>
             {signUpMode && (
               <>
-                <label>
-                  Confirm Password:
+                <label> <strong>
+                  Confirm Password: </strong>
                   <input
                     type="password"
                     name="confirmPassword"
@@ -443,7 +446,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label>
-                  Email:{" "}
+                  <strong>
+                  Email:{" "} </strong>
                   <input
                     type="email"
                     name="email"
@@ -452,7 +456,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label>
-                  First Name:
+                  <strong>
+                  First Name: </strong>
                   <input
                     type="text"
                     placeholder="First Name"
@@ -461,7 +466,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label>
-                  Last Name:
+                <strong>
+                  Last Name: </strong>
                   <input
                     type="text"
                     placeholder="Last Name"
@@ -470,7 +476,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label>
-                  City:
+                <strong>
+                  City: </strong>
                   <input
                     type="text"
                     placeholder="Enter City"
@@ -478,8 +485,9 @@ const UserProfile = () => {
                     onChange={handleFormChange}
                   />
                 </label>
-                <label className="stateSelection">
-                  State:
+                <label className="stateProfileInput">
+                <strong>
+                  State: </strong>
                   <Select
                     placeholder="Select State"
                     name="state"
@@ -489,7 +497,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label>
-                  Country:
+                <strong>
+                  Country: </strong>
                   <input
                     type="text"
                     placeholder="Country Code"
@@ -498,7 +507,8 @@ const UserProfile = () => {
                   />
                 </label>
                 <label className="faveTeams">
-                  Favorite Teams:
+                <strong>
+                  Favorite Teams: </strong>
                   <Select
                     defaultValue={[""]}
                     placeholder="Select Team(s)"

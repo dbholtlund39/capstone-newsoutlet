@@ -84,7 +84,7 @@ a:focus {
 .pageTitleUser {
   font-size: 25px;
   border: 2px solid black;
-  max-width: 395px;
+width: auto;
   border-radius: 8px;
   text-align: center;
   align-content: center;
@@ -101,6 +101,7 @@ a:focus {
   align-items: center;
   justify-content: center;
   align-content: center;
+
 }
 
 .userProfileDisplay {
@@ -171,14 +172,17 @@ a:focus {
 }
 .signUpButton {
   align-self: center;
-  margin: 15px;
-  margin-left: 50px;
+  font-size: 12px;
+  width: 80px;
+  padding: 2px;
+  margin: 5px;
 }
 
 .signInButton {
+  font-size: 12px;
+  width: 80px;
+  padding: 2px;
   margin: 5px;
-  min-width: 60px;
-  margin-right: 22px;
 }
 
 .signOutButton {
@@ -302,8 +306,9 @@ h1 {
 .signupFlex {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  max-width: 400px;
+  align-items: center;
+  width: auto;
+  padding: 10px;
 }
 
 .signUpFont {
@@ -447,7 +452,7 @@ h4 {
   align-items: center;
   font-size: 16px;
   justify-content: space-between;
-  width: 273px;
+  width: 80%;
 }
 
 .nameProfile {
