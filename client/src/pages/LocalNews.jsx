@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 const LocalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [linkCopiedState, setLinkCopiedState] = useState({});
   const userCountryCode = "us";
   const fetchLocalNews = async (countryCode) => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 const WorldNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [linkCopiedState, setLinkCopiedState] = useState({});
+
   const fetchArticles = async () => {
     const apiKey = "8cc2063285f3470b96ff200384478e9b";
     const regions = {
