@@ -15,7 +15,7 @@ const LocalNews = () => {
       if (storedData) {
         setArticles(JSON.parse(storedData));
       } else {
-        const response = await fetch(`http://localhost:3001/api/local-news/${countryCode}`);
+        const response = await fetch(`http://3.15.225.91:8080/api/local-news/${countryCode}`);
   
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
