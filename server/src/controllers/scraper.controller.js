@@ -23,7 +23,7 @@ const mlbElements = {
 
 const getContent = async (req, res) => {
     try {
-        console.log("Received a request in getContent route handler");
+
 
 
         const articles = await scraperService.scrapeContent('https://deadspin.com/', commonElements);
