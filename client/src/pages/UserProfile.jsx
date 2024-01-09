@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import Select from "react-select";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect } from "react"
+import { Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
+import Select from "react-select"
+import { v4 as uuidv4 } from "uuid"
 
 const UserProfile = () => {
   const initialUserData = {
@@ -13,7 +13,7 @@ const UserProfile = () => {
       State: "",
     },
     favoriteTeams: [],
-  };
+  }
 
   const initialFormData = {
     username: "",
@@ -28,20 +28,20 @@ const UserProfile = () => {
       Country: "",
       City: "",
     },
-  };
+  }
 
-  const [signedIn, setSignedIn] = useState(false);
-  const [userData, setUserData] = useState(initialUserData);
-  const [formData, setFormData] = useState(initialFormData);
-  const [favoriteTeams, setFavoriteTeams] = useState([]);
-  const [stateLocation, setStateLocation] = useState("");
-  const [editing, setEditing] = useState(false);
-  const [signUpMode, setSignUpMode] = useState(false);
+  const [signedIn, setSignedIn] = useState(false)
+  const [userData, setUserData] = useState(initialUserData)
+  const [formData, setFormData] = useState(initialFormData)
+  const [favoriteTeams, setFavoriteTeams] = useState([])
+  const [stateLocation, setStateLocation] = useState("")
+  const [editing, setEditing] = useState(false)
+  const [signUpMode, setSignUpMode] = useState(false)
 
   const urlBase =
     import.meta.env.VITE_NODE_ENV === "production"
       ? import.meta.env.VITE_API_URL
-      : "http://localhost:3001/api";
+      : "http://localhost:3001/api"
 
   const nflTeams = [
     { label: "Arizona Cardinals", value: "Arizona Cardinals" },
@@ -76,7 +76,7 @@ const UserProfile = () => {
     { label: "Tampa Bay Buccaneers", value: "Tampa Bay Buccaneers" },
     { label: "Tennessee Titans", value: "Tennessee Titans" },
     { label: "Washington Commanders", value: "Washington Commanders" },
-  ];
+  ]
 
   const states = [
     { label: "AL", value: "AL" },
@@ -129,38 +129,38 @@ const UserProfile = () => {
     { label: "WV", value: "WV" },
     { label: "WI", value: "WI" },
     { label: "WY", value: "WY" },
-  ];
+  ]
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const storedUserData = sessionStorage.getItem("userData");
-    const isSignedIn = storedUserData !== null;
-  
-    setSignedIn(isSignedIn);
-  
+    const storedUserData = sessionStorage.getItem("userData")
+    const isSignedIn = storedUserData !== null
+
+    setSignedIn(isSignedIn)
+
     if (isSignedIn) {
-      setUserData(JSON.parse(storedUserData));
+      setUserData(JSON.parse(storedUserData))
     } else {
-      navigate("/user-profile");
+      navigate("/user-profile")
     }
-  }, [navigate]);
+  }, [navigate])
 
   const handleEdit = () => {
-    setEditing(true);
-  };
+    setEditing(true)
+  }
 
   const handleFormChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleStateChange = (value) => {
-    return setStateLocation(value);
-  };
+    return setStateLocation(value)
+  }
 
   const handleTeamsChange = (teams) => {
     setFavoriteTeams(
@@ -168,12 +168,12 @@ const UserProfile = () => {
         id: uuidv4(),
         ...team,
       }))
-    );
-  };
+    )
+  }
 
   const handleBackButton = () => {
-    setEditing(false);
-  };
+    setEditing(false)
+  }
 
   const handleSignIn = async () => {
     try {
@@ -186,36 +186,36 @@ const UserProfile = () => {
           username: formData.username,
           password: formData.password,
         }),
-      });
+      })
 
       if (response.status === 200) {
-        setSignedIn(true);
+        setSignedIn(true)
 
-        const userResponse = await fetch(`${urlBase}/${formData.username}`);
+        const userResponse = await fetch(`${urlBase}/${formData.username}`)
         if (userResponse.status === 200) {
-          const user = await userResponse.json();
-          setUserData(user);
-          sessionStorage.setItem("userData", JSON.stringify(user));
-          setEditing(false);
+          const user = await userResponse.json()
+          setUserData(user)
+          sessionStorage.setItem("userData", JSON.stringify(user))
+          setEditing(false)
         }
       } else {
-        console.error("Sign In failed:", response.statusText);
+        console.error("Sign In failed:", response.statusText)
       }
     } catch (error) {
-      console.error("Sign In failed:", error.message, error.status);
+      console.error("Sign In failed:", error.message, error.status)
     }
-  };
+  }
 
   const handleSignOut = () => {
-    setSignedIn(false);
-    setUserData(initialUserData);
+    setSignedIn(false)
+    setUserData(initialUserData)
     setFormData({
       username: "",
       password: "",
       confirmPassword: "",
-    });
-    sessionStorage.removeItem("userData");
-  };
+    })
+    sessionStorage.removeItem("userData")
+  }
 
   const handleSignUp = async () => {
     try {
@@ -240,18 +240,18 @@ const UserProfile = () => {
           },
           favoriteTeams,
         }),
-      });
+      })
 
       if (response.status === 201) {
-        await handleSignIn();
+        await handleSignIn()
       } else {
-        const errorData = await response.json();
-        console.error("Sign Up failed:", errorData.error);
+        const errorData = await response.json()
+        console.error("Sign Up failed:", errorData.error)
       }
     } catch (error) {
-      console.error("Sign Up failed:", error.message, error.status);
+      console.error("Sign Up failed:", error.message, error.status)
     }
-  };
+  }
 
   const handleUpdate = async () => {
     try {
@@ -268,17 +268,17 @@ const UserProfile = () => {
           },
           favoriteTeams,
         }),
-      });
+      })
 
       if (res.status === 200) {
-        const updatedUser = await res.json();
-        setUserData(updatedUser);
-        setEditing(false);
+        const updatedUser = await res.json()
+        setUserData(updatedUser)
+        setEditing(false)
       }
     } catch (error) {
-      console.error("Update Failed:", error.message, error.status);
+      console.error("Update Failed:", error.message, error.status)
     }
-  };
+  }
 
   const handleDelete = async () => {
     try {
@@ -287,26 +287,27 @@ const UserProfile = () => {
         headers: {
           "Content-Type": "application/json",
         },
-      });
+      })
 
-      window.location.reload(false);
+      window.location.reload(false)
     } catch (error) {
-      console.error("Delete Failed:", error.message, error.status);
+      console.error("Delete Failed:", error.message, error.status)
     }
-  };
+  }
 
   return (
     <div className="profileMainDiv">
       {signedIn ? (
         <>
-          <h3 className="pageTitle">{userData.username}'s Profile</h3>
+          <h3 className="profilePageTitle">{userData.username}'s Profile</h3>
           {editing ? (
             <div className="userProfileDisplay">
-              <p>
-                <strong>Username:</strong> {userData.username}
+              <p className= "nameProfile">
+                <strong>Username: </strong> {userData.username}
               </p>
+              <p></p>
               <label>
-                Password:
+                <strong>Password: </strong>
                 <input
                   type="password"
                   name="password"
@@ -318,7 +319,7 @@ const UserProfile = () => {
                 </p>
               </label>
               <label>
-                Confirm Password:
+                <strong>Confirm Password: </strong>{" "}
                 <input
                   type="password"
                   name="confirmPassword"
@@ -327,7 +328,7 @@ const UserProfile = () => {
                 />
               </label>
               <label>
-                City:
+                <strong>City: </strong>{" "}
                 <input
                   type="text"
                   placeholder="Enter City"
@@ -335,8 +336,8 @@ const UserProfile = () => {
                   onChange={handleFormChange}
                 />
               </label>
-              <label>
-                State:
+              <label className="stateProfileInput">
+                <strong>State: </strong>
                 <Select
                   placeholder="Select State"
                   name="state"
@@ -346,7 +347,7 @@ const UserProfile = () => {
                 />
               </label>
               <label>
-                Country:
+                <strong>Country: </strong>
                 <input
                   type="text"
                   placeholder="ex. US"
@@ -355,10 +356,10 @@ const UserProfile = () => {
                 />
               </label>
               <label className="faveTeams">
-                Favorite Teams:
+                <strong>Favorite Teams: </strong>{" "}
                 <Select
                   defaultValue={[""]}
-                  placeholder="Favorite Teams"
+                  placeholder="Select Teams"
                   name="favoriteTeams"
                   isMulti
                   options={nflTeams}
@@ -393,7 +394,7 @@ const UserProfile = () => {
                   ))}
               </p>
               <Button className="editButton" onClick={handleEdit}>
-                Edit
+                Edit Profile
               </Button>
               <Button className="deleteButton" onClick={handleDelete}>
                 Delete Account
@@ -532,7 +533,7 @@ const UserProfile = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UserProfile;
+export default UserProfile
