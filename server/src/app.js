@@ -13,7 +13,7 @@ const apiKey = "8cc2063285f3470b96ff200384478e9b";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: 'http://3.15.225.91' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
