@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import "client/src/pages/Weather/Weather.css"
-// import axios from "axios"
 import axios from "axios"
 import { WEATHER_API_KEY } from "../../configs/constants"
 import clear from "../../components/images/clear.png"
@@ -20,10 +19,44 @@ import wind from "../../components/images/wind.png"
 const Weather = () => {
   const [data, setData] = useState({})
   const [location, setLocation] = useState("")
+  const [currentLocation, setCurrentLocation] = useState({})
+
+  // const geoLocationAPI_key = `bfdf72489b14421ca50d45c76c24e1af`
 
   // const api_key = "ad60d9877bba5e3a05f21f39c17485e3"
-  // const api_url = `https://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}`
-  const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ad60d9877bba5e3a05f21f39c17485e3`
+  // location: {city name}
+  const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${location},us&units=imperial&appid=ad60d9877bba5e3a05f21f39c17485e3`
+  
+
+  const getApiUrlWithLatLong = (lat, long) => `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=ad60d9877bba5e3a05f21f39c17485e3`
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude
+        const longitude = position.coords.longitude
+        const geoLocationAPI_url = `https:api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=bfdf72489b14421ca50d45c76c24e1af`
+        const url = getApiUrlWithLatLong(latitude, longitude);
+        // axios
+        //   .get(geoLocationAPI_url)
+        //   .then((res) => {
+        //     // setData(res.data)
+        //     console.log(res.data)
+        //     setLocation(res.data.results[0]?.components?.postcode);
+        //     setCurrentLocation(res.data.results[0]?.geometry);
+        axios.get(url)
+          // })
+          .then((res) => {
+            setData(res.data)
+            console.log(res.data)
+          })
+          .catch((err) => {
+            console.log(err)
+            console.error("Error getting data")
+          })
+      })
+    }
+  }, [])
 
   const handleSearchInput = (event) => {
     event.preventDefault()
@@ -41,7 +74,6 @@ const Weather = () => {
   }
 
   const getForecastImage = (weather) => {
-    // console.log(weather)
     if (weather === "Drizzle") {
       return drizzle
     }
@@ -64,7 +96,6 @@ const Weather = () => {
 
   return (
     <div className="weather-container">
-      {/* <h3>Weather content here...</h3> */}
       <div className="search">
         <form on onSubmit={handleSearchInput}>
           {" "}
@@ -83,9 +114,6 @@ const Weather = () => {
       </div>
 
       <div className="weather-details">
-        {/* find a way to conditionally render the images based on the weather description. if it's raining render the rain image from above*/}
-        {/* it looks a bit blaahhhh right now when it first loads. So I'm thinking we should render the user's forecast 
-        and if they want to look up forecast for other locations that should also be an option (Not sure if that makes sense.)  */}
         {data.weather ? (
           <img
             src={getForecastImage(data.weather[0].main)}
@@ -113,13 +141,10 @@ const Weather = () => {
             <div className="wind">
               <h2>Wind</h2>
               {data.wind ? <h2>{data.wind.speed.toFixed()}MPH</h2> : null}
-
-              {/* <h2>{data.wind.speed}MpH</h2> */}
             </div>
           </div>
         </div>
       </div>
-      {/* Add weather content here */}
     </div>
   )
 }
