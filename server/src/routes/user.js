@@ -49,7 +49,7 @@ router
     try {
       const user = await User.findOne({ username })
         .populate("name", "firstName lastName")
-        .populate("location")
+        .populate("location", "Country City State")
         .populate("favoriteTeams");
 
       if (!user) {

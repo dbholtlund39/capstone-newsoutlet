@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react"
+<<<<<<< HEAD
 import "client/src/pages/Weather/Weather.css"
+=======
+import "./Weather.css"
+// import axios from "axios"
+>>>>>>> 205350132755af6470c044e539933575959d8dfa
 import axios from "axios"
 import { WEATHER_API_KEY } from "../../configs/constants"
 import clear from "../../components/images/clear.png"
