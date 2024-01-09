@@ -21,9 +21,7 @@ const LocalNews = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
   
-        const responseText = await response.text();
-  
-        const data = JSON.parse(responseText);
+        const data = await response.json();  
         const newArticles = data.articles || [];
   
         setArticles(newArticles);

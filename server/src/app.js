@@ -17,10 +17,26 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/api/local-news/:countryCode", async (req, res) => {
+app.get("/api/:newsType/:countryCode", async (req, res) => {
   try {
-    const { countryCode } = req.params;
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
+    const { newsType, countryCode } = req.params;
+
+    let category;
+    switch (newsType) {
+      case 'national-news':
+        category = 'national';
+        break;
+      case 'world-news':
+        category = 'world';
+        break;
+      case 'local-news':
+        category = 'local';
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid news type" });
+    }
+
+    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&category=${category}&pageSize=5`;
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
@@ -32,8 +48,8 @@ app.get("/api/local-news/:countryCode", async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.json(data.articles || []);
   } catch (error) {
-    console.error("Error fetching local news:", error);
-    res.status(500).json({ error: "Error fetching local news" });
+    console.error("Error fetching news:", error);
+    res.status(500).json({ error: "Error fetching news" });
   }
 });
 
