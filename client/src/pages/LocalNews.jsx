@@ -8,24 +8,24 @@ const LocalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchLocalNews = async (countryCode) => {
-    const apiKey = NEWS_API_KEY;
-
+    setLoading(true);
+  
     try {
       const storedData = localStorage.getItem(`localNews_${countryCode}`);
       if (storedData) {
         setArticles(JSON.parse(storedData));
-        setLoading(false);
       } else {
-        const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
-        const response = await fetch(apiUrl);
-
+        const response = await fetch(`http://localhost:3001/api/local-news/${countryCode}`);
+  
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const data = await response.json();
+  
+        const responseText = await response.text();
+  
+        const data = JSON.parse(responseText);
         setArticles(data.articles || []);
-
+  
         localStorage.setItem(
           `localNews_${countryCode}`,
           JSON.stringify(data.articles)
@@ -33,6 +33,7 @@ const LocalNews = () => {
       }
     } catch (error) {
       console.error("Error fetching local news:", error);
+    } finally {
       setLoading(false);
     }
   };

@@ -8,35 +8,29 @@ const NationalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async (countryCode) => {
-    const apiKey = NEWS_API_KEY;
-
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
-
     setLoading(true);
-
+  
     try {
       const storedData = localStorage.getItem(`nationalNews_${countryCode}`);
       if (storedData) {
         setArticles(JSON.parse(storedData));
-        setLoading(false);
       } else {
-        const response = await fetch(apiUrl);
-
+        const response = await fetch(`http://localhost:3001/api/national-news/${countryCode}`);
+  
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
+  
         const data = await response.json();
         setArticles(data.articles || []);
-
+  
         localStorage.setItem(
           `nationalNews_${countryCode}`,
           JSON.stringify(data.articles)
         );
       }
     } catch (error) {
-      console.error("Error fetching articles:", error);
-      setLoading(false);
+      console.error("Error fetching national news:", error);
     } finally {
       setLoading(false);
     }
