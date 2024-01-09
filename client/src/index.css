@@ -420,8 +420,8 @@ h4 {
 .stocksFeed {
   background-color: #e4e5f7;
   padding-top: 20px;
-  padding-bottom: 100px;
-  margin-top: 30px;
+  padding-bottom: 20px;
+ 
 }
 
 .eachStockResult {
@@ -429,12 +429,13 @@ h4 {
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
+  font-size: 18px;
   margin-left: 20px;
   margin-right: 20px;
   background-color: #e4e5f7;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 50px;
+  padding: 10px;
   border-style: inset;
   background-image: url("imageDivBackground.jpg");
 }
