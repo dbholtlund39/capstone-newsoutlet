@@ -28,14 +28,12 @@ a:focus {
 }
 
 .randomQuote {
+  font-size: 20px;
   text-align: center;
   font-style: italic;
   padding-top: 5px;
 }
-.container {
-  display: flex;
-  flex-direction: row;
-}
+
 .mr-auto {
   font-size: 14px;
   display: flex;
@@ -59,15 +57,13 @@ a:focus {
   align-items: center;
   flex-wrap: wrap;
 }
-
+.container {
+  width: 100%;
+}
 .mr-auto.navbar-nav {
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
-}
-.userProfileLink {
-  width: 100px;
-  text-align: center;
+  min-width: 100%;
 }
 
 .pageTitleHome {
@@ -81,7 +77,10 @@ a:focus {
   text-align: center;
   align-content: center;
 }
-
+.logo {
+  width: 6em;
+  height: 6em;
+}
 .pageTitleUser {
   font-size: 25px;
   border: 2px solid black;
@@ -105,7 +104,7 @@ a:focus {
 
 .userProfileDisplay {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   background-color: #f9f9f9;
@@ -174,6 +173,10 @@ a:focus {
 }
 .userProfileLink a {
   color: #9df1ff;
+
+  font-size: 14px;
+
+  text-align: center;
 }
 .css-4xgw5l-IndicatorsContainer2 {
   font-size: 13px;
@@ -184,31 +187,43 @@ a:focus {
   font-size: 13px;
 }
 .homeLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
 
 .localLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
 
 .natLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
 
 .worldLink {
+  font-size: 100%;
+  width: 100px;
+  text-align: center;
+}
+
+.stocksLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
 
 .sportsLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
 
 .weatherLink {
+  font-size: 100%;
   width: 100px;
   text-align: center;
 }
