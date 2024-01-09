@@ -17,26 +17,11 @@ app.use(cors({ origin: 'http://3.15.225.91' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/api/:newsType/:countryCode", async (req, res) => {
+app.get("/api/:countryCode", async (req, res) => {
   try {
-    const { newsType, countryCode } = req.params;
+    const { countryCode } = req.params;
 
-    let category;
-    switch (newsType) {
-      case 'national-news':
-        category = 'national';
-        break;
-      case 'world-news':
-        category = 'world';
-        break;
-      case 'local-news':
-        category = 'local';
-        break;
-      default:
-        return res.status(400).json({ error: "Invalid news type" });
-    }
-
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&category=${category}&pageSize=5`;
+    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&category=general&pageSize=5`;
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
