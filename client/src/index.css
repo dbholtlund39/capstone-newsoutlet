@@ -81,14 +81,18 @@ a:focus {
   width: 6em;
   height: 6em;
 }
-.pageTitleUser {
+.pageTitleUser, .userProfileDisplay {
   font-size: 25px;
   border: 2px solid black;
-width: auto;
+  width: auto;
+  padding: 20px;
   border-radius: 8px;
   text-align: center;
   align-content: center;
   background-color: #f9f9f9;
+}
+.registrationFont {
+  margin-bottom: unset;
 }
 .profileMainDiv {
   margin: auto;
@@ -172,35 +176,37 @@ width: auto;
 }
 .signUpButton {
   align-self: center;
-  font-size: 12px;
+  font-size: small;
   width: 80px;
   padding: 2px;
-  margin: 5px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .signInButton {
-  font-size: 12px;
+  font-size: small;
   width: 80px;
   padding: 2px;
   margin: 5px;
 }
 
 .signOutButton {
-  font-size: 12px;
+  font-size: small;
   padding: 2px;
   width: 60px;
   margin: 10px;
+  margin-top: 6px;
 }
 
 .editButton {
-  font-size: 12px;
+  font-size: small;
   width: 100px;
   padding: 2px;
   margin: 5px;
 }
 
 .deleteButton {
-  font-size: 12px;
+  font-size: small;
   width: 100px;
   padding: 2px;
   margin: 5px;
@@ -208,14 +214,14 @@ width: auto;
 }
 
 .saveButton {
-  font-size: 13px;
+  font-size: small;
   width: 50px;
   padding: 2px;
   margin: 5px;
 }
 
 .backButton {
-  font-size: 13px;
+  font-size: small;
   width: 50px;
   padding: 2px;
   margin: 2px;
@@ -235,7 +241,15 @@ width: auto;
 }
 
 .css-13cymwt-control {
-  font-size: 13px;
+  font-size: medium;
+  font-weight: 400;
+}
+.css-t3ipsp-control{
+  font-size: large;
+  font-weight: bolder;
+}
+.css-1nmdiq5-menu {
+  font-size: large;
 }
 .homeLink {
   font-size: 100%;
@@ -306,19 +320,25 @@ h1 {
 .signupFlex {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   width: auto;
   padding: 10px;
 }
 
 .signUpFont {
   font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: unset;
 }
 
 label {
-  padding: 5px;
-  font-size: 17px;
+  font-size: large;
+  margin-top: 12px;
   text-align: center;
+}
+
+input {
+  font-size: large;
 }
 
 .copyLinkButton {
@@ -344,7 +364,8 @@ label {
 
 .passwordFont {
   font-size: 15px;
-  padding-top: 10px;
+  padding-top: 5px;
+  margin-bottom: unset;
 }
 button:hover {
   border-color: #646cff;

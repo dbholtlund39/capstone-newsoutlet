@@ -307,66 +307,66 @@ const UserProfile = () => {
               </p>
               <p></p>
               <label>
-                <strong>Password: </strong>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password: Min 8 characters"
-                  onChange={handleFormChange}
-                />
-                <p className="passwordFont">
-                  Min. password length 8 characters
-                </p>
+                <strong>Password:</strong>
               </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password: Min 8 characters"
+                onChange={handleFormChange}
+              />
+              <p className="passwordFont">
+                Min. password length 8 characters
+              </p>
               <label>
-                <strong>Confirm Password: </strong>{" "}
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  onChange={handleFormChange}
-                />
+                <strong>Confirm Password:</strong>{" "}
               </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                onChange={handleFormChange}
+              />
               <label>
-                <strong>City: </strong>{" "}
-                <input
-                  type="text"
-                  placeholder="Enter City"
-                  name="city"
-                  onChange={handleFormChange}
-                />
+                <strong>City:</strong>{" "}
               </label>
-              <label className="stateProfileInput">
-                <strong>State: </strong>
-                <Select
-                  placeholder="Select State"
-                  name="state"
-                  value={stateLocation}
-                  options={states}
-                  onChange={handleStateChange}
-                />
-              </label>
+              <input
+                type="text"
+                placeholder="Enter City"
+                name="city"
+                onChange={handleFormChange}
+              />
               <label>
-                <strong>Country: </strong>
-                <input
-                  type="text"
-                  placeholder="ex. US"
-                  name="country"
-                  onChange={handleFormChange}
-                />
+                <strong>State:</strong>
               </label>
-              <label className="faveTeams">
-                <strong>Favorite Teams: </strong>{" "}
-                <Select
-                  defaultValue={[""]}
-                  placeholder="Select Teams"
-                  name="favoriteTeams"
-                  isMulti
-                  options={nflTeams}
-                  onChange={handleTeamsChange}
-                  className="basic-multi-select"
-                />
+              <Select
+                placeholder="Select State"
+                name="state"
+                value={stateLocation}
+                options={states}
+                onChange={handleStateChange}
+              />
+              <label>
+                <strong>Country:</strong>
               </label>
+              <input
+                type="text"
+                placeholder="ex. US"
+                name="country"
+                onChange={handleFormChange}
+              />
+              <label>
+                <strong>Favorite Teams:</strong>{" "}
+              </label>
+              <Select
+                defaultValue={[""]}
+                placeholder="Select Teams"
+                name="favoriteTeams"
+                isMulti
+                options={nflTeams}
+                onChange={handleTeamsChange}
+                className="basic-multi-select"
+              />
               <Button className="saveButton" onClick={handleUpdate}>
                 Save
               </Button>
@@ -377,10 +377,10 @@ const UserProfile = () => {
           ) : (
             <div className="userProfileDisplay">
               <p className="usernameP">
-                <strong>Username: </strong> {userData.username}
+                <strong>Username:</strong> {userData.username}
               </p>
               <p className="locationP">
-                <strong>Location: </strong> {userData.location.Country},{" "}
+                <strong>Location:</strong> {userData.location.Country},{" "}
                 {userData.location.City}, {userData.location.State}
               </p>
               <p className="teamList">
@@ -413,112 +413,101 @@ const UserProfile = () => {
           {signUpMode}{" "}
           <div className="signupFlex">
             <label>
-            <strong>
-              Username: {" "}
-              </strong>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                onChange={handleFormChange}
-              />
+              <strong>Username:</strong>
             </label>
-            <label> <strong>
-              Password: {" "}
-              </strong>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password: Min 8 characters"
-                onChange={handleFormChange}
-              />
-              <p className="passwordFont">Min. password length 8 characters</p>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={handleFormChange}
+            />
+            <label> 
+              <strong>Password:</strong>
             </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password: Min 8 characters"
+              onChange={handleFormChange}
+            />
+            <p className="passwordFont">Min. password length 8 characters</p>
             {signUpMode && (
               <>
-                <label> <strong>
-                  Confirm Password: </strong>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    onChange={handleFormChange}
-                  />
+                <label> 
+                  <strong>Confirm Password:</strong>
                 </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  onChange={handleFormChange}
+                />
                 <label>
-                  <strong>
-                  Email:{" "} </strong>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={handleFormChange}
-                  />
+                  <strong>Email:</strong>
                 </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleFormChange}
+                />
                 <label>
-                  <strong>
-                  First Name: </strong>
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    name="firstName"
-                    onChange={handleFormChange}
-                  />
+                  <strong>First Name:</strong>
                 </label>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  name="firstName"
+                  onChange={handleFormChange}
+                />
                 <label>
-                <strong>
-                  Last Name: </strong>
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    name="lastName"
-                    onChange={handleFormChange}
-                  />
+                  <strong>Last Name:</strong>
                 </label>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="lastName"
+                  onChange={handleFormChange}
+                />
                 <label>
-                <strong>
-                  City: </strong>
-                  <input
-                    type="text"
-                    placeholder="Enter City"
-                    name="city"
-                    onChange={handleFormChange}
-                  />
+                  <strong>City:</strong>
                 </label>
-                <label className="stateProfileInput">
-                <strong>
-                  State: </strong>
-                  <Select
-                    placeholder="Select State"
-                    name="state"
-                    options={states}
-                    value={stateLocation}
-                    onChange={handleStateChange}
-                  />
-                </label>
+                <input
+                  type="text"
+                  placeholder="Enter City"
+                  name="city"
+                  onChange={handleFormChange}
+                />
                 <label>
-                <strong>
-                  Country: </strong>
-                  <input
-                    type="text"
-                    placeholder="Country Code"
-                    name="location"
-                    onChange={handleFormChange}
-                  />
+                  <strong>State:</strong>
                 </label>
-                <label className="faveTeams">
-                <strong>
-                  Favorite Teams: </strong>
-                  <Select
-                    defaultValue={[""]}
-                    placeholder="Select Team(s)"
-                    name="favoriteTeams"
-                    isMulti
-                    options={nflTeams}
-                    onChange={handleTeamsChange}
-                    className="basic-multi-select"
-                  />
+                <Select
+                  placeholder="Select State"
+                  name="state"
+                  options={states}
+                  value={stateLocation}
+                  onChange={handleStateChange}
+                />
+                <label>
+                  <strong>Country:</strong>
                 </label>
+                <input
+                  type="text"
+                  placeholder="Country Code"
+                  name="location"
+                  onChange={handleFormChange}
+                />
+                <label>
+                  <strong>Favorite Teams:</strong>
+                </label>
+                <Select
+                  defaultValue={[""]}
+                  placeholder="Select Team(s)"
+                  name="favoriteTeams"
+                  isMulti
+                  options={nflTeams}
+                  onChange={handleTeamsChange}
+                />
               </>
             )}
 
