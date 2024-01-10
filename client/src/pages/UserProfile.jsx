@@ -367,12 +367,14 @@ const UserProfile = () => {
                 onChange={handleTeamsChange}
                 className="basic-multi-select"
               />
-              <Button className="saveButton" onClick={handleUpdate}>
-                Save
-              </Button>
-              <Button className="backButton" onClick={handleBackButton}>
-                Back
-              </Button>
+              <div className="profileButtons">
+                <Button className="saveButton" onClick={handleUpdate}>
+                  Save
+                </Button>
+                <Button className="backButton" onClick={handleBackButton}>
+                  Back
+                </Button>
+              </div>
             </div>
           ) : (
             <div className="userProfileDisplay">
@@ -393,12 +395,14 @@ const UserProfile = () => {
                     </span>
                   ))}
               </p>
-              <Button className="editButton" onClick={handleEdit}>
-                Edit Profile
-              </Button>
-              <Button className="deleteButton" onClick={handleDelete}>
-                Delete Account
-              </Button>
+              <div className="profileButtons">
+                <Button className="editButton" onClick={handleEdit}>
+                  Edit Profile
+                </Button>
+                <Button className="deleteButton" onClick={handleDelete}>
+                  Delete Account
+                </Button>
+              </div>
             </div>
           )}
           <Button className="signOutButton" onClick={handleSignOut}>

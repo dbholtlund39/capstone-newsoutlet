@@ -112,7 +112,7 @@ a:focus {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -121,6 +121,11 @@ a:focus {
   list-style: none;
   width: auto;
   height: auto;
+}
+
+.profileButtons {
+  align-items: center;
+  margin-top: 10px;
 }
 
 .stateProfileInput {
@@ -251,6 +256,10 @@ a:focus {
 .css-1nmdiq5-menu {
   font-size: large;
 }
+.css-b62m3t-container {
+  font-size: medium;
+  font-weight: 400;
+}
 .homeLink {
   font-size: 100%;
   width: 100px;
@@ -333,7 +342,7 @@ h1 {
 
 label {
   font-size: large;
-  margin-top: 12px;
+  margin-top: 15px;
   text-align: center;
 }
 
