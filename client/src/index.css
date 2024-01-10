@@ -121,6 +121,7 @@ a:focus {
   list-style: none;
   width: auto;
   height: auto;
+  font-size: larger;
 }
 
 .profileButtons {
