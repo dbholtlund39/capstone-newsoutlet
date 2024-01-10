@@ -6,7 +6,10 @@ import { v4 as uuidv4 } from "uuid"
 
 const UserProfile = () => {
   const initialUserData = {
-    username: "",
+    name: {
+      firstName: "",
+      lastName: ""
+    },
     location: {
       Country: "",
       City: "",
@@ -303,7 +306,7 @@ const UserProfile = () => {
           {editing ? (
             <div className="userProfileDisplay">
               <p className= "nameProfile">
-                <strong>Username: </strong> {userData.username}
+                <strong>Username:</strong> {userData.username}
               </p>
               <p></p>
               <label>
@@ -379,7 +382,7 @@ const UserProfile = () => {
           ) : (
             <div className="userProfileDisplay">
               <p className="usernameP">
-                <strong>Username:</strong> {userData.username}
+                <strong>Name:</strong> {userData.name.firstName} {userData.name.lastName}
               </p>
               <p className="locationP">
                 <strong>Location:</strong> {userData.location.Country},{" "}
