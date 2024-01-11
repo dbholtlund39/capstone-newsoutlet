@@ -8,7 +8,7 @@
 .weather-container {
   display: flex;
   flex-direction: column;
-  width: 80%; 
+  width: 50%; 
   padding: 20px;
   background: linear-gradient(135deg, #00feba, #5b548a);
   text-align: center;
