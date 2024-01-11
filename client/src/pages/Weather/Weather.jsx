@@ -97,6 +97,7 @@ const Weather = () => {
 
   return (
     <div className="weather-container">
+      <div className= "weatherDetailsDiv">
       <div className="search">
         <form on onSubmit={handleSearchInput}>
           {" "}
@@ -145,6 +146,7 @@ const Weather = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
