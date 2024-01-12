@@ -509,7 +509,7 @@ h4 {
   border-radius: 8px;
   padding: 10px;
   border-style: inset;
-  background-image: url("imageDivBackground.jpg");
+  background-image: url("../public/imageDivBackground.jpg");
 }
 
 .eachStockResult div {
