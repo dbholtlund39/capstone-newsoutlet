@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import LatestSportsNews from "./LatestSportsNews"
-import Basketball from "./Nba.jsx"
-import FootballArticles from "./Nfl.news.jsx"
-import MlbNews from "./Mlb.jsx"
-import OtherSports from "./OtherSports.jsx"
+import React, { Component } from "react";
+import LatestSportsNews from "./LatestSportsNews";
+import Basketball from "./Nba.jsx";
+import FootballArticles from "./Nfl.news.jsx";
+import MlbNews from "./Mlb.jsx";
+import OtherSports from "./OtherSports.jsx";
 
 class Sports extends Component {
   render() {
@@ -12,28 +12,35 @@ class Sports extends Component {
       marginBottom: "0px",
       padding: "6px",
       borderRadius: "8px",
-    }
+    };
 
     const navStyle = {
-      position: "static",
-      fontSize: "80%",
-      top: "100px",
-      backgroundColor: "transparent",
+      position: "sticky",
+      top: "0",
+      backgroundImage: "url('imageDivBackground.jpg')",
       zIndex: "1000",
-      padding: "0px",
-      marginBottom: "-160px",
+      padding: "10px 0",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: "100%",
-    }
+    };
 
     const navLinkStyle = {
       textDecoration: "none",
-      color: "blue",
+      color: "light grey",
       cursor: "pointer",
-      padding: "2% 6%",
-      margin: "5px 10px",
+      padding: "10px 20px",
+      margin: "0 10px",
+      backgroundSize: "cover",
+    };
+
+    // Media query for smaller screens
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    // Adjust styles for smaller screens
+    if (mediaQuery.matches) {
+      navStyle.flexDirection = "column";
+      navLinkStyle.margin = "5px 0";
     }
 
     return (
@@ -72,8 +79,8 @@ class Sports extends Component {
           <OtherSports />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Sports
+export default Sports;
