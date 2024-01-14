@@ -27,7 +27,7 @@ const WorldNews = () => {
             const cachedArticles = JSON.parse(storedData);
             articlesArray.push(...cachedArticles);
           } else {
-            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${country}&limit=5`;
+            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${country}&limit=3`;
             const response = await fetch(apiUrl);
             if (!response.ok) {
               const errorText = `HTTP error! Status: ${response.status}, ${response.statusText}`;
