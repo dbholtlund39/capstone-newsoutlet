@@ -6,29 +6,37 @@ const NationalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async (countryCode) => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
-    setLoading(true);
+    const apiKey = "UiHVtYvNUQ2wFOsMqMwPb2KGWTAu9lg0oeBFhBsC";
     try {
       const storedData = localStorage.getItem(`nationalNews_${countryCode}`);
-      if (storedData) {
+      if (storedData !== null) {
         setArticles(JSON.parse(storedData));
-        setLoading(false);
       } else {
+        const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${countryCode}&limit=3`;
         const response = await fetch(apiUrl);
+
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          const errorText = `HTTP error! Status: ${response.status}, ${response.statusText}`;
+          throw new Error(errorText);
         }
+
         const data = await response.json();
-        setArticles(data.articles || []);
-        localStorage.setItem(
-          `nationalNews_${countryCode}`,
-          JSON.stringify(data.articles)
-        );
+
+        if (Array.isArray(data.data)) {
+          setArticles(data.data);
+          localStorage.setItem(
+            `nationalNews_${countryCode}`,
+            JSON.stringify(data.data)
+          );
+        } else {
+          console.error(
+            "API response does not contain a valid 'data' field:",
+            data
+          );
+        }
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
-      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -88,24 +96,23 @@ const NationalNews = () => {
           {filteredArticles.map((article, index) => (
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
-              {article.urlToImage && (
+              {article.image_url && (
                 <div className="imageDiv">
                   <img
                     className="image"
-                    src={article.urlToImage}
+                    src={article.image_url}
                     alt="Article"
                   />
                 </div>
               )}
-              {!article.urlToImage && (
+              {!article.image_url && (
                 <div className="imageDiv">
                   <img className="image" src={defaultImageUrl} alt="Default" />
                 </div>
               )}
               <p className="article">{article.description}</p>
-              <p className="author">Author: {article.author}</p>
-              <p className="published">Published at: {article.publishedAt}</p>
-              <p className="source">Source: {article.source.name}</p>
+              <p className="published">Published at: {article.published_at}</p>
+              <p className="source">Source: {article.source}</p>
               {article.url && (
                 <div>
                   <p className="article-link">

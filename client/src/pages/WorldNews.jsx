@@ -5,7 +5,7 @@ const WorldNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async () => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
+    const apiKey = "UiHVtYvNUQ2wFOsMqMwPb2KGWTAu9lg0oeBFhBsC";
     const regions = {
       Africa: ["za", "ng", "ke"],
       Americas: ["us", "ca", "br", "mx"],
@@ -27,16 +27,17 @@ const WorldNews = () => {
             const cachedArticles = JSON.parse(storedData);
             articlesArray.push(...cachedArticles);
           } else {
-            const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
+            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${country}&limit=3`;
             const response = await fetch(apiUrl);
             if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
+              const errorText = `HTTP error! Status: ${response.status}, ${response.statusText}`;
+              throw new Error(errorText);
             }
             const data = await response.json();
-            articlesArray.push(...(data.articles || []));
+            articlesArray.push(...(data.data || []));
             localStorage.setItem(
               `worldNews_${country}`,
-              JSON.stringify(data.articles)
+              JSON.stringify(data.data)
             );
           }
         }
@@ -48,7 +49,7 @@ const WorldNews = () => {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -86,24 +87,23 @@ const WorldNews = () => {
           {filteredArticles.map((article, index) => (
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
-              {article.urlToImage && (
+              {article.image_url && (
                 <div className="imageDiv">
                   <img
                     className="image"
-                    src={article.urlToImage}
+                    src={article.image_url}
                     alt="Article"
                   />
                 </div>
               )}
-              {!article.urlToImage && (
+              {!article.image_url && (
                 <div className="imageDiv">
                   <img className="image" src={defaultImageUrl} alt="Default" />
                 </div>
               )}
               <p className="article">{article.description}</p>
-              <p className="author">Author: {article.author}</p>
-              <p className="published">Published at: {article.publishedAt}</p>
-              <p className="source">Source: {article.source.name}</p>
+              <p className="published">Published at: {article.published_at}</p>
+              <p className="source">Source: {article.source}</p>
               {article.url && (
                 <div>
                   <p className="article-link">
