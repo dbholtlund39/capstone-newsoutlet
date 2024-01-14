@@ -87,24 +87,23 @@ const WorldNews = () => {
           {filteredArticles.map((article, index) => (
             <li className="itemCard" key={index}>
               <h4>{article.title}</h4>
-              {article.urlToImage && (
+              {article.image_url && (
                 <div className="imageDiv">
                   <img
                     className="image"
-                    src={article.urlToImage}
+                    src={article.image_url}
                     alt="Article"
                   />
                 </div>
               )}
-              {!article.urlToImage && (
+              {!article.image_url && (
                 <div className="imageDiv">
                   <img className="image" src={defaultImageUrl} alt="Default" />
                 </div>
               )}
               <p className="article">{article.description}</p>
-              <p className="author">Author: {article.author}</p>
-              <p className="published">Published at: {article.publishedAt}</p>
-              <p className="source">Source: {article.source.name}</p>
+              <p className="published">Published at: {article.published_at}</p>
+              <p className="source">Source: {article.source}</p>
               {article.url && (
                 <div>
                   <p className="article-link">
