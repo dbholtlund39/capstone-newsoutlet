@@ -5,7 +5,7 @@ const WorldNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async () => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
+    const apiKey = "UiHVtYvNUQ2wFOsMqMwPb2KGWTAu9lg0oeBFhBsC";
     const regions = {
       Africa: ["za", "ng", "ke"],
       Americas: ["us", "ca", "br", "mx"],
@@ -27,16 +27,17 @@ const WorldNews = () => {
             const cachedArticles = JSON.parse(storedData);
             articlesArray.push(...cachedArticles);
           } else {
-            const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${country}&pageSize=5`;
+            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${country}&limit=5`;
             const response = await fetch(apiUrl);
             if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
+              const errorText = `HTTP error! Status: ${response.status}, ${response.statusText}`;
+              throw new Error(errorText);
             }
             const data = await response.json();
-            articlesArray.push(...(data.articles || []));
+            articlesArray.push(...(data.data || []));
             localStorage.setItem(
               `worldNews_${country}`,
-              JSON.stringify(data.articles)
+              JSON.stringify(data.data)
             );
           }
         }
@@ -48,7 +49,7 @@ const WorldNews = () => {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchArticles();
   }, []);

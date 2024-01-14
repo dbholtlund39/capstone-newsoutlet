@@ -6,29 +6,37 @@ const NationalNews = () => {
   const [linkCopiedState, setLinkCopiedState] = useState({});
 
   const fetchArticles = async (countryCode) => {
-    const apiKey = "8cc2063285f3470b96ff200384478e9b";
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=${countryCode}&pageSize=5`;
-    setLoading(true);
+    const apiKey = "UiHVtYvNUQ2wFOsMqMwPb2KGWTAu9lg0oeBFhBsC";
     try {
       const storedData = localStorage.getItem(`nationalNews_${countryCode}`);
-      if (storedData) {
+      if (storedData !== null) {
         setArticles(JSON.parse(storedData));
-        setLoading(false);
       } else {
+        const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${countryCode}&limit=10`;
         const response = await fetch(apiUrl);
+
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          const errorText = `HTTP error! Status: ${response.status}, ${response.statusText}`;
+          throw new Error(errorText);
         }
+
         const data = await response.json();
-        setArticles(data.articles || []);
-        localStorage.setItem(
-          `nationalNews_${countryCode}`,
-          JSON.stringify(data.articles)
-        );
+
+        if (Array.isArray(data.data)) {
+          setArticles(data.data);
+          localStorage.setItem(
+            `nationalNews_${countryCode}`,
+            JSON.stringify(data.data)
+          );
+        } else {
+          console.error(
+            "API response does not contain a valid 'data' field:",
+            data
+          );
+        }
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
-      setLoading(false);
     } finally {
       setLoading(false);
     }
