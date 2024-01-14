@@ -12,7 +12,7 @@ const LocalNews = () => {
         setArticles(JSON.parse(storedData));
         setLoading(false);
       } else {
-        const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${countryCode}&limit=10`;
+        const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&locale=${countryCode}&limit=3`;
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
