@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 const WorldNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -44,7 +44,7 @@ const UserProfile = () => {
   const urlBase =
     import.meta.env.VITE_NODE_ENV === "production"
       ? import.meta.env.VITE_API_URL
-      : "http://localhost:3001/api";
+      : "http://3.15.225.91:8080/api";
 
   const nflTeams = [
     { label: "Arizona Cardinals", value: "Arizona Cardinals" },

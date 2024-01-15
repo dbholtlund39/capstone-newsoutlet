@@ -12,7 +12,7 @@ const NbaStandings = () => {
             setLoading(true);
             try {
                 console.log("Fetching NBA standings data...");
-                const response = await axios.get('http://localhost:3001/api/sportsNews/standings');
+                const response = await axios.get('http://3.15.225.91:8080/api/sportsNews/standings');
                 console.log("Received response:", response.data);
 
                 const parser = new DOMParser();

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 const LocalNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);

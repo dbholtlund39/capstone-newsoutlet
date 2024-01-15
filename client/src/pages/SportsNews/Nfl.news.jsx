@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 // import NflCard from './NflCard.jsx'; // Commented out temporary
 
 const fetchFootballArticles = async () => {
-    const { data } = await axios.get("http://localhost:3001/api/sportsNews/football");
+    const { data } = await axios.get("http://3.15.225.91:8080/api/sportsNews/football");
     return data;
 };
 
