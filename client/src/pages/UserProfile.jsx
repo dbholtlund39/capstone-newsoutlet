@@ -6,14 +6,15 @@ import { v4 as uuidv4 } from "uuid";
 
 const UserProfile = () => {
   const initialUserData = {
+    username: "",
     name: {
       firstName: "",
       lastName: "",
     },
     location: {
-      Country: "",
-      City: "",
-      State: "",
+      country: "",
+      city: "",
+      state: "",
     },
     favoriteTeams: [],
   };
@@ -28,8 +29,8 @@ const UserProfile = () => {
       lastName: "",
     },
     location: {
-      Country: "",
-      City: "",
+      country: "",
+      city: "",
     },
   };
 
@@ -237,9 +238,9 @@ const UserProfile = () => {
             lastName: formData.lastName,
           },
           location: {
-            Country: formData.country,
-            City: formData.city,
-            State: stateLocation.value,
+            country: formData.country,
+            city: formData.city,
+            state: stateLocation.value,
           },
           favoriteTeams,
         }),
@@ -264,10 +265,12 @@ const UserProfile = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
           location: {
-            Country: formData.country,
-            City: formData.city,
-            State: stateLocation.value,
+            country: formData.country,
+            city: formData.city,
+            state: stateLocation.value,
           },
           favoriteTeams,
         }),
@@ -319,7 +322,6 @@ const UserProfile = () => {
               <p className="nameProfile">
                 <strong>Username:</strong> {userData.username}
               </p>
-              <p></p>
               <label>
                 <strong>Password:</strong>
               </label>
