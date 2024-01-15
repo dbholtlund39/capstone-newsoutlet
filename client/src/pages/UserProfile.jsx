@@ -397,8 +397,8 @@ const UserProfile = () => {
                 {userData.name.lastName}
               </p>
               <p className="locationP">
-                <strong>Location:</strong> {userData.location.Country},{" "}
-                {userData.location.City}, {userData.location.State}
+                <strong>Location:</strong> {userData.location.country},{" "}
+                {userData.location.city}, {userData.location.state}
               </p>
               <p className="teamList">
                 <strong>Favorite Teams:</strong>{" "}
