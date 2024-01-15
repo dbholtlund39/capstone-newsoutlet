@@ -30,18 +30,18 @@ const userSchema = new Schema(
       minLength: 8,
     },
     location: {
-      Country: {
+      country: {
         type: String,
         default: 'US',
         minLength: 2,
         maxLength: 2,
         required: true,
       },
-      City: {
+      city: {
         type: String,
         required: true,
       },
-      State: {
+      state: {
         type: String,
         minLength: 2,
         maxLength: 2,
