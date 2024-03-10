@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 const fetchNbaArticles = async () => {
-    const { data } = await axios.get("http://3.15.225.91:8080/api/sportsNews/basketball");
+    const { data } = await axios.get("http://3.143.68.38:8080/api/sportsNews/basketball");
     return data;
 };
 
